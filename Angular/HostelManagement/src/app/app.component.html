@@ -1,6 +1,22 @@
-<app-header></app-header>
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a href="http://www.auttvl.ac.in/" class="navbar-brand">Anna University</a></div>
+
+    <ul class="navbar-nav">
+      <li><a class="nav-link">HOSTEL MANAGEMENT</a></li>
+      <li><a class="nav-link">ABOUT US</a></li>
+    </ul>
+
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li><a class="nav-link">ADMIN</a></li>
+      <li><a class="nav-link">STAFF</a></li>
+    </ul>
+  </nav>
+</header>
 
 <div class="container">
-<router-outlet></router-outlet>
+<router-outlet>
+  <app-student-login></app-student-login>
+</router-outlet>
 </div>
 <app-footer></app-footer>
