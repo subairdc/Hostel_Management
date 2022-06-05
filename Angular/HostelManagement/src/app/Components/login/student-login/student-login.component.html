@@ -1,1 +1,17 @@
-<p>student-login works!</p>
+<h2 style="text-align: center;"> Student Login</h2>
+<div class="container">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4" style="background-color: azure;">
+    <form [formGroup]="login" (ngSubmit)="getData()">
+      <input type="text" class="form-control" placeholder="Username" formControlName="name">
+      <span *ngIf="name && name.invalid && name.touched" style="color: red;">Enter Valid Data</span>
+      <br>
+      <input type="password" class="form-control" placeholder="Password" formControlName="password">
+      <span *ngIf="password && password.invalid && password.touched" style="color: red;">Enter Valid Data</span>
+      <br>
+      <button [disabled]="login.invalid" type="submit" class="btn btn-success">Login</button>
+
+
+    </form>
+  </div>
+</div>
