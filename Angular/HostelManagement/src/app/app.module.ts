@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,10 @@ import { AdminLoginComponent } from './Components/login/admin-login/admin-login.
 import { StudentDashboardComponent } from './Components/student/student-dashboard/student-dashboard.component';
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
+import { StaffLoginComponent } from './Components/login/staff-login/staff-login.component';
+import { StudentSignupComponent } from './Components/login/student-signup/student-signup.component';
+import { StaffSignupComponent } from './Components/login/staff-signup/staff-signup.component';
+import { AdminSignupComponent } from './Components/login/admin-signup/admin-signup.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,18 @@ import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admi
     AdminLoginComponent,
     StudentDashboardComponent,
     StaffDashboardComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    StaffLoginComponent,
+    StudentSignupComponent,
+    StaffSignupComponent,
+    AdminSignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

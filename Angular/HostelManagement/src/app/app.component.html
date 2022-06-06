@@ -8,15 +8,15 @@
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a class="nav-link">ADMIN</a></li>
-      <li><a class="nav-link">STAFF</a></li>
+      <li><a routerLink="/adminLogin" class="nav-link">ADMIN</a></li>
+      <li><a routerLink="staffLogin" class="nav-link">STAFF</a></li>
+      <!-- <li><a [routerLink]="['/routePath']" routerLinkActive="router-link-active"  class="nav-link">STAFF</a></li> -->
     </ul>
   </nav>
 </header>
 
 <div class="container">
 <router-outlet>
-  <app-student-login></app-student-login>
 </router-outlet>
 </div>
 <app-footer></app-footer>

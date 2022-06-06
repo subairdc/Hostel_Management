@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -19,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class MaterialModule { }
