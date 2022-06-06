@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { Student } from 'src/app/model/student';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-student-login',
@@ -8,26 +11,63 @@ import { FormGroup,FormControl, Validators } from '@angular/forms';
 })
 export class StudentLoginComponent implements OnInit {
 
-  login = new FormGroup({
-    name: new FormControl("subiar",[Validators.required]),
-    password: new FormControl(Validators.pattern("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")),
-  });
+  username : string = '';
+  password : string = '';
 
-  constructor() { }
+  user : Student = new Student();
+
+  // login = new FormGroup({
+  //   name: new FormControl("subiar",[Validators.required]),
+  //   password: new FormControl(Validators.pattern("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")),
+  // });
+
+  constructor(private authService : AuthService, private route : Router) { }
 
   ngOnInit(): void {
+    this.username = '';
+    this.password = '';
   }
 
-  getData(){
-    console.log(this.login.value);
+  login() {
+
+    console.log(this.username+ " " + this.password);
+
+    this.user.username = this.username;
+    this.user.password = this.password;
+
+
+    this.authService.login(this.user).subscribe(res => {
+
+      if(res == null) {
+        alert("Uername or password is wrong");
+        this.ngOnInit();
+      }else {
+        console.log("Login successful");
+        localStorage.setItem("token",res.token);
+        this.route.navigate(['/studentDashboard'])
+      }
+
+    }, err => {
+      alert("Login failed");
+      this.ngOnInit();
+    })
+
   }
 
-  //Validation
-  get name(){
-    return this.login.get("name");
-  }
 
-  get password(){
-    return this.login.get("password");
-  }
+
+
+
+  // getData(){
+  //   console.log(this.login.value);
+  // }
+
+  // //Validation
+  // get name(){
+  //   return this.login.get("name");
+  // }
+
+  // get password(){
+  //   return this.login.get("password");
+  // }
 }

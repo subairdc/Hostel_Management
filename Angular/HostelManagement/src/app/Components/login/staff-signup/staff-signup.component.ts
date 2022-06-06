@@ -30,14 +30,14 @@ export class StaffSignupComponent implements OnInit {
     this.user.name = this.name;
     this.user.role = 'user';
 
-    this.authService.signUp(this.user).subscribe(res => {
+    this.authService.signup(this.user).subscribe(res => {
       if(res == null) {
         alert("Registration failed");
         this.ngOnInit();
       }else {
         console.log("Registration successful");
         alert("Registration successful");
-        this.route.navigate(['/']);
+        this.route.navigate(['/staffLogin']);
       }
     }, err => {
       alert("Registration failed.");

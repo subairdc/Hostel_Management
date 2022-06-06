@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Staff } from '../model/staff';
+import { Student } from '../model/student';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class AuthService {
     this.signUpUrl = "http://localhost:8080/auth/register";
   }
 
-  login(user : Staff) : Observable<any> {
+  login(user : any) : Observable<any> {
     return this.http.post<any>(this.loginUrl,user);
   }
 
-  signUp(user : Staff) : Observable<any> {
+  signup(user : any) : Observable<any> {
     return this.http.post<any>(this.signUpUrl,user);
   }
 }
