@@ -26,6 +26,7 @@ import { StudentHomepageComponent } from './Components/student/student-homepage/
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
 import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
+import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { StaffManagementComponent } from './Components/admin/staff-management/st
     StudentHomepageComponent,
     WardenHomepageComponent,
     AdminHomepageComponent,
-    StaffManagementComponent
+    StaffManagementComponent,
+    WardenManagementComponent
   ],
   imports: [
     BrowserModule,

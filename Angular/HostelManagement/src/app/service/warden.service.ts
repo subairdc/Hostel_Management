@@ -17,7 +17,7 @@ export class WardenService {
     this.addWardenURL = 'http://localhost:8080/warden/addWarden';
     this.getWardenURL = 'http://localhost:8080/warden/getAll';
     this.updateWardenUrl = 'http://localhost:8080/warden/updateWarden';
-    this.deleteWardenUrl = 'http://localhost:8080/warden/deleteWardenByEmail';
+    this.deleteWardenUrl = 'http://localhost:8080/warden/deleteWardenById';
    }
 
 

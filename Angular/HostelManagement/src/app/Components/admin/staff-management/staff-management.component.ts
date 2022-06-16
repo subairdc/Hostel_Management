@@ -53,7 +53,7 @@ export class StaffManagementComponent implements OnInit {
   editStaff(staff : Staff) {
     this.staffDetail.controls['name'].setValue(staff.name);
     this.staffDetail.controls['email'].setValue(staff.email);
-    this.staffDetail.controls['salary'].setValue(staff.password);
+    this.staffDetail.controls['password'].setValue(staff.password);
   }
 
   updateStaff() {

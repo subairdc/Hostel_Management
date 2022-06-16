@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
 import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
+import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
 import { AdminLoginComponent } from './Components/login/admin-login/admin-login.component';
 import { AdminSignupComponent } from './Components/login/admin-signup/admin-signup.component';
 import { StaffLoginComponent } from './Components/login/staff-login/staff-login.component';
@@ -47,7 +48,8 @@ const routes: Routes = [
         children:
         [{ path:'adminDashboard' , component: AdminDashboardComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
-        { path:'staffManagement' , component: StaffManagementComponent}
+        { path:'staffManagement' , component: StaffManagementComponent},
+        { path:'wardenManagement' , component: WardenManagementComponent}
       ]
   },
 

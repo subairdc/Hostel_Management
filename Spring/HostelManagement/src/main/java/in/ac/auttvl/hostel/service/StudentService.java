@@ -11,7 +11,7 @@ import in.ac.auttvl.hostel.repository.StudentRepository;
 @Service
 public class StudentService {
 	
-	 @Autowired
+	 	@Autowired
 	    private StudentRepository studentRepository;
 
 	    public Student addStudent(Student student) {
