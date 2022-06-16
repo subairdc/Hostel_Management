@@ -1,15 +1,16 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" color="primary">
     <div><a href="http://www.auttvl.ac.in/" class="navbar-brand">Anna University</a></div>
 
     <ul class="navbar-nav">
-      <li><a class="nav-link">HOME</a></li>
-      <li><a class="nav-link">ABOUT US</a></li>
+      <li><a routerLink="/" routerLinkActive="badge-success" class="nav-link">HOME</a></li>
+      <li><a routerLinkActive="badge-success" class="nav-link">ABOUT US</a></li>
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a class="nav-link">ADMIN</a></li>
-      <li><a class="nav-link">STAFF</a></li>
+      <li><a routerLink="/staffLogin" routerLinkActive="active" class="nav-link">STAFF</a></li>
+      <li><a routerLink="/wardenLogin" routerLinkActive="active" class="nav-link">WARDEN</a></li>
+      <li><a routerLink="/adminLogin" routerLinkActive="active" class="nav-link">ADMIN</a></li>
     </ul>
   </nav>
 </header>

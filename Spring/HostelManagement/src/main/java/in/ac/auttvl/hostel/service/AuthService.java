@@ -1,13 +1,19 @@
 package in.ac.auttvl.hostel.service;
 
-import java.security.SecureRandom;
-import java.util.Base64;
+//import java.security.SecureRandom;
+//import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.ac.auttvl.hostel.model.Admin;
 import in.ac.auttvl.hostel.model.Staff;
+import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.Warden;
+import in.ac.auttvl.hostel.repository.AdminRepository;
 import in.ac.auttvl.hostel.repository.StaffRepository;
+import in.ac.auttvl.hostel.repository.StudentRepository;
+import in.ac.auttvl.hostel.repository.WardenRepository;
 
 @Service
 public class AuthService {
@@ -15,45 +21,82 @@ public class AuthService {
 
     @Autowired
     private StaffRepository staffRepository;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private WardenRepository wardenRepository;
+    @Autowired
+    private AdminRepository adminRepository;
     
-    private static final SecureRandom secureRandom = new SecureRandom();
-    private static final Base64.Encoder base64enocder = Base64.getUrlEncoder();
+//    private static final SecureRandom secureRandom = new SecureRandom();
+//    private static final Base64.Encoder base64enocder = Base64.getUrlEncoder();
 
-	public Staff register(Staff staff) {
+	public Staff staffRegister(Staff staff) {
 		
 		 // Check if user with username exist or not
-        if(checkUserExist(staff)== true)
+        if(checkStaffExist(staff)== true)
 		return null;
         
-        staff.setToken(generateToken());
+//        staff.setToken(generateToken());
 
         return staffRepository.save(staff);
 	}
 	
 	
 	
-	private String generateToken() {
+//	private String generateToken() {
+//
+//        byte[] token = new byte[24];
+//        secureRandom.nextBytes(token);
+//        return base64enocder.encodeToString(token);
+//
+//    }
 
-        byte[] token = new byte[24];
-        secureRandom.nextBytes(token);
-        return base64enocder.encodeToString(token);
-
-    }
-
-    private boolean checkUserExist(Staff staff) {
-    	Staff existingUser = staffRepository.findById(staff.getUsername()).orElse(null);
+    private boolean checkStaffExist(Staff staff) {
+    	Staff existingUser = staffRepository.findById(staff.getEmail()).orElse(null);
 
         if(existingUser == null)
             return false;
         return true;
     }
 
-    public Staff login(Staff staff) {
-        Staff existingUser = staffRepository.findById(staff.getUsername()).orElse(null);
+    public Staff staffLogin(Staff staff) {
+        Staff existingUser = staffRepository.findById(staff.getEmail()).orElse(null);
 
-        if(existingUser.getUsername().equals(staff.getUsername()) &&
-                existingUser.getPassword().equals(staff.getPassword()) &&
-                existingUser.getRole().equals(staff.getRole())) {
+        if(existingUser.getEmail().equals(staff.getEmail()) &&
+                existingUser.getPassword().equals(staff.getPassword())) {
+            existingUser.setPassword("");
+            return existingUser;
+        }
+
+        return null;
+
+    }
+    
+    
+    //Student Auth controller
+    public Student studentRegister(Student student) {
+		
+		 // Check if user with username exist or not
+       if(checkStudentExist(student)== true)
+		return null;
+
+       return studentRepository.save(student);
+	}
+    
+    private boolean checkStudentExist(Student student) {
+    	Student existingUser = studentRepository.findById(student.getEmail()).orElse(null);
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+
+    public Student studentLogin(Student student) {
+    	Student existingUser = studentRepository.findById(student.getEmail()).orElse(null);
+
+        if(existingUser.getEmail().equals(student.getEmail()) &&
+                existingUser.getPassword().equals(student.getPassword())) {
             existingUser.setPassword("");
             return existingUser;
         }
@@ -62,4 +105,68 @@ public class AuthService {
 
     }
 
+    
+    
+    //Warden Auth controller
+    public Warden wardenRegister(Warden warden) {
+		
+		 // Check if user with username exist or not
+       if(checkWardenExist(warden)== true)
+		return null;
+
+       return wardenRepository.save(warden);
+	}
+    
+    private boolean checkWardenExist(Warden warden) {
+    	Warden existingUser = wardenRepository.findById(warden.getEmail()).orElse(null);
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+
+    public Warden wardenLogin(Warden warden) {
+    	Warden existingUser = wardenRepository.findById(warden.getEmail()).orElse(null);
+
+        if(existingUser.getEmail().equals(warden.getEmail()) &&
+                existingUser.getPassword().equals(warden.getPassword())) {
+            existingUser.setPassword("");
+            return existingUser;
+        }
+
+        return null;
+
+    }
+    
+    
+    //Admin Auth controller
+    public Admin adminRegister(Admin admin) {
+		
+		 // Check if user with username exist or not
+       if(checkAdminExist(admin)== true)
+		return null;
+
+       return adminRepository.save(admin);
+	}
+    
+    private boolean checkAdminExist(Admin admin) {
+    	Admin existingUser = adminRepository.findById(admin.getEmail()).orElse(null);
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+
+    public Admin adminLogin(Admin admin) {
+    	Admin existingUser = adminRepository.findById(admin.getEmail()).orElse(null);
+
+        if(existingUser.getEmail().equals(admin.getEmail()) &&
+                existingUser.getPassword().equals(admin.getPassword())) {
+            existingUser.setPassword("");
+            return existingUser;
+        }
+
+        return null;
+
+    }
 }

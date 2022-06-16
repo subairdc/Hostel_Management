@@ -17,6 +17,15 @@ import { StaffLoginComponent } from './Components/login/staff-login/staff-login.
 import { StudentSignupComponent } from './Components/login/student-signup/student-signup.component';
 import { StaffSignupComponent } from './Components/login/staff-signup/staff-signup.component';
 import { AdminSignupComponent } from './Components/login/admin-signup/admin-signup.component';
+import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
+import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
+import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
+import { StudentManagementComponent } from './Components/staff/student-management/student-management.component';
+import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
+import { StudentHomepageComponent } from './Components/student/student-homepage/student-homepage.component';
+import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
+import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
+import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +40,16 @@ import { AdminSignupComponent } from './Components/login/admin-signup/admin-sign
     StaffLoginComponent,
     StudentSignupComponent,
     StaffSignupComponent,
-    AdminSignupComponent
+    AdminSignupComponent,
+    WardenLoginComponent,
+    WardenDashboardComponent,
+    WardenSignupComponent,
+    StudentManagementComponent,
+    StaffHomepageComponent,
+    StudentHomepageComponent,
+    WardenHomepageComponent,
+    AdminHomepageComponent,
+    StaffManagementComponent
   ],
   imports: [
     BrowserModule,

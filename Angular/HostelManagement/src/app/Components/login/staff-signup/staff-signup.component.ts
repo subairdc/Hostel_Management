@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/service/auth.service';
 export class StaffSignupComponent implements OnInit {
 
   name : string = '';
-  username : string = '';
+  email : string = '';
   password : string = '';
 
   user : Staff = new Staff();
@@ -23,14 +23,14 @@ export class StaffSignupComponent implements OnInit {
 
   signup() {
 
-    console.log(this.name+" "+ this.username+ " " + this.password);
+    console.log(this.name+" "+ this.email+ " " + this.password);
 
-    this.user.username = this.username;
+    this.user.email = this.email;
     this.user.password = this.password;
     this.user.name = this.name;
-    this.user.role = 'user';
+    // this.user.role = 'user';
 
-    this.authService.signup(this.user).subscribe(res => {
+    this.authService.staffSignup(this.user).subscribe(res => {
       if(res == null) {
         alert("Registration failed");
         this.ngOnInit();

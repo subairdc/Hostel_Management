@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Warden Dashboard</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list style="width:200px">
+      <a mat-list-item routerLink="." > <mat-icon>dashboard</mat-icon>Dashboard</a>
+      <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Student Details</a>
+      <a mat-list-item routerLink="staffManagement"> <mat-icon></mat-icon>Staff Details</a>
+      <a mat-list-item> <mat-icon></mat-icon>Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p style="height:88vh">
+      <router-outlet>
+      </router-outlet>
+    </p>
+  </mat-sidenav-content>
+</mat-sidenav-container>

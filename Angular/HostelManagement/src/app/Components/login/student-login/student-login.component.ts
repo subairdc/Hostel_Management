@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class StudentLoginComponent implements OnInit {
 
-  username : string = '';
+  email : string = '';
   password : string = '';
 
   user : Student = new Student();
@@ -24,27 +24,26 @@ export class StudentLoginComponent implements OnInit {
   constructor(private authService : AuthService, private route : Router) { }
 
   ngOnInit(): void {
-    this.username = '';
+    this.email = '';
     this.password = '';
   }
 
   login() {
 
-    console.log(this.username+ " " + this.password);
+    console.log(this.email+ " " + this.password);
 
-    this.user.username = this.username;
+    this.user.email = this.email;
     this.user.password = this.password;
 
 
-    this.authService.login(this.user).subscribe(res => {
+    this.authService.studentLogin(this.user).subscribe(res => {
 
       if(res == null) {
-        alert("Uername or password is wrong");
+        alert("email or password is wrong");
         this.ngOnInit();
       }else {
         console.log("Login successful");
-        localStorage.setItem("token",res.token);
-        this.route.navigate(['/studentDashboard'])
+        this.route.navigate(['/studentHomepage'])
       }
 
     }, err => {

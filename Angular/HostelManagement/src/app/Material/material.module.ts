@@ -1,21 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {  } from '@angular/forms'
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
+    MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

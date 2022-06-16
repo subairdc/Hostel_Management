@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container-fluid">
   <div class="row">
       <div class="col-md-6">
@@ -9,11 +10,11 @@
           <form action="" class="mt-5 p-5">
               <h5 class="text-primary mb-3">Sign up </h5>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="name" [(ngModel)]="name">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="name" name="name" [(ngModel)]="name">
                   <label for="floatingInput">Full name</label>
               </div>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username" [(ngModel)]="username">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Email" name="email" [(ngModel)]="email">
                   <label for="floatingInput">Email address</label>
               </div>
                 <div class="form-floating mb-3">
@@ -25,7 +26,7 @@
                   <button class="btn btn-outline-success me-md-2" type="button" (click)="signup()" >Register</button>
                 </div>
 
-                <a routerLink="/staffLogin" class="text-primary" style="text-decoration: none;">Log In ? </a>
+                <a routerLink="/" class="text-primary" style="text-decoration: none;">Log In ? </a>
           </form>
       </div>
       <div class="col-md-2">
