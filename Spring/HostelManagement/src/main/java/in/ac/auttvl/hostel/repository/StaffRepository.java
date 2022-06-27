@@ -9,7 +9,7 @@ import in.ac.auttvl.hostel.model.Admin;
 
 public interface StaffRepository extends JpaRepository<Staff, Integer>{
 	
-	@Query(value = "select email from Staff  " , nativeQuery=true)  //name case as per java classs
+	
 	Staff findByEmail(String email);
 	
 	@Query(value = "select name from Staff  " , nativeQuery=true)  //name case as per java classs

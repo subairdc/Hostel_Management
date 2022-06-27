@@ -105,6 +105,11 @@ public class AuthService {
 //            existingUser.setPassword("");
 //            return existingUser;
 //        }
+    	
+    	if(existingUser != null) {
+    		existingUser.setPassword("");
+    		 return existingUser;
+    	}
 
         return null;
 
