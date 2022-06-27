@@ -18,7 +18,7 @@ export class StaffService {
     this.addStaffURL = 'http://localhost:8080/staff/addStaff';
     this.getStaffURL = 'http://localhost:8080/staff/getAll';
     this.updateStaffUrl = 'http://localhost:8080/staff/updateStaff';
-    this.deleteStaffUrl = 'http://localhost:8080/staff/deleteStaffByEmail';
+    this.deleteStaffUrl = 'http://localhost:8080/staff/deleteStaffById';
    }
 
 
@@ -35,6 +35,6 @@ export class StaffService {
   }
 
   deleteStaff(staff : Staff) : Observable<Staff> {
-    return this.http.delete<Staff>(this.deleteStaffUrl+'/'+staff.email);
+    return this.http.delete<Staff>(this.deleteStaffUrl+'/'+staff.id);
   }
 }

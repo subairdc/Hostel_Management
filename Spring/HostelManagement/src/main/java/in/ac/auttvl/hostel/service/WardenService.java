@@ -22,8 +22,8 @@ public class WardenService {
         return wardenRepository.saveAll(wardens);
     }
 
-    public Warden getWardenById(String email) {
-        return wardenRepository.findById(email).orElse(null);
+    public Warden getWardenById(int id) {
+        return wardenRepository.findById(id).orElse(null);
     }
 
     public Warden getWardenByName(String name) {
@@ -31,7 +31,7 @@ public class WardenService {
     }
 
     public Warden updateWarden(Warden warden) {
-    	Warden existingWarden = wardenRepository.findById(warden.getEmail()).orElse(null);
+    	Warden existingWarden = wardenRepository.findById(warden.getId()).orElse(null);
         System.out.println(warden);
         if(existingWarden == null) {	
             System.out.println("Warden not found");
@@ -45,10 +45,10 @@ public class WardenService {
         return warden;
     }
 
-    public boolean deleteWardenById(String email) {
-    	Warden existingWarden = wardenRepository.getById(email);
+    public boolean deleteWardenById(int id) {
+    	Warden existingWarden = wardenRepository.getById(id);
         if(existingWarden != null) {
-        	wardenRepository.deleteById(email);
+        	wardenRepository.deleteById(id);
             return true;
         }
         return false;

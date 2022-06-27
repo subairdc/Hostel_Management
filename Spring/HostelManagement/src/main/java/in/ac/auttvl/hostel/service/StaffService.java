@@ -22,8 +22,8 @@ public class StaffService {
         return  staffRepository.saveAll(staffs);
     }
 
-    public Staff getStaffByEmail(String email) {
-        return staffRepository.findById(email).orElse(null);
+    public Staff getStaffById(int id) {
+        return staffRepository.findById(id).orElse(null);
     }
 
     public Staff getStaffByName(String name) {
@@ -31,7 +31,7 @@ public class StaffService {
     }
 
     public Staff updateStaff(Staff staff) {
-    	Staff existingStaff = staffRepository.findById(staff.getEmail()).orElse(null);
+    	Staff existingStaff = staffRepository.findById(staff.getId()).orElse(null);
         System.out.println(staff);
         if(existingStaff == null) {
             System.out.println("Staff not found");
@@ -45,10 +45,10 @@ public class StaffService {
         return staff;
     }
 
-    public boolean deleteStaffByEmail(String email) {
-    	Staff existingStaff = staffRepository.findById(email).orElse(null);
+    public boolean deleteStaffById(int id) {
+    	Staff existingStaff = staffRepository.findById(id).orElse(null);
         if(existingStaff != null) {
-        	staffRepository.deleteById(email);
+        	staffRepository.deleteById(id);
             return true;
         }
         return false;

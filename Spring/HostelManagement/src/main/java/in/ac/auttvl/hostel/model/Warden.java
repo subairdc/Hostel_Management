@@ -2,6 +2,8 @@ package in.ac.auttvl.hostel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -15,14 +17,17 @@ import lombok.NoArgsConstructor;
 public class Warden {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(length =100)
+	private int id;
 	private String email;
 	private String name;
 	private String password;
 	
 	
-	public Warden(String email, String name, String password) {
+	public Warden(int id, String email, String name, String password) {
 		super();
+		this.id =id;
 		this.email = email;
 		this.name = name;
 		this.password = password;
@@ -32,6 +37,18 @@ public class Warden {
 	public Warden() {
 		super();	
 	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 	public String getEmail() {
 		return email;

@@ -53,7 +53,7 @@ public class AuthService {
 //    }
 
     private boolean checkStaffExist(Staff staff) {
-    	Staff existingUser = staffRepository.findById(staff.getEmail()).orElse(null);
+    	Staff existingUser = staffRepository.findByEmail(staff.getEmail());
 
         if(existingUser == null)
             return false;
@@ -61,13 +61,18 @@ public class AuthService {
     }
 
     public Staff staffLogin(Staff staff) {
-        Staff existingUser = staffRepository.findById(staff.getEmail()).orElse(null);
+        Staff existingUser = staffRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
 
-        if(existingUser.getEmail().equals(staff.getEmail()) &&
-                existingUser.getPassword().equals(staff.getPassword())) {
-            existingUser.setPassword("");
-            return existingUser;
-        }
+//        if(existingUser.getEmail().equals(staff.getEmail()) &&
+//                existingUser.getPassword().equals(staff.getPassword())) {
+//            existingUser.setPassword("");
+//            return existingUser;
+//        }
+        
+        if(existingUser != null) {
+    		existingUser.setPassword("");
+    		 return existingUser;
+    	}
 
         return null;
 
@@ -85,7 +90,7 @@ public class AuthService {
 	}
     
     private boolean checkStudentExist(Student student) {
-    	Student existingUser = studentRepository.findById(student.getEmail()).orElse(null);
+    	Student existingUser = studentRepository.findByEmail(student.getEmail());
 
         if(existingUser == null)
             return false;
@@ -93,13 +98,13 @@ public class AuthService {
     }
 
     public Student studentLogin(Student student) {
-    	Student existingUser = studentRepository.findById(student.getEmail()).orElse(null);
+    	Student existingUser = studentRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
 
-        if(existingUser.getEmail().equals(student.getEmail()) &&
-                existingUser.getPassword().equals(student.getPassword())) {
-            existingUser.setPassword("");
-            return existingUser;
-        }
+//        if(existingUser.getEmail().equals(student.getEmail()) &&
+//                existingUser.getPassword().equals(student.getPassword())) {
+//            existingUser.setPassword("");
+//            return existingUser;
+//        }
 
         return null;
 
@@ -118,7 +123,7 @@ public class AuthService {
 	}
     
     private boolean checkWardenExist(Warden warden) {
-    	Warden existingUser = wardenRepository.findById(warden.getEmail()).orElse(null);
+    	Warden existingUser = wardenRepository.findByEmail(warden.getEmail());
 
         if(existingUser == null)
             return false;
@@ -126,13 +131,18 @@ public class AuthService {
     }
 
     public Warden wardenLogin(Warden warden) {
-    	Warden existingUser = wardenRepository.findById(warden.getEmail()).orElse(null);
+    	Warden existingUser = wardenRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
 
-        if(existingUser.getEmail().equals(warden.getEmail()) &&
-                existingUser.getPassword().equals(warden.getPassword())) {
-            existingUser.setPassword("");
-            return existingUser;
-        }
+//        if(existingUser.getEmail().equals(warden.getEmail()) &&
+//                existingUser.getPassword().equals(warden.getPassword())) {
+//            existingUser.setPassword("");
+//            return existingUser;
+//        }
+    	
+    	if(existingUser != null) {
+    		existingUser.setPassword("");
+    		 return existingUser;
+    	}
 
         return null;
 
@@ -150,7 +160,7 @@ public class AuthService {
 	}
     
     private boolean checkAdminExist(Admin admin) {
-    	Admin existingUser = adminRepository.findById(admin.getEmail()).orElse(null);
+    	Admin existingUser = adminRepository.findByEmail(admin.getEmail());
 
         if(existingUser == null)
             return false;
@@ -158,14 +168,20 @@ public class AuthService {
     }
 
     public Admin adminLogin(Admin admin) {
-    	Admin existingUser = adminRepository.findById(admin.getEmail()).orElse(null);
+    	Admin existingUser = adminRepository.findByEmailAndPassword(admin.getEmail(), admin.getPassword());
 
-        if(existingUser.getEmail().equals(admin.getEmail()) &&
-                existingUser.getPassword().equals(admin.getPassword())) {
-            existingUser.setPassword("");
-            return existingUser;
-        }
+//        if(existingUser.getEmail().equals(admin.getEmail()) &&
+//                existingUser.getName().equals(admin.getName())) {
+//            existingUser.setPassword("");
+//            return existingUser;
+//        }
+    	
+    	if(existingUser != null) {
+    		existingUser.setPassword("");
+    		 return existingUser;
+    	}
 
+    	
         return null;
 
     }

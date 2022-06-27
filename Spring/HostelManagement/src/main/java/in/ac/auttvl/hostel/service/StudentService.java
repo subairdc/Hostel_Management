@@ -22,8 +22,8 @@ public class StudentService {
 	        return studentRepository.saveAll(students);
 	    }
 
-	    public Student getStudentById(String email) {
-	        return studentRepository.findById(email).orElse(null);
+	    public Student getStudentById(int id) {
+	        return studentRepository.findById(id).orElse(null);
 	    }
 
 	    public Student getStudentByName(String name) {
@@ -31,7 +31,7 @@ public class StudentService {
 	    }
 
 	    public Student updateStudent(Student student) {
-	    	Student existingStudent = studentRepository.findById(student.getEmail()).orElse(null);
+	    	Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
 	        System.out.println(student);
 	        if(existingStudent == null) {	
 	            System.out.println("Student not found");
@@ -46,10 +46,10 @@ public class StudentService {
 	        return student;
 	    }
 
-	    public boolean deleteStudentById(String email) {
-	    	Student existingStudent = studentRepository.getById(email);
+	    public boolean deleteStudentById(int id) {
+	    	Student existingStudent = studentRepository.getById(id);
 	        if(existingStudent != null) {
-	            studentRepository.deleteById(email);
+	            studentRepository.deleteById(id);
 	            return true;
 	        }
 	        return false;

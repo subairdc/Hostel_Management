@@ -34,7 +34,7 @@ export class WardenService {
   }
 
   deleteWarden(warden : Warden) : Observable<Warden> {
-    return this.http.delete<Warden>(this.deleteWardenUrl+'/'+warden.email);
+    return this.http.delete<Warden>(this.deleteWardenUrl+'/'+warden.id);
   }
 }
 

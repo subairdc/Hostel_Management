@@ -16,9 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Student {
 	
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(length =100)
+	private int id;
 	private String email;
 	private String name;
 	private String password;
@@ -26,11 +27,28 @@ public class Student {
 	
 	
 	public Student() {
+			
+	}
+
+	public Student(int id, String email, String name, String password, String phoneNo) {
 		super();
-		
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.phoneNo = phoneNo;
 	}
 
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 	public String getEmail() {
 		return email;
 	}

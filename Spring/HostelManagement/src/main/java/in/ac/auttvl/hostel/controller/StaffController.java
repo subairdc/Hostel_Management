@@ -37,9 +37,9 @@ public class StaffController {
     }
 
     // Get employee by Id
-    @GetMapping("/getStaffByEmail/{email}")
-    public Staff getStaffById(@PathVariable String email) {
-        return staffService.getStaffByEmail(email);
+    @GetMapping("/getStaffById/{id}")
+    public Staff getStaffById(@PathVariable int id) {
+        return staffService.getStaffById(id);
     }
 
     // Get staff by name
@@ -55,9 +55,9 @@ public class StaffController {
     }
 
     // Delete staff
-    @DeleteMapping("/deleteStaffByEmail/{email}")
-    public boolean deleteStaffByID(@PathVariable String email) {
-        return staffService.deleteStaffByEmail(email);
+    @DeleteMapping("/deleteStaffById/{id}")
+    public boolean deleteStaffByID(@PathVariable int id) {
+        return staffService.deleteStaffById(id);
     }
 
     // Get all staff

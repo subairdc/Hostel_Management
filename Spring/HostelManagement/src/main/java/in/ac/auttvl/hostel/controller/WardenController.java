@@ -38,9 +38,9 @@ public class WardenController {
 	    }
 
 	    // Get Warden by Id
-	    @GetMapping("/getWardenById/{email}")
-	    public Warden getWardenById(@PathVariable String email) {
-	        return wardenService.getWardenById(email);
+	    @GetMapping("/getWardenById/{id}")
+	    public Warden getWardenById(@PathVariable int id) {
+	        return wardenService.getWardenById(id);
 	    }
 
 	    // Get warden by name
@@ -56,9 +56,9 @@ public class WardenController {
 	    }
 
 	    // Delete warden
-	    @DeleteMapping("/deleteWardenById/{email}")
-	    public boolean deleteWardenById(@PathVariable String email) {
-	        return wardenService.deleteWardenById(email);
+	    @DeleteMapping("/deleteWardenById/{id}")
+	    public boolean deleteWardenById(@PathVariable int id) {
+	        return wardenService.deleteWardenById(id);
 	    }
 
 	    // Get all warden

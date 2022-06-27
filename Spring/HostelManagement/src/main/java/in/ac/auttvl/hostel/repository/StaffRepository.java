@@ -7,13 +7,16 @@ import in.ac.auttvl.hostel.model.Staff;
 import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.model.Admin;
 
-public interface StaffRepository extends JpaRepository<Staff, java.lang.String>{
-
+public interface StaffRepository extends JpaRepository<Staff, Integer>{
+	
+	@Query(value = "select email from Staff  " , nativeQuery=true)  //name case as per java classs
 	Staff findByEmail(String email);
 	
 	@Query(value = "select name from Staff  " , nativeQuery=true)  //name case as per java classs
 	Staff findByName(String name);
 	//Staff findById(String email);
+
+	Staff findByEmailAndPassword(String email, String password);
 	
 	//Staff getById(String email);
 	//Staff getByName(String name);

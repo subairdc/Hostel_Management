@@ -37,9 +37,9 @@ public class StudentController {
     }
 
     // Get student by Id
-    @GetMapping("/getStudentById/{email}")
-    public Student getStudentById(@PathVariable String email) {
-        return studentService.getStudentById(email);
+    @GetMapping("/getStudentById/{id}")
+    public Student getStudentById(@PathVariable int id) {
+        return studentService.getStudentById(id);
     }
 
     // Get student by name
@@ -55,9 +55,9 @@ public class StudentController {
     }
 
     // Delete student
-    @DeleteMapping("/deleteStudentById/{email}")
-    public boolean deleteStudentById(@PathVariable String email) {
-        return studentService.deleteStudentById(email);
+    @DeleteMapping("/deleteStudentById/{id}")
+    public boolean deleteStudentById(@PathVariable int id) {
+        return studentService.deleteStudentById(id);
     }
 
     // Get all student

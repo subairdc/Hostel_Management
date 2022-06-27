@@ -19,7 +19,7 @@ export class AdminService {
     this.addAdminURL = 'http://localhost:8080/staff/addAdmin';
     this.getAdminURL = 'http://localhost:8080/staff/getAll';
     this.updateAdminUrl = 'http://localhost:8080/staff/updateAdmin';
-    this.deleteAdminUrl = 'http://localhost:8080/staff/deleteAdminByEmail';
+    this.deleteAdminUrl = 'http://localhost:8080/staff/deleteAdminById';
    }
 
 
@@ -36,6 +36,6 @@ export class AdminService {
   }
 
   deleteAdmin(admin : Admin) : Observable<Admin> {
-    return this.http.delete<Admin>(this.deleteAdminUrl+'/'+admin.email);
+    return this.http.delete<Admin>(this.deleteAdminUrl+'/'+admin.id);
   }
 }
