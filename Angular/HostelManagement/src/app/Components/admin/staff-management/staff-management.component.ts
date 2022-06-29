@@ -84,7 +84,7 @@ export class StaffManagementComponent implements OnInit {
   }
 
   logout() {
-    this.route.navigate(['/wardenLogin']);
+    this.route.navigate(['/staffLogin']);
   }
 
 }

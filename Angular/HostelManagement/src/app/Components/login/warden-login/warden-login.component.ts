@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Warden } from 'src/app/model/warden';
 import { AuthService } from 'src/app/service/auth.service';
+import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class WardenLoginComponent implements OnInit {
 
+  loginForm!: FormGroup;
 
   email : string = '';
   password : string = '';
@@ -18,7 +20,18 @@ export class WardenLoginComponent implements OnInit {
   user : Warden = new Warden();
 
 
-  constructor(private authService : AuthService, private route : Router) { }
+  constructor(private authService : AuthService, private route : Router, private formBuilder: FormBuilder) {
+
+    this.loginForm = this.formBuilder.group({
+      email :['',[Validators.required, Validators.email]],
+      password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
+    });
+  }
+
+  get f(){
+    return this.loginForm.controls;
+  }
+
 
   ngOnInit(): void {
     this.email = '';
@@ -36,7 +49,8 @@ export class WardenLoginComponent implements OnInit {
 
       if(res == null) {
         alert("email or password is wrong");
-        this.ngOnInit();
+        this.loginForm.reset();
+        //this.ngOnInit();
       }else {
         console.log("Login successful");
         this.route.navigate(['/wardenHomepage']);

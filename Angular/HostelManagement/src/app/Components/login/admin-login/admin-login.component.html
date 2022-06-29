@@ -7,18 +7,26 @@
       <div class="col-md-4 mt-3 mb-2">
           <h3 class="text-success text-center"><b>ADMIN LOGIN</b></h3>
 
-          <form action="" class="mt-5 p-5">
+          <form [formGroup]="loginForm" (ngSubmit)="login()" action="" class="mt-5 p-5">
               <h5 class="text-primary mb-3">Login </h5>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Email" name="email" [(ngModel)]="email">
+                  <input type="text" class="form-control" maxlength="30" id="floatingInput" placeholder="Email" name="email" [(ngModel)]="email" formControlName="email" required>
                   <label for="floatingInput">Email address</label>
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                    <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+                    <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
+                  </div>
               </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="password">
+                  <input type="password" class="form-control" minlength="8" maxlength="16" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="password" formControlName="password" required>
                   <label for="floatingPassword">Password</label>
+                  <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
+                    <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
+                    <div *ngIf="f['password'].errors && f['password'].errors['pattern']">password should be 8-16 char</div>
+                  </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button class="btn btn-outline-success me-md-2" type="button" (click)="login()" >Login</button>
+                  <button class="btn btn-outline-success me-md-2" type="submit" [disabled]="loginForm.invalid">Login</button>
                 </div>
 
                 <a routerLink="/adminSignup" class="text-primary" style="text-decoration: none;">Need account ? </a>

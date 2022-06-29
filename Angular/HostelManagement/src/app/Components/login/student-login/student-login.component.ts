@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Student } from 'src/app/model/student';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class StudentLoginComponent implements OnInit {
 
+  loginForm!: FormGroup;
+
   email : string = '';
   password : string = '';
 
@@ -21,14 +23,24 @@ export class StudentLoginComponent implements OnInit {
   //   password: new FormControl(Validators.pattern("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")),
   // });
 
-  constructor(private authService : AuthService, private route : Router) { }
+  constructor(private authService : AuthService, private route : Router, private formBuilder: FormBuilder) {
+
+  this.loginForm = this.formBuilder.group({
+    email :['',[Validators.required, Validators.email]],
+    password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
+  });
+  }
+
+  get f(){
+    return this.loginForm.controls;
+  }
 
   ngOnInit(): void {
     this.email = '';
     this.password = '';
   }
 
-  login() {
+  onLogin() {
 
     console.log(this.email+ " " + this.password);
 
@@ -40,7 +52,8 @@ export class StudentLoginComponent implements OnInit {
 
       if(res == null) {
         alert("email or password is wrong");
-        this.ngOnInit();
+        this.loginForm.reset();
+        //this.ngOnInit();
       }else {
         console.log("Login successful");
         this.route.navigate(['/studentHomepage'])

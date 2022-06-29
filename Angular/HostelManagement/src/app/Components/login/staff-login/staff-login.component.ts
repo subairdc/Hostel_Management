@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Staff } from 'src/app/model/staff';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-staff-login',
@@ -9,6 +11,8 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./staff-login.component.css']
 })
 export class StaffLoginComponent implements OnInit {
+
+  loginForm!: FormGroup;
 
   email : string = '';
   password : string = '';
@@ -18,11 +22,21 @@ export class StaffLoginComponent implements OnInit {
 
   // roles : string[];
 
-  constructor(private authService : AuthService, private route : Router) {
+  constructor(private authService : AuthService, private route : Router, private formBuilder: FormBuilder) {
+
+    this.loginForm = this.formBuilder.group({
+      email :['',[Validators.required, Validators.email]],
+      password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
+    });
+
     // this.roles = [
     //   'admin',
     //   'user'
     // ]
+  }
+
+  get f(){
+    return this.loginForm.controls;
   }
 
   ngOnInit(): void {
@@ -42,10 +56,11 @@ export class StaffLoginComponent implements OnInit {
 
       if(res == null) {
         alert("email or password is wrong");
-        this.ngOnInit();
+        this.loginForm.reset();
+        //this.ngOnInit();
       }else {
         console.log("Login successful");
-        localStorage.setItem("token",res.token);
+        //localStorage.setItem("token",res.token);
         this.route.navigate(['/staffHomepage']);
 
         // if(this.role == 'user') {
