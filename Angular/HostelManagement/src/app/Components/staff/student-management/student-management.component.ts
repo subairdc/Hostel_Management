@@ -19,7 +19,7 @@ export class StudentManagementComponent implements OnInit {
   constructor(private route : Router, private formBuilder : FormBuilder, private studentService : StudentService) { }
 
   ngOnInit(): void {
-    this.getAllStudent();
+    this.getAllStudents();
 
     this.studentDetail = this.formBuilder.group({
       name : [''],
@@ -38,15 +38,15 @@ export class StudentManagementComponent implements OnInit {
 
     this.studentService.addStudent(this.studentObj).subscribe(res=>{
         console.log(res);
-        this.getAllStudent();
+        this.getAllStudents();
     },err=>{
         console.log(err);
     });
 
   }
 
-  getAllStudent() {
-    this.studentService.getAllStudent().subscribe(res=>{
+  getAllStudents() {
+    this.studentService.getAllStudents().subscribe(res=>{
         this.studentList = res;
     },err=>{
       console.log("error while fetching data.")
@@ -70,7 +70,7 @@ export class StudentManagementComponent implements OnInit {
 
     this.studentService.updateStudent(this.studentObj).subscribe(res=>{
       console.log(res);
-      this.getAllStudent();
+      this.getAllStudents();
     },err=>{
       console.log(err);
     })
@@ -82,7 +82,7 @@ export class StudentManagementComponent implements OnInit {
     this.studentService.deleteStudent(student).subscribe(res=>{
       console.log(res);
       alert('Student deleted successfully');
-      this.getAllStudent();
+      this.getAllStudents();
     },err => {
       console.log(err);
     });

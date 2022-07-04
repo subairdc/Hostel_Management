@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 import { Staff } from 'src/app/model/staff';
 import { StaffService } from 'src/app/service/staff.service';
 
+
 @Component({
   selector: 'app-staff-management',
   templateUrl: './staff-management.component.html',
-  styleUrls: ['./staff-management.component.css']
+  styleUrls: ['./staff-management.component.css'],
+
 })
 export class StaffManagementComponent implements OnInit {
   staffDetail !: FormGroup;

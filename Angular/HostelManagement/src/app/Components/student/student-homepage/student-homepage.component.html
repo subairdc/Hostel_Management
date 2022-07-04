@@ -1,4 +1,60 @@
-<mat-toolbar color="primary">
+<div class="container-fuild g-0">
+  <div class="navbar navbar-expand navbar-dark bg-dark px-2">
+    <div class="side-nav-button p-2 me-3 text-light">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <a class="navbar-brand" routerLink="adminDashboard">Student</a>
+
+    <div class="navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="studentDashboard">Dashboard</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Leave Form
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" routerLink="leaveForm">Leave Form Apply</a></li>
+            <li><a class="dropdown-item" routerLink="leaveFormStatus">Leave Form Status</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="flex-shrink-0 dropdown">
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://via.placeholder.com/28?text=!" alt="user" width="32" height="32" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="">
+        <li><a class="dropdown-item" routerLink="studentDashboard">Dashboard</a></li>
+        <li><a class="dropdown-item" routerLink="studentProfile">Profile</a></li>
+          <li>
+              <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" type="button" (click)="logout()">Sign out</a></li>
+      </ul>
+    </div>
+</div>
+
+
+<div class="container">
+  <router-outlet>
+  </router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-toolbar color="primary">
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
@@ -16,7 +72,8 @@
   <mat-sidenav mode="side" opened>
     <mat-nav-list style="width:200px">
       <a mat-list-item routerLink="studentDashboard"> <mat-icon>dashboard</mat-icon>Dashboard</a>
-      <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Leave Form</a>
+      <a mat-list-item routerLink="studentProfile"> <mat-icon>account_box</mat-icon>Profile</a>
+      <a mat-list-item routerLink="leaveForm"> <mat-icon>list_alt</mat-icon>Leave Form</a>
       <a mat-list-item> <mat-icon></mat-icon>Fees Details Update</a>
       <a mat-list-item> <mat-icon></mat-icon>Logout</a>
     </mat-nav-list>
@@ -27,4 +84,4 @@
       </router-outlet>
     </p>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
