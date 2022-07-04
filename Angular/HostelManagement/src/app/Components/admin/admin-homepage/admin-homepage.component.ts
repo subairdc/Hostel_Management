@@ -8,6 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AdminHomepageComponent implements OnInit {
 
+  toggleNav(nav : any) {
+    if(nav.opened) {
+      nav.close();
+    } else {
+      nav.open();
+    }
+  }
+
   opened = true;
 
   constructor(private route : Router) { }

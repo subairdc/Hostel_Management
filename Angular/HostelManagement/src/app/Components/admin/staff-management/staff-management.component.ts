@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Staff } from 'src/app/model/staff';
 import { StaffService } from 'src/app/service/staff.service';
@@ -16,9 +19,17 @@ export class StaffManagementComponent implements OnInit {
   staffObj : Staff = new Staff();
   staffList : Staff[] = [];
 
+  girdListData : any;
+  displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
+
+
   constructor(private route : Router, private formBuilder : FormBuilder, private staffService : StaffService) { }
 
+  @ViewChild(MatSort) sort: any = MatSort;
+  @ViewChild(MatPaginator) paginator : any = MatPaginator;
+
   ngOnInit(): void {
+    this.fillGird();
     this.getAllStaff();
 
     this.staffDetail = this.formBuilder.group({
@@ -27,6 +38,17 @@ export class StaffManagementComponent implements OnInit {
       password: [''],
     });
   }
+
+  fillGird() {
+    this.staffService.getAllStaff().subscribe(
+      data =>{ this.girdListData = new MatTableDataSource(data);
+      this.girdListData.sort = this.sort;
+      this.girdListData.paginator = this.paginator;
+
+    })
+  }
+
+
 
 
   addStaff() {

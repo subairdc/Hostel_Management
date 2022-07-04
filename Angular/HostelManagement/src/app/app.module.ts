@@ -30,6 +30,11 @@ import { StaffManagementComponent } from './Components/admin/staff-management/st
 import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
 import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
 import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';
+import { AdminService } from './service/admin.service';
+import { AuthService } from './service/auth.service';
+import { StaffService } from './service/staff.service';
+import { WardenService } from './service/warden.service';
+import { StudentService } from './service/student.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +70,7 @@ import { StudentProfileComponent } from './Components/student/student-profile/st
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

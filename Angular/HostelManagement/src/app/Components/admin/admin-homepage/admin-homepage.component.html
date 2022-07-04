@@ -1,4 +1,4 @@
-<div class="container-fuild g-0">
+<!-- <div class="container-fuild g-0">
   <div class="navbar navbar-expand navbar-dark bg-dark px-2">
     <div class="side-nav-button p-2 me-3 text-light">
       <i class="fa-solid fa-bars"></i>
@@ -42,12 +42,10 @@
           <img src="https://via.placeholder.com/28?text=!" alt="user" width="32" height="32" class="rounded-circle">
       </a>
       <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="">
-        <li><a class="dropdown-item" href="#">Dashboard</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Leave Form</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li>
-              <hr class="dropdown-divider">
+        <li><a class="dropdown-item" routerLink="adminDashboard">Dashboard</a></li>
+         <li><a class="dropdown-item" routerLink="adminProfile">Profile</a></li>
+         <li>
+            <hr class="dropdown-divider">
           </li>
           <li><a class="dropdown-item" type="button" (click)="logout()">Sign out</a></li>
       </ul>
@@ -58,7 +56,7 @@
 <div class="container">
   <router-outlet>
   </router-outlet>
-</div>
+</div> -->
 
 
 
@@ -67,38 +65,38 @@
 
 
 
-<!-- <mat-toolbar color="primary">
+<mat-toolbar class="mat-elevation-z5" color="primary">
   <mat-toolbar-row>
     <span>Admin</span>
-    <button mat-icon-button (click)="opened =! opened" class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button (click)="toggleNav(sidenav)" class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
 
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="settings icon">
-      <mat-icon>favorite</mat-icon>
+      <mat-icon class="icon" aria-hidden="false" aria-label="settings icon">settings</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+      <mat-icon class="icon" aria-hidden="false" aria-label="home icon">account_circle</mat-icon>
     </button>
   </mat-toolbar-row>
 
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav [(opened)]="opened" mode="side" style="background-color: #eee;" class="vertical-menu">
+  <mat-sidenav #sidenav opened mode="side" style="background-color: #eee;" class="vertical-menu">
     <mat-nav-list style="width:200px">
-      <a mat-list-item routerLink="adminDashboard" style="text-decoration:none" > <mat-icon>dashboard</mat-icon>Dashboard</a>
-      <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Student Details</a>
-      <a mat-list-item routerLink="staffManagement"> <mat-icon></mat-icon>Staff Details</a>
-      <a mat-list-item routerLink="wardenManagement"> <mat-icon></mat-icon>Warden Details</a>
-      <a mat-list-item> <mat-icon></mat-icon>Logout</a>
+      <a mat-list-item routerLink="adminDashboard"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
+      <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student Details</a>
+      <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff Details</a>
+      <a mat-list-item routerLink="wardenManagement"> <mat-icon>person</mat-icon>&nbsp;Warden Details</a>
+      <a mat-list-item> <mat-icon>input</mat-icon>&nbsp; Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <p style="height: 90vh;">
+    <body style="height: 90vh;">
       <router-outlet>
       </router-outlet>
-    </p>
+    </body>
   </mat-sidenav-content>
-</mat-sidenav-container> -->
+</mat-sidenav-container>

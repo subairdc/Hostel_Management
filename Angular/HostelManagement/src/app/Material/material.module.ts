@@ -12,6 +12,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 import {  } from '@angular/forms'
 
@@ -24,7 +29,9 @@ import {  } from '@angular/forms'
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule,
+    MatTableModule,MatSortModule,MatPaginatorModule
   ],
   exports: [
     MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
@@ -32,7 +39,8 @@ import {  } from '@angular/forms'
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule,MatTableModule,MatSortModule,MatPaginatorModule
   ]
 })
 export class MaterialModule { }
