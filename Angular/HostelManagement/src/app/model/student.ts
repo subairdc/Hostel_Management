@@ -46,9 +46,6 @@ export class Student {
   // //yearOfStudy
   // Feestatus : string = '';
 
-
-
-
   constructor() {
     this.id =0;
     this.name = '';

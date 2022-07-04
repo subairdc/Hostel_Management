@@ -15,8 +15,10 @@ import { WardenSignupComponent } from './Components/login/warden-signup/warden-s
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
 import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
 import { StudentManagementComponent } from './Components/staff/student-management/student-management.component';
+import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
 import { StudentDashboardComponent } from './Components/student/student-dashboard/student-dashboard.component';
 import { StudentHomepageComponent } from './Components/student/student-homepage/student-homepage.component';
+import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';
 import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 
@@ -35,7 +37,9 @@ const routes: Routes = [
 
   { path:'studentHomepage' , component: StudentHomepageComponent,
          children:
-         [{ path:'studentDashboard' , component: StudentDashboardComponent}]
+         [{ path:'studentDashboard' , component: StudentDashboardComponent},
+         { path:'studentProfile' , component: StudentProfileComponent},
+         { path:'leaveForm' , component: LeaveFormComponent}]
   },
 
   { path:'staffHomepage' , component: StaffHomepageComponent,

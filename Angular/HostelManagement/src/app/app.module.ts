@@ -28,6 +28,8 @@ import { WardenHomepageComponent } from './Components/warden/warden-homepage/war
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
 import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
 import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
+import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
+import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { WardenManagementComponent } from './Components/admin/warden-management/
     WardenHomepageComponent,
     AdminHomepageComponent,
     StaffManagementComponent,
-    WardenManagementComponent
+    WardenManagementComponent,
+    LeaveFormComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import in.ac.auttvl.hostel.model.LeaveForm;
 import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.service.StudentService;
 
@@ -61,8 +62,14 @@ public class StudentController {
     }
 
     // Get all student
-    @GetMapping("/getAll")
+    @GetMapping("/getAllStudents")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+    
+ // Add Leave Form
+    @PostMapping("/addLeaveForm")
+    public LeaveForm addLeaveForm(@RequestBody LeaveForm leaveForm) {
+        return studentService.addLeaveForm(leaveForm);
     }
 }

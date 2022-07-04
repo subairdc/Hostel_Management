@@ -12,7 +12,7 @@ public interface StaffRepository extends JpaRepository<Staff, Integer>{
 	
 	Staff findByEmail(String email);
 	
-	@Query(value = "select name from Staff  " , nativeQuery=true)  //name case as per java classs
+	//@Query(value = "select name from Staff  " , nativeQuery=true)  //name case as per java classs
 	Staff findByName(String name);
 	//Staff findById(String email);
 
