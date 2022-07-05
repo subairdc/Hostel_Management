@@ -21,12 +21,13 @@ export class StaffManagementComponent implements OnInit {
 
   girdListData : any;
   displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
+  searchKey : string="";
 
 
   constructor(private route : Router, private formBuilder : FormBuilder, private staffService : StaffService) { }
 
   @ViewChild(MatSort) sort: any = MatSort;
-  @ViewChild(MatPaginator) paginator : any = MatPaginator;
+  @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
 
   ngOnInit(): void {
     this.fillGird();
@@ -43,9 +44,18 @@ export class StaffManagementComponent implements OnInit {
     this.staffService.getAllStaff().subscribe(
       data =>{ this.girdListData = new MatTableDataSource(data);
       this.girdListData.sort = this.sort;
-      this.girdListData.paginator = this.paginator;
+      this.girdListData.paginator = this.paginator; //optional
 
     })
+  }
+
+  applyFilter() {
+    this.girdListData.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  onSearchClear() {
+    this.searchKey= "";
+    this.applyFilter();
   }
 
 
