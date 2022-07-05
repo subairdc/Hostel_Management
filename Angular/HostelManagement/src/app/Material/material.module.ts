@@ -16,9 +16,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
-import {  } from '@angular/forms'
 
 @NgModule({
   declarations: [],
@@ -31,7 +32,8 @@ import {  } from '@angular/forms'
     ReactiveFormsModule,
     FormsModule,
     MatGridListModule,
-    MatTableModule,MatSortModule,MatPaginatorModule
+    MatTableModule,MatSortModule,MatPaginatorModule,
+    MatSnackBarModule,MatDialogModule
   ],
   exports: [
     MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
@@ -40,7 +42,8 @@ import {  } from '@angular/forms'
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    MatGridListModule,MatTableModule,MatSortModule,MatPaginatorModule
+    MatGridListModule,MatTableModule,MatSortModule,MatPaginatorModule,
+    MatSnackBarModule,MatDialogModule
   ]
 })
 export class MaterialModule { }

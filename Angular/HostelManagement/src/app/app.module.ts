@@ -35,6 +35,8 @@ import { AuthService } from './service/auth.service';
 import { StaffService } from './service/staff.service';
 import { WardenService } from './service/warden.service';
 import { StudentService } from './service/student.service';
+import { NotificationService } from './service/notification.service';
+import { ConfirmDialogBoxComponent } from './Components/others/confirm-dialog-box/confirm-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { StudentService } from './service/student.service';
     StaffManagementComponent,
     WardenManagementComponent,
     LeaveFormComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    ConfirmDialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { StudentService } from './service/student.service';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,],
-  bootstrap: [AppComponent]
+  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,NotificationService],
+  bootstrap: [AppComponent],
+  entryComponents: [AdminDashboardComponent,ConfirmDialogBoxComponent]
 })
 export class AppModule { }

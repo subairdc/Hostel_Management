@@ -90,7 +90,7 @@
       <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student Details</a>
       <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff Details</a>
       <a mat-list-item routerLink="wardenManagement"> <mat-icon>person</mat-icon>&nbsp;Warden Details</a>
-      <a mat-list-item> <mat-icon>input</mat-icon>&nbsp; Logout</a>
+      <a mat-list-item (click)="logout()"> <mat-icon>input</mat-icon>&nbsp; Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -10,6 +10,10 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  &nbsp;
+  <button mat-raised-button (click)="onCreate()" color="accent">
+    <mat-icon>add</mat-icon>Add Staff
+  </button>
 </div>
 
 <div class="mat-elevation-z5">
@@ -38,8 +42,13 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" title="Edit"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color="accent" title="delete"><mat-icon>delete_forever</mat-icon></button>
+        <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" title="delete" (click)="onDelete(row)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 
