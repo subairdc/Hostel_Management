@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-warden-homepage',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WardenHomepageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route : Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    this.route.navigate(['/wardenLogin']);
   }
 
 }

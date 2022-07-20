@@ -23,14 +23,21 @@ public class Warden {
 	private String email;
 	private String name;
 	private String password;
+	private int orderNo;
+	private String updatedBy;
+	private String updatedOn;
 	
 	
-	public Warden(int id, String email, String name, String password) {
+	
+	public Warden(int id, String email, String name, String password, int orderNo, String updatedBy,String updatedOn) {
 		super();
 		this.id =id;
 		this.email = email;
 		this.name = name;
 		this.password = password;
+		this.orderNo = orderNo;
+		this.updatedBy = updatedBy;
+		this.updatedOn = updatedOn;
 	}
 	
 	
@@ -77,6 +84,36 @@ public class Warden {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+
+	public String getUpdatedOn() {
+		return updatedOn;
+	}
+
+
+	public void setUpdatedOn(String updatedOn) {
+		this.updatedOn = updatedOn;
 	}
 	
 }
