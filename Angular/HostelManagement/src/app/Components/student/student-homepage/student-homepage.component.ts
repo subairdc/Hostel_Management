@@ -10,6 +10,14 @@ export class StudentHomepageComponent implements OnInit {
 
   constructor(private route : Router) { }
 
+  toggleNav(nav : any) {
+    if(nav.opened) {
+      nav.close();
+    } else {
+      nav.open();
+    }
+  }
+
   ngOnInit(): void {
   }
 

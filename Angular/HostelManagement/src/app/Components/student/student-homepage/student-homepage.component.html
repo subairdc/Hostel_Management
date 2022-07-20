@@ -1,4 +1,4 @@
-<div class="container-fuild g-0">
+<!-- <div class="container-fuild g-0">
   <div class="navbar navbar-expand navbar-dark bg-dark px-2">
     <div class="side-nav-button p-2 me-3 text-light">
       <i class="fa-solid fa-bars"></i>
@@ -43,10 +43,44 @@
 <div class="container">
   <router-outlet>
   </router-outlet>
-</div>
+</div> -->
 
 
 
+<mat-toolbar class="mat-elevation-z5" color="primary">
+  <mat-toolbar-row>
+    <span>STUDENT</span>
+    <button mat-icon-button (click)="toggleNav(sidenav)" class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="settings icon">
+      <mat-icon class="icon" aria-hidden="false" aria-label="settings icon">settings</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon class="icon" aria-hidden="false" aria-label="home icon">account_circle</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav opened mode="side" style="background-color: #eee;" class="vertical-menu">
+    <mat-nav-list style="width:200px">
+      <a mat-list-item routerLink="studentDashboard"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
+      <a mat-list-item routerLink="studentProfile"> <mat-icon>person</mat-icon> &nbsp; Profile</a>
+      <a mat-list-item routerLink="leaveForm"> <mat-icon>person</mat-icon>&nbsp;Leave Form</a>
+      <a mat-list-item (click)="logout()"> <mat-icon>input</mat-icon>&nbsp; Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <body style="height: 90vh;">
+      <router-outlet>
+      </router-outlet>
+    </body>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
 

@@ -1,125 +1,80 @@
-<div class="container-fluid">
+<div class="container-fuild" style="margin:15px;">
+  <mat-toolbar class="top-menu" style="margin-top: 10px;">
+  <span>Student List</span>
+</mat-toolbar>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" >Student Management</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+<div class="search-div">
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button (click)="onCreate()" color="accent">
+    <mat-icon>add</mat-icon>Add Student
+  </button>
+</div>
+
+<div class="mat-elevation-z5">
+  <table mat-table [dataSource]="girdListData" matSort>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.password}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addStudent" type="submit">Add Student</button>
-        </div>
-      </div>
-  </nav>
 
+        <button mat-icon-button color="accent" title="delete" (click)="onDelete(row)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
 
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="4">
+        Loading Data...
+      </mat-footer-cell>
+    </ng-container>
 
-  <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Password</th>
-          <th scope="col">PhoneNo</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let student of studentList">
-          <td>{{student.name}}</td>
-          <td>{{student.email}}</td>
-          <td>{{student.password}}</td>
-          <td>{{student.phoneNo}}</td>
-          <td>
-              <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editStudent" (click)="editStudent(student)">Edit</button>
-              <button type="button" class="btn btn-outline-danger" (click)="deleteStudent(student)">Delete</button>
-          </td>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="4">
+       No Data...
+      </mat-footer-cell>
+    </ng-container>
 
-        </tr>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-      </tbody>
-    </table>
-
-
-<!-- Add Student modal -->
-<div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-          <form [formGroup]="studentDetail">
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Name </label>
-                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
-                </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email </label>
-                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Password </label>
-                  <input type="text" formControlName="password" class="form-control" id="password" aria-describedby="emailHelp">
-                </div>
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">PhoneNo </label>
-                  <input type="text" formControlName="phoneNo" class="form-control" id="phoneNo" aria-describedby="emailHelp">
-                </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addStudent()">Add Student</button>
-                </div>
-            </form>
-
-      </div>
-
-    </div>
-  </div>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide' : girdListData !=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide' : !(girdListData !=null && girdListData.data.length==0)}"></mat-footer-row>
+  </table>
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page" showFirstLastButtons>
+</mat-paginator>
 </div>
 
-
-<!-- Edit student modal -->
-<div class="modal fade" id="editStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Student details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-          <form [formGroup]="studentDetail">
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Name </label>
-                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
-                </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email </label>
-                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Password </label>
-                  <input type="text" formControlName="password" class="form-control" id="email" aria-describedby="emailHelp">
-                </div>
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">PhoneNo </label>
-                  <input type="text" formControlName="phoneNo" class="form-control" id="email" aria-describedby="emailHelp">
-                </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-outline-success" (click)="updateStudent()" data-bs-dismiss="modal">Update </button>
-                </div>
-          </form>
-
-      </div>
-    </div>
-  </div>
 </div>
-
-
-</div>
-
-<button class="btn btn-outline-success" (click)="logout()">Logout</button>

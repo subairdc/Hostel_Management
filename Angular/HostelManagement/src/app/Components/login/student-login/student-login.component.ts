@@ -56,7 +56,7 @@ export class StudentLoginComponent implements OnInit {
         //this.ngOnInit();
       }else {
         console.log("Login successful");
-        this.route.navigate(['/studentHomepage'])
+        this.route.navigate(['/studentHomepage/studentDashboard'])
       }
 
     }, err => {
