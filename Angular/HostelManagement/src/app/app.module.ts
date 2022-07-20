@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,12 @@ import { WardenService } from './service/warden.service';
 import { StudentService } from './service/student.service';
 import { NotificationService } from './service/notification.service';
 import { ConfirmDialogBoxComponent } from './Components/others/confirm-dialog-box/confirm-dialog-box.component';
+import { StaffDetailsComponent } from './Components/staff/staff-details/staff-details.component';
+import { StudentDetailsComponent } from './Components/student/student-details/student-details.component';
+import { WardenDetailsComponent } from './Components/warden/warden-details/warden-details.component';
+import { DialogBoxService } from './service/dialog-box.service';
+import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
+import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 
 @NgModule({
   declarations: [
@@ -64,17 +71,23 @@ import { ConfirmDialogBoxComponent } from './Components/others/confirm-dialog-bo
     WardenManagementComponent,
     LeaveFormComponent,
     StudentProfileComponent,
-    ConfirmDialogBoxComponent
+    ConfirmDialogBoxComponent,
+    StaffDetailsComponent,
+    StudentDetailsComponent,
+    WardenDetailsComponent,
+    AdminDetailsComponent,
+    AdminManagementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,ReactiveFormsModule
   ],
-  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,NotificationService],
+  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,NotificationService,DialogBoxService],
   bootstrap: [AppComponent],
-  entryComponents: [AdminDashboardComponent,ConfirmDialogBoxComponent]
+  entryComponents: [AdminDetailsComponent,StudentDetailsComponent,StaffDetailsComponent,WardenDetailsComponent, ConfirmDialogBoxComponent]
 })
 export class AppModule { }

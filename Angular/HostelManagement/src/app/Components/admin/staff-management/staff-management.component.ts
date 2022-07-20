@@ -5,11 +5,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Staff } from 'src/app/model/staff';
 import { DialogBoxService } from 'src/app/service/dialog-box.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { StaffService } from 'src/app/service/staff.service';
-import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { StaffDetailsComponent } from '../../staff/staff-details/staff-details.component';
 
 
 @Component({
@@ -19,6 +18,7 @@ import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.comp
 
 })
 export class StaffManagementComponent implements OnInit {
+
   staffDetail !: FormGroup;
   // staffObj : Staff = new Staff();
   // staffList : Staff[] = [];
@@ -27,6 +27,8 @@ export class StaffManagementComponent implements OnInit {
   displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
   searchKey : string="";
 
+  @ViewChild(MatSort) sort: any = MatSort;
+  @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
 
   constructor(private route : Router, private formBuilder : FormBuilder, private staffService : StaffService,
      private _notification : NotificationService, private _dialog : MatDialog, private dialogService : DialogBoxService) {
@@ -34,10 +36,8 @@ export class StaffManagementComponent implements OnInit {
       this.staffService.listen().subscribe((m:any)=> {
         this.fillGird();
       })
-     }
+  }
 
-  @ViewChild(MatSort) sort: any = MatSort;
-  @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
 
   ngOnInit(): void {
     this.fillGird();
@@ -73,7 +73,7 @@ export class StaffManagementComponent implements OnInit {
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
     dialogConfig.width ="30%";
-    this._dialog.open(AdminDashboardComponent,dialogConfig);
+    this._dialog.open(StaffDetailsComponent,dialogConfig);
   }
 
   onEdit(row:any) {
@@ -83,7 +83,7 @@ export class StaffManagementComponent implements OnInit {
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
     dialogConfig.width ="30%";
-    this._dialog.open(AdminDashboardComponent,dialogConfig);
+    this._dialog.open(StaffDetailsComponent,dialogConfig);
   }
 
   onDelete(row : any) {

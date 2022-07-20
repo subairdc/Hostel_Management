@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
+import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
 import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
 import { AdminLoginComponent } from './Components/login/admin-login/admin-login.component';
@@ -13,6 +14,7 @@ import { StudentSignupComponent } from './Components/login/student-signup/studen
 import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
 import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
+import { StaffDetailsComponent } from './Components/staff/staff-details/staff-details.component';
 import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
 import { StudentManagementComponent } from './Components/staff/student-management/student-management.component';
 import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
@@ -20,6 +22,7 @@ import { StudentDashboardComponent } from './Components/student/student-dashboar
 import { StudentHomepageComponent } from './Components/student/student-homepage/student-homepage.component';
 import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';
 import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
+import { WardenDetailsComponent } from './Components/warden/warden-details/warden-details.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 
 const routes: Routes = [
@@ -45,7 +48,8 @@ const routes: Routes = [
   { path:'staffHomepage' , component: StaffHomepageComponent,
         children:
         [{ path:'staffDashboard' , component: StaffDashboardComponent },
-        { path:'studentManagement' , component: StudentManagementComponent}]
+        { path:'studentManagement' , component: StudentManagementComponent},
+        { path:'staffDetails' , component: StaffDetailsComponent}]
   },
 
   { path:'adminHomepage' , component: AdminHomepageComponent,
@@ -53,7 +57,8 @@ const routes: Routes = [
         [{ path:'adminDashboard' , component: AdminDashboardComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffManagement' , component: StaffManagementComponent},
-        { path:'wardenManagement' , component: WardenManagementComponent}
+        { path:'wardenManagement' , component: WardenManagementComponent},
+        { path:'adminManagement' , component: AdminManagementComponent}
       ]
   },
 
@@ -61,6 +66,7 @@ const routes: Routes = [
   children:
   [{ path:'wardenDashboard' , component: WardenDashboardComponent },
   { path:'studentManagement' , component: StudentManagementComponent},
+  { path:'wardenDetails' , component: WardenDetailsComponent},
   { path:'staffManagement' , component: StaffManagementComponent}]
 }
 
