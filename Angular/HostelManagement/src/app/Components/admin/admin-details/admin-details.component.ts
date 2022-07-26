@@ -1,9 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin';
 import { AdminService } from 'src/app/service/admin.service';
 import { NotificationService } from 'src/app/service/notification.service';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-admin-details',

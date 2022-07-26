@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
 import { DialogBoxService } from 'src/app/service/dialog-box.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { StaffDetailsComponent } from '../../staff/staff-details/staff-details.component';
 import { AdminDetailsComponent } from '../admin-details/admin-details.component';
 
 @Component({

@@ -87,10 +87,11 @@
   <mat-sidenav #sidenav opened mode="side" style="background-color: #eee;" class="vertical-menu">
     <mat-nav-list style="width:200px">
       <a mat-list-item routerLink="adminDashboard"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
-      <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student Details</a>
-      <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff Details</a>
-      <a mat-list-item routerLink="wardenManagement"> <mat-icon>person</mat-icon>&nbsp;Warden Details</a>
-      <a mat-list-item routerLink="adminManagement"> <mat-icon>person</mat-icon>&nbsp;Admin Details</a>
+      <a mat-list-item routerLink="adminDetails"> <mat-icon>dashboard</mat-icon>&nbsp; Admin Details</a>
+      <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student List</a>
+      <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff List</a>
+      <a mat-list-item routerLink="wardenManagement"> <mat-icon>person</mat-icon>&nbsp;Warden List</a>
+      <a mat-list-item routerLink="adminManagement"> <mat-icon>person</mat-icon>&nbsp;Admin List</a>
       <a mat-list-item (click)="logout()"> <mat-icon>input</mat-icon>&nbsp; Logout</a>
     </mat-nav-list>
   </mat-sidenav>

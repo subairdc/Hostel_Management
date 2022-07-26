@@ -44,6 +44,7 @@ import { WardenDetailsComponent } from './Components/warden/warden-details/warde
 import { DialogBoxService } from './service/dialog-box.service';
 import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
+import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { AdminManagementComponent } from './Components/admin/admin-management/ad
     HttpClientModule,
     FormsModule,ReactiveFormsModule
   ],
-  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,NotificationService,DialogBoxService],
+  providers: [AdminService,AuthService,StaffService,WardenService,StudentService,NotificationService,DialogBoxService,
+  {provide: MatDialogRef,useValue: []}, {provide: MAT_DIALOG_DATA,useValue: []}, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
   entryComponents: [AdminDetailsComponent,StudentDetailsComponent,StaffDetailsComponent,WardenDetailsComponent, ConfirmDialogBoxComponent]
 })

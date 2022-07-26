@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
@@ -55,10 +56,12 @@ const routes: Routes = [
   { path:'adminHomepage' , component: AdminHomepageComponent,
         children:
         [{ path:'adminDashboard' , component: AdminDashboardComponent },
+        { path:'adminDetails' , component: AdminDetailsComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffManagement' , component: StaffManagementComponent},
         { path:'wardenManagement' , component: WardenManagementComponent},
-        { path:'adminManagement' , component: AdminManagementComponent}
+        { path:'adminManagement' , component: AdminManagementComponent},
+        { path:'wardenDetails' , component: WardenDetailsComponent}
       ]
   },
 
