@@ -63,7 +63,7 @@ export class StudentSignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name : ['',Validators.required],
+      name : ['',[Validators.required,Validators.minLength(4)]],
       gender : ['',Validators.required],
       dateOfBirth : ['',Validators.required],
       age : ['',Validators.required],
