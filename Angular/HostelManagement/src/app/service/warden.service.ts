@@ -23,10 +23,17 @@ export class WardenService {
 
     this.form = this.formBuilder.group({
       id : [''],
+      orderNo : [''],
+      wardenId : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
       email :['',[Validators.required, Validators.email]],
+      gender : [''],
+      dateOfBirth:[''],
+      phoneNo :[''],
       password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
-      orderNo: [''],
+      confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+      photo : [''],
+      photoPath :[''],
       updatedBy: [''],
       updatedOn: ['']
   });
@@ -44,16 +51,25 @@ export class WardenService {
   initializeFormGroup() {
     this.form.setValue({
       id : 0,
+      orderNo : this.MaxOrderNo,
+      wardenId: '',
       name :'',
       email : '',
+      gender:'',
+      dateOfBirth:'',
+      phoneNo:'',
       password : '',
-      orderNo : this.MaxOrderNo,
+      confirmPassword : '',
+      photo : '',
+      photoPath : '',
       updatedBy : '',
       updatedOn : ''
     });
   }
 
   populateForm(warden : Warden) {
+    // let dateOfBirth: Date = new Date(warden.dateOfBirth);
+    // warden.dateOfBirth=dateOfBirth;
     this.form.setValue(warden);
   }
 

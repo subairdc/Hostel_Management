@@ -18,7 +18,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule,MatDialogRef } from '@angular/material/dialog';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import {MatDialogModule,MatDialogRef } from '@angular/material/dialog';
     FormsModule,
     MatGridListModule,
     MatTableModule,MatSortModule,MatPaginatorModule,
-    MatSnackBarModule,MatDialogModule
+    MatSnackBarModule,MatDialogModule,MatRadioModule
   ],
   exports: [
     MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
@@ -43,7 +43,7 @@ import {MatDialogModule,MatDialogRef } from '@angular/material/dialog';
     ReactiveFormsModule,
     FormsModule,
     MatGridListModule,MatTableModule,MatSortModule,MatPaginatorModule,
-    MatSnackBarModule,MatDialogModule
+    MatSnackBarModule,MatDialogModule,MatRadioModule
   ]
 })
 export class MaterialModule { }

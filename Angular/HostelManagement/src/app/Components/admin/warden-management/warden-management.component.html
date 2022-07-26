@@ -39,6 +39,11 @@
       <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="phoneNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>phoneNo</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.phoneNo}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="password">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.password}}</mat-cell>

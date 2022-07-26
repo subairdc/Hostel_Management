@@ -31,7 +31,7 @@ export class WardenManagementComponent implements OnInit {
   // wardenList : Warden[] = [];
 
   girdListData : any;
-  displayedColumns : string[] = ['id','orderNo', 'name', 'email', 'password', 'action'];
+  displayedColumns : string[] = ['id','orderNo', 'name', 'email','phoneNo', 'password', 'action'];
   searchKey : string="";
 
   @ViewChild(MatSort) sort: any = MatSort;
@@ -41,11 +41,11 @@ export class WardenManagementComponent implements OnInit {
     this.fillGird();
     //this.getAllWarden();
 
-    this.wardenDetail = this.formBuilder.group({
-      name : [''],
-      email: [''],
-      password: [''],
-    });
+    // this.wardenDetail = this.formBuilder.group({
+    //   name : [''],
+    //   email: [''],
+    //   password: [''],
+    // });
   }
 
   fillGird() {
@@ -76,7 +76,7 @@ export class WardenManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
     this._dialog.open(WardenDetailsComponent,dialogConfig);
   }
 
@@ -86,7 +86,7 @@ export class WardenManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
     this._dialog.open(WardenDetailsComponent,dialogConfig);
   }
 
