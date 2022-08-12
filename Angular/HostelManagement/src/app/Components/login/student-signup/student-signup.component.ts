@@ -29,6 +29,10 @@ export class StudentSignupComponent implements OnInit {
   hostel = ["Select Hostel","Pothigai Boys Hostel","Thamirabharani Girls Hostel"]
   hostelS : string = "Select Hostel";
 
+  hide = true; //password visibility
+  passwordShown : boolean = false;
+  passwordType: string = 'password';
+
   constructor(private authService : AuthService, private route : Router, private formBuilder: FormBuilder,
     public notification : NotificationService,public studentService : StudentService ) {
 
@@ -50,6 +54,15 @@ export class StudentSignupComponent implements OnInit {
     return this.studentService.form.controls;
   }
 
+  togglePassword() {
+    if(this.passwordShown) {
+      this.passwordShown = false;
+      this.passwordType = 'password';
+    }else {
+      this.passwordShown = true;
+      this.passwordType = 'password';
+    }
+  }
 
   onClear() {
     this.studentService.form.reset();

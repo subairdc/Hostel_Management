@@ -49,7 +49,7 @@
               <input class="form-control" type="password" maxlength="25" placeholder="Password" name="password" formControlName="password"> </div>
               <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
                 <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
-                <div *ngIf="f['password'].errors && f['password'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
+                <div *ngIf="f['password'].errors && f['password'].errors['pattern']">Password should be Mixed of A-Z a-z @ 1234</div>
               </div>
           </div>
 
@@ -58,8 +58,9 @@
               <input class="form-control" type="password" maxlength="25" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
               <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid" class="text-danger">
                 <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Password is required.</div>
-                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
-                <div *ngIf="f['confirmPassword'].errors ">Password didn't match</div>
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['pattern']">Password should be Mixed of A-Z a-z @ 1234</div>
+                <div *ngIf="f['confirmPassword'].getError('confirmingPassword')">Password didn't match</div>
+                <!-- <div *ngIf="f['confirmPassword'].errors ">Password didn't match</div> -->
               </div>
           </div>
 
