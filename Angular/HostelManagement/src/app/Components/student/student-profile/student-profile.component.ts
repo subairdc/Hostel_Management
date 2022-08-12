@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Student } from 'src/app/model/student';
+import { NotificationService } from 'src/app/service/notification.service';
 import { StudentService } from 'src/app/service/student.service';
 
 @Component({
@@ -12,122 +13,101 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class StudentProfileComponent implements OnInit {
 
-  studentDetail !: FormGroup;
-  studentObj : Student = new Student();
+  id : number =0;
+  user : Student = new Student();
 
-  name : string = '';
-  gender : string = '';
-  dateOfBirth : any;
-  age : number =0;
+  gender=["Select Gender","Male","Female","Others"];
+  genderS : string ="Select Gender";
 
-  course : string = ''; //UG OR PG
-  dept : string = '';   //ECE
-  regNo : string = '';
-  year : number = 0; //12
+  bloodGrp = ["Select Blood Group","A+","A-","B+","B-","AB+","AB-","O+","O-","A1B+","A1B-","A2+","A2-","Others"];
+  bloodGrpS : string = "Select Blood Group";
 
-  email : string = '';
-  password : string = '';
-  confirmPassword : string = '';
+  hostel = ["Select Hostel","Pothigai Boys Hostel","Thamirabharani Girls Hostel"]
+  hostelS : string = "Select Hostel";
 
-  status : string = '';
-  hostel : string = '';
-  //sibling
 
-  //address
-  street: string = '';
-  city: string = '';
-  district: string = '';
-  state: string = '';
-  pincode: string = '';
+  constructor(private router : Router, private route : ActivatedRoute, private formBuilder : FormBuilder, public studentService : StudentService, public notification : NotificationService) {
 
-  //Parents details
-  fatherName : string = '';
-  fatherPhoneNo : string = '';
-  motherName : string = '';
-  motherPhoneNo : string = '';
-  phoneNo : string = '';
+     this.studentService.form= this.formBuilder.group({
+      id : [''],
+      orderNo : [''],
+      name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      email :['',[Validators.required, Validators.email]],
+      gender : [''],
+      dateOfBirth:['',Validators.required],
+      age:[''],
+      bloodGrp:[''],
 
-  //guardian
-  guardianName : string = '';
-  relationship : string = '';
-  guardianAddress : string = '';
-  guardianPhoneNo : string = '';
+      degree : [''],
+      dept : [''],
+      regNo : ['',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]],
+      year : [''],
+      sem:[''],
 
-  constructor(private route : Router, private formBuilder : FormBuilder, private studentService : StudentService) { }
+      // password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+      // confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+
+      status : [''],
+      hostel : [''],
+
+      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
+      city : [''],
+      district : [''],
+      state : [''],
+      pincode : ['',[Validators.required,Validators.minLength(6)]],
+
+      fatherName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      fatherPhoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      motherName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      motherPhoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
+
+      guardianName : [''],
+      guardianPhoneNo : [''],
+      guardianRelation : [''],
+      guardianAddress : [''],
+
+
+    })
+   }
 
   ngOnInit(): void {
-    this.studentService.getStudent(this.studentObj).subscribe(res=>{
-      this.studentDetail.value.name = res.name;
-      console.log(res);
+    this.id = this.route.snapshot.params['id'];
+
+    this.studentService.getStudentById(this.id).subscribe(res=>{
+      //console.log("result "+ res);
+      this.user = res;
     },err=>{
-      console.log(err);
+      console.log("Error"+err);
     })
 
+    this.studentService.form.disable();
 
-    this.getStudent();
-
-    this.studentDetail = this.formBuilder.group({
-      name : ['',Validators.required],
-      gender : ['',Validators.required],
-      dateOfBirth : ['',Validators.required],
-      age : ['',Validators.required],
-
-      course : ['',Validators.required], //UG OR PG
-      dept : ['',Validators.required],   //ECE
-      regNo : ['',Validators.required],
-      year : ['',Validators.required], //12
-
-      email : ['',[Validators.required,Validators.email]],
-      password : ['',Validators.required],
-      confirmPassword : ['',Validators.required],
-
-      status : ['',Validators.required],
-      hostel : ['',Validators.required],
-      //sibling
-
-      //address
-      street: ['',Validators.required],
-      city: ['',Validators.required],
-      district: ['',Validators.required],
-      state: ['',Validators.required],
-      pincode: ['',Validators.required],
-
-      //Parents details
-      fatherName : ['',Validators.required],
-      fatherPhoneNo : ['',Validators.required],
-      motherName : ['',Validators.required],
-      motherPhoneNo : ['',Validators.required],
-      phoneNo : ['',Validators.required],
-
-      //guardian
-      guardianName : ['',],
-      relationship : ['',],
-      guardianAddress : ['',],
-      guardianPhoneNo : ['',]
-
-    });
-  }
-
-  getStudent(){
-    this.studentDetail.controls['name'].setValue(Student.name);
-
-    this.studentService.getStudent(this.studentObj).subscribe(res=>{
-      this.studentObj = res;
-  },err=>{
-    console.log("error while fetching data.")
-  });
+    // this.studentService.form.value['name']= this.user.name;
 
   }
 
-  updateStudent() {
+  get f(){
+    return this.studentService.form.controls;
+  }
 
-    this.studentObj.name = this.studentDetail.value.name;
-    this.studentObj.email = this.studentDetail.value.email;
-    this.studentObj.password = this.studentDetail.value.password;
-    this.studentObj.phoneNo = this.studentDetail.value.phoneNo;
+  onEdit(){
+    this.studentService.form.enable();
+  }
 
-    this.studentService.updateStudent(this.studentObj).subscribe(res=>{
-      console.log(res);
+  updateDetails() {
+    this.studentService.updateStudent(this.user).subscribe(res=>{
+      if(res == null) {
+        this.notification.warn("Student Details Updated failed");
+        //alert("Student Details Update failed");
+        this.ngOnInit();
+      }else {
+        //alert("Student Details Updated successful");
+        //this.studentService.form.reset();
+        this.notification.success("Student Details Updated successful");
+        this.studentService.form.disable();
+
+      }
     },err=>{
       console.log(err);
     })

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder, MinValidator } from '@angular/forms';
 import { Student } from 'src/app/model/student';
 import { LeaveForm } from 'src/app/model/leave-form';
 import { StudentService } from 'src/app/service/student.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class LeaveFormComponent implements OnInit {
 
+  id : number =0;
   leaveForm !: FormGroup;
 
   user : Student = new Student();
@@ -22,6 +24,7 @@ export class LeaveFormComponent implements OnInit {
   regNo : string = '';
   roomNo : string = '';
   hostel : string = '';
+  phoneNo : string = '';
 
   degree : string = '';
   dept : string = '';
@@ -43,15 +46,17 @@ export class LeaveFormComponent implements OnInit {
   contactPerson : string = '';
   personName : string = '';
   relation : string = '';
-  phoneNo : string = '';
+  contactPhoneNo : string = '';
 
-  constructor(private studentService : StudentService, private route : Router, private formBuilder: FormBuilder) {
+  constructor(private studentService : StudentService, private route : Router,private router : ActivatedRoute, private formBuilder: FormBuilder,
+    public notification : NotificationService) {
 
     this.leaveForm = this.formBuilder.group({
-      name : ['',Validators.required],
+      name : [''],
       regNo : [''],
       roomNo : [''],
       hostel : [''],
+      phoneNo : [''],
 
       degree : [''], //UG OR PG
       dept : [''],   //ECE
@@ -71,18 +76,31 @@ export class LeaveFormComponent implements OnInit {
       noOfDays : [''],
 
       contactPerson : [''],
-      personName : [''],
+      personName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
       relation : [''],
-      phoneNo : ['']
+      contactPhoneNo : ['',[Validators.required,Validators.maxLength(10),Validators.maxLength(10)]]
     })
    }
 
   ngOnInit(): void {
+    this.id = this.router.snapshot.params['id'];
+
+    this.studentService.getStudentById(this.id).subscribe(res=>{
+      //console.log("result "+ res);
+      this.user = res;
+    },err=>{
+      console.log("Error"+err);
+    })
   }
+
+  get f(){
+    return this.leaveForm.controls;
+  }
+
 
   onSubmit() {
 
-    console.log(this.name+" "+this.phoneNo);
+    //console.log(this.name+" "+this.phoneNo);
 
     this.form.name = this.name;
     this.form.regNo = this.regNo;
@@ -109,7 +127,7 @@ export class LeaveFormComponent implements OnInit {
     this.form.contactPerson = this.contactPerson;
     this.form.personName = this.personName;
     this.form.relation = this.relation;
-    this.form.phoneNo = this.phoneNo;
+    this.form.contactPhoneNo = this.contactPhoneNo;
 
 
     this.studentService.addLeaveForm(this.form).subscribe(res => {

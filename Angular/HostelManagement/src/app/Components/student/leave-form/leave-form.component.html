@@ -8,27 +8,27 @@
         <div class="row ">
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label class="text-muted mandatory">Name</label>
-                <input class="form-control" type="text" placeholder="Name" name="name" [(ngModel)]="name"  formControlName="name" required> </div>
+                <input class="form-control" type="text" placeholder="Name" name="name" [(ngModel)]="user.name"  formControlName="name" required> </div>
           </div>
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Reg No</label>
-              <input class="form-control" type="text" maxlength="12" placeholder="Reg No." name="regNo" [(ngModel)]="regNo"  formControlName="regNo" required> </div>
+              <input class="form-control" type="text" maxlength="12" placeholder="Reg No." name="regNo" [(ngModel)]="user.regNo"  formControlName="regNo" required> </div>
         </div>
 
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label>Room No</label>
-                <input class="form-control" type="text" maxlength="4" placeholder="Room No." name="roomNO" [(ngModel)]="roomNo"  formControlName="roomNo" required> </div>
+                <input class="form-control" type="text" maxlength="4" placeholder="Room No." name="roomNO" [(ngModel)]="user.roomNo"  formControlName="roomNo" required> </div>
           </div>
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Phone No.</label>
-               <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" [(ngModel)]="phoneNo"  formControlName="phoneNo" required> </div>
+               <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" [(ngModel)]="user.phoneNo"  formControlName="phoneNo" required> </div>
           </div>
 
           <div class="col-md-3 mb-4 mt-2">
             <div class="inputs"> <label>Degree</label>
-              <select class="form-select" aria-label="Default select example"  [(ngModel)]="degree"  formControlName="degree" required>
+              <select class="form-select" aria-label="Default select example"  [(ngModel)]="user.degree"  formControlName="degree" required>
                 <option [selected]="1">Select Degree</option>
                 <option value="UG">UG</option>
                 <option value="PG">PG</option>
@@ -37,7 +37,7 @@
 
           <div class="col-md-3 mb-4 mt-2">
             <div class="inputs"> <label>Department</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="dept"  formControlName="dept" required>
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="user.dept"  formControlName="dept" required>
                 <option [selected]="1">Select Department</option>
                 <option value="Civil">Civil</option>
                 <option value="Mech">Mech</option>
@@ -47,7 +47,7 @@
 
           <div class="col-md-3 mb-4 mt-2">
             <div class="inputs"> <label>Year</label>
-              <select class="form-select" aria-label="Default select example"  [(ngModel)]="year"  formControlName="year" required>
+              <select class="form-select" aria-label="Default select example"  [(ngModel)]="user.year"  formControlName="year" required>
                 <option [selected]="1">Select Year</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -57,8 +57,8 @@
           </div>
 
           <div class="col-md-3 mb-4 mt-2">
-            <div class="inputs"> <label>semester</label>
-              <select class="form-select" aria-label="Default select example"  [(ngModel)]="semester"  formControlName="semester" required>
+            <div class="inputs"> <label>Semester</label>
+              <select class="form-select" aria-label="Default select example"  [(ngModel)]="user.sem"  formControlName="semester" required>
                 <option [defaultSelected]="1">Select Sem</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -76,7 +76,7 @@
 
         <div class="col-md-12 mb-6">
           <div class="inputs"> <label>Hostel</label>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="hostel"  formControlName="hostel">
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="user.hostel"  formControlName="hostel">
               <option [selected]="1" >Select Hostel</option>
               <option value="Pothigai Boys Hostel">Pothigai Boys Hostel </option>
               <option value="Thamirabharani Girls Hostel">Thamirabharani Girls Hostel</option>
@@ -141,13 +141,18 @@
               <option [selected]="1">Select Person</option>
               <option value="Father">Father</option>
               <option value="Mother">Mother</option>
-              <option value="Relation">Relation</option>
+              <option value="Guardian">Guardian</option>
             </select> </div>
         </div>
 
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Contact Person Name</label>
           <input class="form-control" type="text" placeholder="Name" [(ngModel)]="personName"  formControlName="personName" required> </div>
+          <div *ngIf="f['personName'].touched && f['personName'].invalid" class="text-danger">
+            <div *ngIf="f['personName'].errors && f['personName'].errors['required']">Name is required.</div>
+            <div *ngIf="f['personName'].errors && f['personName'].errors['minlength']">Name should be min 4 char.</div>
+            <div *ngIf="f['personName'].errors && f['personName'].errors['maxlength']">Name should be max 25 char.</div>
+          </div>
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Relation</label>
@@ -155,13 +160,13 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Phone No.</label>
-          <input class="form-control" type="text" maxlength="10" placeholder="phoneNo." [(ngModel)]="phoneNo"  formControlName="phoneNo" required> </div>
+          <input class="form-control" type="text" maxlength="10" placeholder="phone No." [(ngModel)]="contactPhoneNo"  formControlName="contactPhoneNo" required> </div>
       </div>
     </div>
 
     <div class="mt-3 gap-2 d-flex justify-content-end">
          <button class="px-3 btn btn-sm btn-outline-primary">Cancel</button>
-        <button class="px-3 btn btn-sm btn-primary" type="submit" >Save</button> </div>
+        <button class="px-3 btn btn-sm btn-primary" type="submit" [disabled]="leaveForm.invalid" >Save</button> </div>
       </form>
 
   </div>

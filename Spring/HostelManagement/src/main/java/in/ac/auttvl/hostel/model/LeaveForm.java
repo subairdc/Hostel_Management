@@ -45,7 +45,7 @@ public class LeaveForm {
 	private String contactPerson;
 	private String personName;
 	private String relation;
-	private String phoneNo;
+	private String contactPhoneNo;
 	
 	public LeaveForm() {
 		
@@ -54,7 +54,7 @@ public class LeaveForm {
 	public LeaveForm(int id, String name, String regNo, int roomNo, String hostel, String degree,
 			String dept, int year, int sem, String leaveCategory, String date, String day, String leavingTime,
 			String reportingTime, String leavePurpose, String fromDate, String toDate, int noOfDays,
-			String contactPerson, String personName, String relation, String phoneNo) {
+			String contactPerson, String personName, String relation, String contactPhoneNo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -77,7 +77,7 @@ public class LeaveForm {
 		this.contactPerson = contactPerson;
 		this.personName = personName;
 		this.relation = relation;
-		this.phoneNo = phoneNo;
+		this.contactPhoneNo = contactPhoneNo;
 	}
 	public int getId() {
 		return id;
@@ -205,11 +205,11 @@ public class LeaveForm {
 	public void setRelation(String relation) {
 		this.relation = relation;
 	}
-	public String getPhoneNo() {
-		return phoneNo;
+	public String getContactPhoneNo() {
+		return contactPhoneNo;
 	}
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
+	public void setContactPhoneNo(String contactPhoneNo) {
+		this.contactPhoneNo = contactPhoneNo;
 	}
 	
 }

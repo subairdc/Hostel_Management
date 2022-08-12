@@ -24,6 +24,6 @@ export class LeaveForm {
   contactPerson : string = '';
   personName : string = '';
   relation : string = '';
-  phoneNo : string = '';
+  contactPhoneNo : string = '';
 
 }

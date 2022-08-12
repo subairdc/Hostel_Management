@@ -70,6 +70,6 @@ public class WardenController {
 	 // Get warden Max Order
 	    @GetMapping("/getMaxOrder")
 	    public  Warden getMaxOrder() {
-	        return wardenService.getMaxOrder();
+	        return wardenService.getByMaxOrder();
 	    }
 }
