@@ -1,69 +1,102 @@
 <app-header></app-header>
+
 <div class="container  mt-3 align-items-center">
   <div class="card col-md-5 mt-sm-5  p-3" style="margin: auto">
 
       <h4 class="pb-4 text-center border-bottom">Student Signup</h4>
 
-      <form [formGroup]="signupForm" (ngSubmit)="signup()">
+      <form [formGroup]="studentService.form" (ngSubmit)="signup()">
         <div class="row ">
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label class="text-muted mandatory">Name</label>
-                <input class="form-control" type="text" placeholder="Name" name="name" [(ngModel)]="name"  formControlName="name" required> </div>
+                <input class="form-control" type="text" placeholder="Name" name="name" formControlName="name"> </div>
+                <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+                  <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+                  <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be min 4 char.</div>
+                  <div *ngIf="f['name'].errors && f['name'].errors['maxlength']">Name should be max 25 char.</div>
+                </div>
           </div>
+
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label>Email</label>
-                <input class="form-control" type="text" placeholder="Email" name="email" [(ngModel)]="email"  formControlName="email" required> </div>
+                <input class="form-control" type="text" placeholder="Email" name="email" formControlName="email"> </div>
+                <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                  <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+                  <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
+                </div>
           </div>
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Phone No.</label>
-               <input class="form-control" type="text" placeholder="Phone No." name="phoneNo" [(ngModel)]="phoneNo"  formControlName="phoneNo" required> </div>
+               <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" formControlName="phoneNo"> </div>
+               <div *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+              </div>
           </div>
 
           <div class="col-md-6 mb-4 mt-2">
             <div class="inputs"> <label>Marital Status</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="status"  formControlName="status" required>
-                <option >Select Option</option>
-                <option [selected]="1" value="Single" >Single</option>
+              <select class="form-select" aria-label="Default select example" formControlName="status">
+                <option [selected]="1">Select Option</option>
+                <option value="Single" >Single</option>
                 <option value="Married">Married</option>
               </select> </div>
           </div>
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Password</label>
-              <input class="form-control" type="password" placeholder="Password" name="password" [(ngModel)]="password"  formControlName="password" required> </div>
+              <input class="form-control" type="password" placeholder="Password" name="password" formControlName="password"> </div>
+              <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
+                <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
+                <div *ngIf="f['password'].errors && f['password'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
+              </div>
           </div>
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Confirm Password</label>
-              <input class="form-control" type="password" placeholder="confirm password" name="confirmPassword" [(ngModel)]="confirmPassword"  formControlName="confirmPassword" required> </div>
+              <input class="form-control" type="password" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
+              <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid" class="text-danger">
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Password is required.</div>
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
+              </div>
           </div>
 
           <div class="col-md-6 mb-4 mt-2">
 
             <div class="inputs"> <label>Gender</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="gender"  formControlName="gender" required>
-                <option [selected]="1">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
+              <select class="form-select" [(ngModel)]="genderS" aria-label="Default select example" formControlName="gender" >
+                <option *ngFor="let n of gender" value="{{n}}">{{n}}</option>
+
               </select> </div>
           </div>
 
           <div class="col-md-4 mt-2">
               <div class="inputs"> <label>Date of Birth</label>
-                <input class="form-control" type="date" placeholder="Date of Birth" [(ngModel)]="dateOfBirth"  formControlName="dateOfBirth" required> </div>
+                <input class="form-control" type="date" placeholder="Date of Birth" formControlName="dateOfBirth"> </div>
           </div>
           <div class=" col-md-2 mt-2">
             <div class="inputs"> <label>Age</label>
-               <input class="form-control" type="number" placeholder="Age" [(ngModel)]="age"  formControlName="age" required> </div>
+               <input class="form-control" type="number" placeholder="Age" formControlName="age"> </div>
+               <!-- <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
+                <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
+                <div *ngIf="f['age'].errors && f['age'].errors['minlength']">Please enter valid age</div>
+              </div> -->
+          </div>
+
+          <div class="col-md-6 mb-4">
+
+            <div class="inputs"> <label>Blood Group</label>
+              <select class="form-select" [(ngModel)]="bloodGrpS" aria-label="Default select example" formControlName="bloodGrp" >
+                <option *ngFor="let n of bloodGrp" value="{{n}}">{{n}}</option>
+              </select> </div>
           </div>
 
 
           <div class="col-md-3 mb-4">
-            <div class="inputs"> <label>Course</label>
-              <select class="form-select" aria-label="Default select example"  [(ngModel)]="course"  formControlName="course" required>
-                <option [selected]="1">Select Course</option>
+            <div class="inputs"> <label>Degree</label>
+              <select class="form-select" aria-label="Default select example"  formControlName="degree">
+                <option [selected]="1">Select Degree</option>
                 <option value="UG">UG</option>
                 <option value="PG">PG</option>
               </select> </div>
@@ -71,7 +104,7 @@
 
           <div class="col-md-3 mb-4">
             <div class="inputs"> <label>Department</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="dept"  formControlName="dept" required>
+              <select class="form-select" aria-label="Default select example" formControlName="dept">
                 <option [selected]="1">Select Department</option>
                 <option value="Civil">Civil</option>
                 <option value="Mech">Mech</option>
@@ -79,14 +112,19 @@
               </select> </div>
           </div>
 
-          <div class="col-md-4 ">
-            <div class="inputs"> <label>Roll No.</label>
-              <input class="form-control" type="text" placeholder="Roll No." [(ngModel)]="regNo"  formControlName="regNo" required> </div>
+          <div class="col-md-6 ">
+            <div class="inputs"> <label>Reg No.</label>
+              <input class="form-control" type="text" maxlength="12" placeholder="Reg No."  formControlName="regNo"> </div>
+              <div *ngIf="f['regNo'].touched && f['regNo'].invalid" class="text-danger">
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['required']">regNo is required.</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['minLength']">Please enter valid Reg No</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['maxLength']">Please enter valid Reg No</div>
+              </div>
           </div>
 
-          <div class="col-md-2 mb-4">
+          <div class="col-md-3 mb-4">
             <div class="inputs"> <label>Year</label>
-              <select class="form-select" aria-label="Default select example"  [(ngModel)]="year"  formControlName="year" required>
+              <select class="form-select" aria-label="Default select example"  formControlName="year">
                 <option [selected]="1">Select Year</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -95,12 +133,25 @@
               </select> </div>
           </div>
 
+          <div class="col-md-3 mb-4">
+            <div class="inputs"> <label>Semester</label>
+              <select class="form-select" aria-label="Default select example"  formControlName="sem">
+                <option [selected]="1">Select Sem</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select> </div>
+          </div>
+
           <div class="col-md-12 mb-4">
             <div class="inputs"> <label>Hostel</label>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="hostel"  formControlName="hostel">
-                <option [selected]="1" >Select Hostel</option>
-                <option value="Pothigai Boys Hostel">Pothigai Boys Hostel </option>
-                <option value="Thamirabharani Girls Hostel">Thamirabharani Girls Hostel</option>
+              <select class="form-select" [(ngModel)]="hostelS" aria-label="Default select example" formControlName="hostel">
+                <option *ngFor="let n of hostel" value="{{n}}">{{n}} </option>
               </select> </div>
           </div>
 
@@ -110,23 +161,32 @@
 
         <div class="col-md-12 mt-2">
           <div class="inputs"> <label>Street</label>
-             <input class="form-control" type="text" placeholder="Door No. & Street Name" [(ngModel)]="street"  formControlName="street" required> </div>
+             <input class="form-control" type="text" placeholder="Door No. & Street Name"  formControlName="street"> </div>
+             <div *ngIf="f['street'].touched && f['street'].invalid" class="text-danger">
+              <div *ngIf="f['street'].errors && f['street'].errors['required']">street is required.</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['minLength']">Street name should be in min 5 char</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['maxLength']">Street name should be in max 40 char</div>
+            </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>City</label>
-             <input class="form-control" type="text" placeholder="City" [(ngModel)]="city"  formControlName="city" required> </div>
+             <input class="form-control" type="text" placeholder="City"  formControlName="city"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>District</label>
-            <input class="form-control" type="text" placeholder="District" [(ngModel)]="district"  formControlName="district" required> </div>
+            <input class="form-control" type="text" placeholder="District" formControlName="district"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>State</label>
-            <input class="form-control" type="text" placeholder="State" [(ngModel)]="state"  formControlName="state" required> </div>
+            <input class="form-control" type="text" placeholder="State" formControlName="state"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>Pincode</label>
-            <input class="form-control" type="text" placeholder="Pincode" [(ngModel)]="pincode"  formControlName="pincode" required> </div>
+            <input class="form-control" type="text" maxlength="6" placeholder="Pincode" formControlName="pincode"> </div>
+            <div *ngIf="f['pincode'].touched && f['pincode'].invalid" class="text-danger">
+              <div *ngIf="f['pincode'].errors && f['pincode'].errors['required']">pincode is required.</div>
+              <div *ngIf="f['pincode'].errors && f['pincode'].errors['minLength']">please enter valid pincode</div>
+            </div>
         </div>
 
     </div>
@@ -134,47 +194,77 @@
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Father Name</label>
-          <input class="form-control" type="text" placeholder="Father Name" [(ngModel)]="fatherName"  formControlName="fatherName" required> </div>
+          <input class="form-control" type="text" placeholder="Father Name" formControlName="fatherName" required> </div>
+          <div *ngIf="f['fatherName'].touched && f['fatherName'].invalid" class="text-danger">
+            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['required']">fatherName is required.</div>
+            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['minLength']">Name should be min 4 char.</div>
+            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['maxLength']">Name should be max 25 char.</div>
+          </div>
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Father Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Father Mobile No." [(ngModel)]="fatherPhoneNo"  formControlName="fatherPhoneNo" required> </div>
+          <input class="form-control" type="text" placeholder="Father Mobile No." formControlName="fatherPhoneNo" required> </div>
+          <div *ngIf="f['fatherPhoneNo'].touched && f['fatherPhoneNo'].invalid" class="text-danger">
+            <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['required']">Phone No. is required.</div>
+            <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+          </div>
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Mother Name</label>
-          <input class="form-control" type="text" placeholder="Mother Name" [(ngModel)]="motherName"  formControlName="motherName" required> </div>
+          <input class="form-control" type="text" placeholder="Mother Name" formControlName="motherName" required> </div>
+          <div *ngIf="f['motherName'].touched && f['motherName'].invalid" class="text-danger">
+            <div *ngIf="f['motherName'].errors && f['motherName'].errors['required']">motherName is required.</div>
+            <div *ngIf="f['motherName'].errors && f['motherName'].errors['minLength']">Name should be min 4 char.</div>
+            <div *ngIf="f['motherName'].errors && f['motherName'].errors['maxLength']">Name should be max 25 char.</div>
+          </div>
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Mother Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Mother Mobile No." [(ngModel)]="motherPhoneNo"  formControlName="motherPhoneNo" required> </div>
+          <input class="form-control" type="text" placeholder="Mother Mobile No." formControlName="motherPhoneNo" required> </div>
+          <div *ngIf="f['motherPhoneNo'].touched && f['motherPhoneNo'].invalid" class="text-danger">
+            <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['required']">Phone No. is required.</div>
+            <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+          </div>
       </div>
     </div>
 
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Guardian Name</label>
-          <input class="form-control" type="text" placeholder="Guardian Name" [(ngModel)]="guardianName"  formControlName="guardianName"> </div>
+          <input class="form-control" type="text" placeholder="Guardian Name" formControlName="guardianName"> </div>
+          <!-- <div *ngIf="f['guardianName'].touched && f['guardianName'].invalid" class="text-danger">
+            <div *ngIf="f['guardianName'].errors && f['guardianName'].errors['required']">guardianName is required.</div>
+            <div *ngIf="f['guardianName'].errors && f['guardianName'].errors['guardianName']">Name should be max 4 char.</div>
+          </div> -->
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Guardian Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Guardian Mobile No." [(ngModel)]="guardianPhoneNo"  formControlName="guardianPhoneNo"> </div>
+          <input class="form-control" type="text" placeholder="Guardian Mobile No." formControlName="guardianPhoneNo"> </div>
+          <!-- <div *ngIf="f['guardianPhoneNo'].touched && f['guardianPhoneNo'].invalid" class="text-danger">
+            <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['required']">Phone NO. is required.</div>
+            <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+          </div> -->
       </div>
     </div>
 
     <div class="row mt-2">
       <div class="col-md-12 mt-2">
         <div class="inputs"> <label>Relation</label>
-          <input class="form-control" type="text" placeholder="Relation" [(ngModel)]="relationship"  formControlName="relationship"> </div>
+          <input class="form-control" type="text" placeholder="Relation" formControlName="guardianRelation"> </div>
       </div>
         <div class="col-md-12">
           <div class="about-inputs"> <label>Address</label>
-            <textarea class="form-control" type="text" placeholder="Street Name, City, District" [(ngModel)]="guardianAddress"  formControlName="guardianAddress"> </textarea> </div>
-    </div>
+            <textarea class="form-control" type="text" placeholder="Street Name, City, District" formControlName="guardianAddress"> </textarea> </div>
+            <!-- <div *ngIf="f['guardianAddress'].touched && f['guardianAddress'].invalid" class="text-danger">
+              <div *ngIf="f['guardianAddress'].errors && f['guardianAddress'].errors['required']">guardianAddress is required.</div>
+              <div *ngIf="f['guardianAddress'].errors && f['guardianAddress'].errors['']">guardianAddress name should be in max 40 char</div>
+            </div> -->
+        </div>
 
   </div>
       <div class="mt-3 gap-2 d-flex justify-content-end">
-         <button class="px-3 btn btn-sm btn-outline-primary">Cancel</button>
-        <button class="px-3 btn btn-sm btn-primary" type="submit" [disabled]="signupForm.invalid">Save</button> </div>
+         <button class="px-3 btn btn-sm btn-outline-primary" type="button" (click)="onCancel()">Cancel</button>
+        <button class="px-3 btn btn-sm btn-primary" type="submit" [disabled]="studentService.form.invalid">Save</button> </div>
       </form>
 
   </div>

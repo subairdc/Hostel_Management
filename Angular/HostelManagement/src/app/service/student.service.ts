@@ -12,55 +12,143 @@ export class StudentService {
 
   addStudentURL : string;
   getStudentURL : string;
+  getStudentByIdURL : string;
   getAllStudentsURL : string;
   updateStudentURL : string;
   deleteStudentURL : string;
 
+  getStudentMaxOrderURL : string;
   addLeaveFormURL : string;
 
-  studentForm !: FormGroup;
+  form !: FormGroup;
+
+  maxOrderNo : number =0;
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
-    this.studentForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       id : [''],
+      orderNo : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
       email :['',[Validators.required, Validators.email]],
-    password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
-    gender: ['']
+      gender : [''],
+      dateOfBirth:['',Validators.required],
+      age:[''],
+      bloodGrp: [''],
+
+      degree : [''],
+      dept : [''],
+      regNo : ['',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]],
+      year : [''],
+      sem : [''],
+
+      password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+      confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+
+      status : [''],
+      hostel : [''],
+
+      roomNo :[''],
+
+      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
+      city : [''],
+      district : [''],
+      state : [''],
+      pincode : ['',[Validators.required,Validators.minLength(6)]],
+
+      fatherName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      fatherPhoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      motherName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      motherPhoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
+
+      guardianName : [''],
+      guardianPhoneNo : [''],
+      guardianRelation : [''],
+      guardianAddress : [''],
+
+      image : [''],
+      imagePath : [''],
+      updatedBy : [''],
+      updatedOn : [''],
   });
 
     this.addStudentURL = 'http://localhost:8080/student/addStudent';
     this.getStudentURL = 'http://localhost:8080/student/getStudentById';
+    this.getStudentByIdURL = 'http://localhost:8080/student/getStudentById'
     this.getAllStudentsURL = 'http://localhost:8080/student/getAllStudents';
     this.updateStudentURL = 'http://localhost:8080/student/updateStudent';
     this.deleteStudentURL = 'http://localhost:8080/student/deleteStudentById';
 
+    this.getStudentMaxOrderURL = 'http://localhost:8080/student/getMaxOrder'
     this.addLeaveFormURL = 'http://localhost:8080/student/addLeaveForm';
 
   }
 
   initializeFormGroup() {
-    this.studentForm.setValue({
+    this.form.setValue({
       id : 0,
-      name :'',
-      email : '',
-      password : '',
-      gender : ''
+      orderNo : this.maxOrderNo,
+      name : '',
+      email :'',
+      gender : '',
+      dateOfBirth:'',
+      age:'',
+      bloodGrp: '',
+
+      degree : '',
+      dept : '',
+      regNo : '',
+      year : '',
+      sem : '',
+
+      password: '',
+      confirmPassword: '',
+
+      status : '',
+      hostel : '',
+
+      roomNo: '',
+
+      street : '',
+      city : '',
+      district : '',
+      state : '',
+      pincode : '',
+
+      fatherName : '',
+      fatherPhoneNo : '',
+      motherName : '',
+      motherPhoneNo :'',
+      phoneNo : '',
+
+      guardianName : '',
+      guardianPhoneNo : '',
+      guardianRelation : '',
+      guardianAddress : '',
+
+      image : '',
+      imagePath : '',
+      updatedBy : '',
+      updatedOn : ''
     });
   }
 
   populateForm(student : Student) {
-    this.studentForm.setValue(student);
+    this.form.setValue(student);
   }
 
 
   addStudent(student : Student): Observable<Student> {
     return this.http.post<Student>(this.addStudentURL,student);
   }
-
+  //Passing whole class
   getStudent(student : Student) : Observable<Student> {
     return this.http.get<Student>(this.getStudentURL+'/'+student.id);
+  }
+  //passing only id
+  getStudentById(id : number) : Observable<Student> {
+    return this.http.get<Student>(this.getStudentByIdURL+'/'+id);
   }
 
   getAllStudents(): Observable<Student[]>{
@@ -75,6 +163,9 @@ export class StudentService {
     return this.http.delete<Student>(this.deleteStudentURL+'/'+student.id);
   }
 
+  getMaxOrderNo(): Observable<Student> {
+    return this.http.get<Student>(this.getStudentMaxOrderURL);
+  }
 
  addLeaveForm(leaveForm : LeaveForm) : Observable<LeaveForm> {
     return this.http.post<LeaveForm>(this.addLeaveFormURL,leaveForm);

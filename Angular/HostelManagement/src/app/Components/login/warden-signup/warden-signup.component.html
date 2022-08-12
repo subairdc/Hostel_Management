@@ -18,7 +18,7 @@
                   </div>
               </div>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" maxlength="30" id="floatingInput" placeholder="Email" name="email" [(ngModel)]="email" formControlName="email" required>
+                  <input type="text" class="form-control" maxlength="30" id="floatingInputEmail" placeholder="Email" name="email" [(ngModel)]="email" formControlName="email" required>
                   <label for="floatingInput">Email address</label>
                   <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
                     <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>

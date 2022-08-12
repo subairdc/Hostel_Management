@@ -21,27 +21,30 @@ export class StudentDetailsComponent implements OnInit {
  }
 
  onClose() {
-   this.studentService.studentForm.reset();
+   this.studentService.form.reset();
    this.studentService.initializeFormGroup();
    this.dialogRef.close();
    this.studentService.filter('');
  }
 
  onClear() {
-   this.studentService.studentForm.reset();
+   this.studentService.form.reset();
    this.studentService.initializeFormGroup();
  }
 
+ get f(){
+  return this.studentService.form.controls;
+}
  onSubmit() {
    var studentDetails = new Student;
-   studentDetails.id = this.studentService.studentForm.value['id'];
-   studentDetails.name = this.studentService.studentForm.value['name'];
-   studentDetails.email = this.studentService.studentForm.value['email'];
-   studentDetails.password = this.studentService.studentForm.value['password'];
+   studentDetails.id = this.studentService.form.value['id'];
+   studentDetails.name = this.studentService.form.value['name'];
+   studentDetails.email = this.studentService.form.value['email'];
+   studentDetails.password = this.studentService.form.value['password'];
 
    this.studentService.updateStudent(studentDetails).subscribe(
      data => {
-       this.studentService.studentForm.reset();
+       this.studentService.form.reset();
        this.studentService.initializeFormGroup();
        this.notification.success("Submitted Successfully")
        this.onClose();

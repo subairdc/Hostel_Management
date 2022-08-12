@@ -1,15 +1,18 @@
 export class Student {
   id : number;
+  orderNo : number;
   name : string;
   gender : string;
   dateOfBirth : any;
   age : number;
   email : string;
+  bloodGrp : string;
 
-  course : string; //UG OR PG
+  degree : string; //UG OR PG
   dept : string;   //ECE
   regNo : string;
   year : number; //12
+  sem : number;
 
 
   password : string;
@@ -17,6 +20,8 @@ export class Student {
 
   status : string;
   hostel : string;
+
+  roomNo : number;
   //sibling
 
   //address
@@ -35,9 +40,16 @@ export class Student {
 
   //guardian
   guardianName : string;
-  relationship : string;
-  guardianAddress : string;
   guardianPhoneNo : string;
+  guardianRelation : string;
+  guardianAddress : string;
+
+
+  image : string;
+  imagePath : string;
+  updatedBy : string;
+  updatedOn : string;
+  dateOfEnrollment : string;
 
   // //office use
   // roomAllotted : string;
@@ -48,22 +60,27 @@ export class Student {
 
   constructor() {
     this.id =0;
+    this.orderNo =0;
     this.name = '';
     this.gender = '';
     this.dateOfBirth = Date;
     this.age =0;
+    this.bloodGrp='';
 
     this.email = '';
-    this.course = ''; //UG OR PG
+    this.degree = ''; //UG OR PG
     this.dept = '';   //ECE
     this.regNo = '';
     this.year = 0; //12
+    this.sem = 0;
 
     this.password = '';
     this.confirmPassword = '';
 
     this.status = '';
     this.hostel = '';
+
+    this.roomNo = 0;
     //sibling
 
     //address
@@ -82,9 +99,15 @@ export class Student {
 
     //guardian
     this.guardianName = '';
-    this.relationship = '';
+    this.guardianRelation = '';
     this.guardianAddress = '';
     this.guardianPhoneNo = '';
+
+    this.image = '';
+    this.imagePath = '';
+    this.updatedBy = '';
+    this.updatedOn = '';
+    this.dateOfEnrollment = '';
 
     // //office use
     // roomAllotted = '';

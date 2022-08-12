@@ -11,6 +11,7 @@ export class WardenService {
 
   addWardenURL : string;
   getWardenURL : string;
+  getAllWardenURL : string;
   updateWardenUrl : string;
   deleteWardenUrl : string;
   getWardenMaxOrderURL : string;
@@ -39,7 +40,8 @@ export class WardenService {
   });
 
     this.addWardenURL = 'http://localhost:8080/warden/addWarden';
-    this.getWardenURL = 'http://localhost:8080/warden/getAll';
+    this.getWardenURL = 'http://localhost:8080/warden/getWardenById'
+    this.getAllWardenURL = 'http://localhost:8080/warden/getAll';
     this.updateWardenUrl = 'http://localhost:8080/warden/updateWarden';
     this.deleteWardenUrl = 'http://localhost:8080/warden/deleteWardenById';
     this.getWardenMaxOrderURL = 'http://localhost:8080/warden/getMaxOrder';
@@ -75,6 +77,10 @@ export class WardenService {
 
   addWarden(warden : Warden): Observable<Warden> {
     return this.http.post<Warden>(this.addWardenURL,warden);
+  }
+
+  getWarden(warden : Warden): Observable<Warden> {
+    return this.http.get<Warden>(this.getWardenURL+'/'+warden.id);
   }
 
   getAllWarden(): Observable<Warden[]>{

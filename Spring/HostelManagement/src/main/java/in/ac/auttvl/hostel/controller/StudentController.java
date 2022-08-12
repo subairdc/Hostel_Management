@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import in.ac.auttvl.hostel.model.LeaveForm;
 import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.Warden;
 import in.ac.auttvl.hostel.service.StudentService;
 
 @RestController
@@ -71,5 +72,11 @@ public class StudentController {
     @PostMapping("/addLeaveForm")
     public LeaveForm addLeaveForm(@RequestBody LeaveForm leaveForm) {
         return studentService.addLeaveForm(leaveForm);
+    }
+    
+ //Get Student Max Order
+    @GetMapping("/getMaxOrder")
+    public  Student getMaxOrder() {
+        return studentService.getByMaxOrder();
     }
 }

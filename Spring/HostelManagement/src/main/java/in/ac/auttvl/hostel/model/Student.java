@@ -20,23 +20,26 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(length =100)
 	private int id;
-	
+	private int orderNo;
 	private String name;
 	private String gender;
 	private String dateOfBirth;
 	private int age;
+	private String bloodGrp;
 	
-	private String course;
+	private String degree;
 	private String dept;
 	private String regNo;
 	private int year; //year
+	private int sem;
 	
 	private String email;
 	private String password;
-	private String confirmPassword;
 	
 	private String status;
 	private String hostel;
+	
+	private int roomNo;
 	
 	private String street;
 	private String city;
@@ -51,36 +54,46 @@ public class Student {
 	private String phoneNo;
 	
 	private String guardianName;
-	private String relationship;
+	private String guardianRelation;
 	private String guardianAddress;
 	private String guardianPhoneNo;
 	
+	private String image;
+	private String imagePath;
+	private String updatedBy;
+	private String updatedOn;
+	private String dateOfEnrollment;
+	
 	
 	public Student() {
-			
+		
 	}
 
 
-	public Student(int id, String name, String gender, String dateOfBirth, int age, String course, String dept,
-			String regNo, int year, String email, String password, String confirmPassword, String status, String hostel,
-			String street, String city, String district, String state, String pincode, String fatherName,
-			String fatherPhoneNo, String motherName, String motherPhoneNo, String phoneNo, String guardianName,
-			String relationship, String guardianAddress, String guardianPhoneNo) {
+	public Student(int id, int orderNo, String name, String gender, String dateOfBirth, int age, String bloodGrp,
+			String degree, String dept, String regNo, int year, int sem, String email, String password, String status,
+			String hostel, int roomNo, String street, String city, String district, String state, String pincode,
+			String fatherName, String fatherPhoneNo, String motherName, String motherPhoneNo, String phoneNo,
+			String guardianName, String guardianRelation, String guardianAddress, String guardianPhoneNo, String image,
+			String imagePath, String updatedBy, String updatedOn, String dateOfEnrollment) {
 		super();
 		this.id = id;
+		this.orderNo = orderNo;
 		this.name = name;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.age = age;
-		this.course = course;
+		this.bloodGrp = bloodGrp;
+		this.degree = degree;
 		this.dept = dept;
 		this.regNo = regNo;
 		this.year = year;
+		this.sem = sem;
 		this.email = email;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 		this.status = status;
 		this.hostel = hostel;
+		this.roomNo = roomNo;
 		this.street = street;
 		this.city = city;
 		this.district = district;
@@ -92,9 +105,14 @@ public class Student {
 		this.motherPhoneNo = motherPhoneNo;
 		this.phoneNo = phoneNo;
 		this.guardianName = guardianName;
-		this.relationship = relationship;
+		this.guardianRelation = guardianRelation;
 		this.guardianAddress = guardianAddress;
 		this.guardianPhoneNo = guardianPhoneNo;
+		this.image = image;
+		this.imagePath = imagePath;
+		this.updatedBy = updatedBy;
+		this.updatedOn = updatedOn;
+		this.dateOfEnrollment = dateOfEnrollment;
 	}
 
 
@@ -105,6 +123,16 @@ public class Student {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
 
 
@@ -148,13 +176,23 @@ public class Student {
 	}
 
 
-	public String getCourse() {
-		return course;
+	public String getBloodGrp() {
+		return bloodGrp;
 	}
 
 
-	public void setCourse(String course) {
-		this.course = course;
+	public void setBloodGrp(String bloodGrp) {
+		this.bloodGrp = bloodGrp;
+	}
+
+
+	public String getDegree() {
+		return degree;
+	}
+
+
+	public void setDegree(String degree) {
+		this.degree = degree;
 	}
 
 
@@ -188,6 +226,16 @@ public class Student {
 	}
 
 
+	public int getSem() {
+		return sem;
+	}
+
+
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -208,16 +256,6 @@ public class Student {
 	}
 
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
-
 	public String getStatus() {
 		return status;
 	}
@@ -235,6 +273,16 @@ public class Student {
 
 	public void setHostel(String hostel) {
 		this.hostel = hostel;
+	}
+
+
+	public int getRoomNo() {
+		return roomNo;
+	}
+
+
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
 	}
 
 
@@ -348,13 +396,13 @@ public class Student {
 	}
 
 
-	public String getRelationship() {
-		return relationship;
+	public String getGuardianRelation() {
+		return guardianRelation;
 	}
 
 
-	public void setRelationship(String relationship) {
-		this.relationship = relationship;
+	public void setGuardianRelation(String guardianRelation) {
+		this.guardianRelation = guardianRelation;
 	}
 
 
@@ -377,6 +425,55 @@ public class Student {
 		this.guardianPhoneNo = guardianPhoneNo;
 	}
 
-	
-	
+
+	public String getImage() {
+		return image;
 	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+
+	public String getUpdatedOn() {
+		return updatedOn;
+	}
+
+
+	public void setUpdatedOn(String updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+
+	public String getDateOfEnrollment() {
+		return dateOfEnrollment;
+	}
+
+
+	public void setDateOfEnrollment(String dateOfEnrollment) {
+		this.dateOfEnrollment = dateOfEnrollment;
+	}
+	
+		
+}

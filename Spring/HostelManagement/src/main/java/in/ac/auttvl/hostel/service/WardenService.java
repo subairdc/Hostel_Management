@@ -59,8 +59,8 @@ public class WardenService {
     }
 
 
-	public Warden getMaxOrder() {
-		return wardenRepository.getMaxOrder();
+	public Warden getByMaxOrder() {
+		return wardenRepository.getByMaxOrder();
 	}
 
 

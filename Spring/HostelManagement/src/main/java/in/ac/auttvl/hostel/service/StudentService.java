@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.LeaveForm;
 import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.Warden;
 import in.ac.auttvl.hostel.repository.LeaveFormRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
 
@@ -68,4 +69,8 @@ public class StudentService {
 	    public LeaveForm addLeaveForm(LeaveForm leaveForm) {
 	        return leaveFormRepository.save(leaveForm);
 	    }
+
+		public Student getByMaxOrder() {
+			return studentRepository.getByMaxOrder();
+		}
 }
