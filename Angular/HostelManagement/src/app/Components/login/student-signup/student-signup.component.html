@@ -46,7 +46,7 @@
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Password</label>
-              <input class="form-control" type="password" placeholder="Password" name="password" formControlName="password"> </div>
+              <input class="form-control" type="password" maxlength="25" placeholder="Password" name="password" formControlName="password"> </div>
               <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
                 <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
                 <div *ngIf="f['password'].errors && f['password'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
@@ -55,10 +55,11 @@
 
           <div class="col-md-6 mt-2">
             <div class="inputs"> <label>Confirm Password</label>
-              <input class="form-control" type="password" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
+              <input class="form-control" type="password" maxlength="25" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
               <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid" class="text-danger">
                 <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Password is required.</div>
                 <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['pattern']">Password should be Mixed of AZ az @ 1234</div>
+                <div *ngIf="f['confirmPassword'].errors ">Password didn't match</div>
               </div>
           </div>
 
@@ -73,7 +74,7 @@
 
           <div class="col-md-4 mt-2">
               <div class="inputs"> <label>Date of Birth</label>
-                <input class="form-control" type="date" placeholder="Date of Birth" formControlName="dateOfBirth"> </div>
+                <input class="form-control" type="date" maxlength="10" placeholder="Date of Birth" formControlName="dateOfBirth"> </div>
           </div>
           <div class=" col-md-2 mt-2">
             <div class="inputs"> <label>Age</label>
@@ -194,7 +195,7 @@
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Father Name</label>
-          <input class="form-control" type="text" placeholder="Father Name" formControlName="fatherName" required> </div>
+          <input class="form-control" type="text" maxlength="25" placeholder="Father Name" formControlName="fatherName" required> </div>
           <div *ngIf="f['fatherName'].touched && f['fatherName'].invalid" class="text-danger">
             <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['required']">fatherName is required.</div>
             <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['minLength']">Name should be min 4 char.</div>
@@ -203,7 +204,7 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Father Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Father Mobile No." formControlName="fatherPhoneNo" required> </div>
+          <input class="form-control" type="text" maxlength="10" placeholder="Father Mobile No." formControlName="fatherPhoneNo" required> </div>
           <div *ngIf="f['fatherPhoneNo'].touched && f['fatherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['required']">Phone No. is required.</div>
             <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
@@ -211,7 +212,7 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Mother Name</label>
-          <input class="form-control" type="text" placeholder="Mother Name" formControlName="motherName" required> </div>
+          <input class="form-control" type="text" maxlength="25" placeholder="Mother Name" formControlName="motherName" required> </div>
           <div *ngIf="f['motherName'].touched && f['motherName'].invalid" class="text-danger">
             <div *ngIf="f['motherName'].errors && f['motherName'].errors['required']">motherName is required.</div>
             <div *ngIf="f['motherName'].errors && f['motherName'].errors['minLength']">Name should be min 4 char.</div>
@@ -220,7 +221,7 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Mother Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Mother Mobile No." formControlName="motherPhoneNo" required> </div>
+          <input class="form-control" type="text" maxlength="10" placeholder="Mother Mobile No." formControlName="motherPhoneNo" required> </div>
           <div *ngIf="f['motherPhoneNo'].touched && f['motherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['required']">Phone No. is required.</div>
             <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
@@ -231,7 +232,7 @@
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Guardian Name</label>
-          <input class="form-control" type="text" placeholder="Guardian Name" formControlName="guardianName"> </div>
+          <input class="form-control" type="text" maxlength="25" placeholder="Guardian Name" formControlName="guardianName"> </div>
           <!-- <div *ngIf="f['guardianName'].touched && f['guardianName'].invalid" class="text-danger">
             <div *ngIf="f['guardianName'].errors && f['guardianName'].errors['required']">guardianName is required.</div>
             <div *ngIf="f['guardianName'].errors && f['guardianName'].errors['guardianName']">Name should be max 4 char.</div>
@@ -239,7 +240,7 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Guardian Mobile No.</label>
-          <input class="form-control" type="text" placeholder="Guardian Mobile No." formControlName="guardianPhoneNo"> </div>
+          <input class="form-control" type="text" maxlength="10" placeholder="Guardian Mobile No." formControlName="guardianPhoneNo"> </div>
           <!-- <div *ngIf="f['guardianPhoneNo'].touched && f['guardianPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['required']">Phone NO. is required.</div>
             <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
@@ -250,7 +251,7 @@
     <div class="row mt-2">
       <div class="col-md-12 mt-2">
         <div class="inputs"> <label>Relation</label>
-          <input class="form-control" type="text" placeholder="Relation" formControlName="guardianRelation"> </div>
+          <input class="form-control" type="text" maxlength="20" placeholder="Relation" formControlName="guardianRelation"> </div>
       </div>
         <div class="col-md-12">
           <div class="about-inputs"> <label>Address</label>

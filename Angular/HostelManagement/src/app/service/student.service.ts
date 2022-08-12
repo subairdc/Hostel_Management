@@ -71,7 +71,11 @@ export class StudentService {
       imagePath : [''],
       updatedBy : [''],
       updatedOn : [''],
-  });
+  },
+  {
+    validators: this.confirmingPassword("password", "confirmPassword")
+  }
+  );
 
     this.addStudentURL = 'http://localhost:8080/student/addStudent';
     this.getStudentURL = 'http://localhost:8080/student/getStudentById';
@@ -132,6 +136,21 @@ export class StudentService {
       updatedBy : '',
       updatedOn : ''
     });
+  }
+
+  confirmingPassword(controlName: string, matchingControlName: string) {
+      return (formGroup: FormGroup) => {
+        let control = formGroup.controls[controlName];
+        let matchingControl = formGroup.controls[matchingControlName]
+        if (matchingControl.errors && !matchingControl.errors['confirmingPassword']) {
+          return;
+        }
+        if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ confirmingPassword: true });
+        } else {
+          matchingControl.setErrors(null);
+        }
+    }
   }
 
   populateForm(student : Student) {
