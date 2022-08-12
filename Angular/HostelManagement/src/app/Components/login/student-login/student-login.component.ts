@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 export class StudentLoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-
+  id : number=0;
   email : string = '';
   password : string = '';
 
@@ -43,7 +43,6 @@ export class StudentLoginComponent implements OnInit {
   onLogin() {
 
     console.log(this.email+ " " + this.password);
-
     this.user.email = this.email;
     this.user.password = this.password;
 
@@ -56,7 +55,8 @@ export class StudentLoginComponent implements OnInit {
         //this.ngOnInit();
       }else {
         console.log("Login successful");
-        this.route.navigate(['/studentHomepage/studentDashboard'])
+        this.user.id = res.id;
+        this.route.navigate(['/studentHomepage',this.user.id])
       }
 
     }, err => {

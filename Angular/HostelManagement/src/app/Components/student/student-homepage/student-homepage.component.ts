@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+import { Student } from 'src/app/model/student';
+import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-student-homepage',
@@ -8,7 +10,10 @@ import { Router } from '@angular/router';
 })
 export class StudentHomepageComponent implements OnInit {
 
-  constructor(private route : Router) { }
+  id : number=0;
+  user : Student = new Student();
+
+  constructor(private router : Router, private route: ActivatedRoute, private studentService : StudentService) { }
 
   toggleNav(nav : any) {
     if(nav.opened) {
@@ -19,11 +24,27 @@ export class StudentHomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getStudent();
+  }
+
+  private getStudent() {
+    this.studentService.getStudentById(this.id).subscribe(data => {
+      this.user = data;
+    })
+  }
+
+  profile() {
+    this.router.navigate(['studentHomepage/'+this.id+'/studentProfile',this.id]);
+  }
+
+  leaveForm() {
+    this.router.navigate(['studentHomepage/'+this.id+'/leaveForm',this.id]);
   }
 
   logout() {
     localStorage.removeItem("token");
-    this.route.navigate(['/studentLogin']);
+    this.router.navigate(['/studentLogin']);
   }
 
 }

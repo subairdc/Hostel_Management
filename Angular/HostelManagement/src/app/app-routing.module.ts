@@ -39,11 +39,11 @@ const routes: Routes = [
   { path:'wardenSignup' , component: WardenSignupComponent },
 
 
-  { path:'studentHomepage' , component: StudentHomepageComponent,
+  { path:'studentHomepage/:id' , component: StudentHomepageComponent,
          children:
          [{ path:'studentDashboard' , component: StudentDashboardComponent},
-         { path:'studentProfile' , component: StudentProfileComponent},
-         { path:'leaveForm' , component: LeaveFormComponent}]
+         { path:'studentProfile/:id' , component: StudentProfileComponent},
+         { path:'leaveForm/:id' , component: LeaveFormComponent}]
   },
 
   { path:'staffHomepage' , component: StaffHomepageComponent,

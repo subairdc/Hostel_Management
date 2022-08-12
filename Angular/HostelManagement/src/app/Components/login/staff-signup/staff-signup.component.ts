@@ -60,7 +60,7 @@ export class StaffSignupComponent implements OnInit {
         this.route.navigate(['/staffLogin']);
       }
     }, err => {
-      alert("Registration failed.");
+      alert("Registration failed.ERROR");
       this.ngOnInit();
     })
 

@@ -10,7 +10,7 @@
           <form [formGroup]="signupForm" (ngSubmit)="signup()" action="" class="mt-5 p-5">
               <h5 class="text-primary mb-3">Sign up </h5>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" minlength="4" maxlength="20"  placeholder="name" name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors}">
+                  <input type="text" class="form-control" minlength="4" maxlength="20"  placeholder="name" name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors}" required>
                   <label for="floatingInput">Name</label>
                     <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
                       <div *ngIf="f['name'].errors && f['name'].errors['required']">name is required.</div>
@@ -18,7 +18,7 @@
                     </div>
               </div>
               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" maxlength="30" placeholder="Email" name="email" formControlName="email">
+                  <input type="text" class="form-control" maxlength="30" placeholder="Email" name="email" formControlName="email" required>
                   <label for="floatingInput">Email address</label>
                   <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
                     <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>

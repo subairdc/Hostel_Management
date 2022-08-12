@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  constructor(private route : Router) { }
+  constructor(private route : Router, public studentService : StudentService) { }
 
   ngOnInit(): void {
   }
