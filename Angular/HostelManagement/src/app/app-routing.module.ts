@@ -12,6 +12,7 @@ import { StaffLoginComponent } from './Components/login/staff-login/staff-login.
 import { StaffSignupComponent } from './Components/login/staff-signup/staff-signup.component';
 import { StudentLoginComponent } from './Components/login/student-login/student-login.component';
 import { StudentSignupComponent } from './Components/login/student-signup/student-signup.component';
+import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
 import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
@@ -37,6 +38,8 @@ const routes: Routes = [
   { path:'adminSignup' , component: AdminSignupComponent },
   { path:'staffSignup' , component: StaffSignupComponent },
   { path:'wardenSignup' , component: WardenSignupComponent },
+
+  { path:'StuForgetPassword', component: ForgetPasswordComponent},
 
 
   { path:'studentHomepage/:id' , component: StudentHomepageComponent,

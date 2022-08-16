@@ -3,7 +3,7 @@ export class Student {
   orderNo : number;
   name : string;
   gender : string;
-  dateOfBirth : any;
+  dateOfBirth : string;
   age : number;
   email : string;
   bloodGrp : string;
@@ -63,7 +63,7 @@ export class Student {
     this.orderNo =0;
     this.name = '';
     this.gender = '';
-    this.dateOfBirth = Date;
+    this.dateOfBirth = '';
     this.age =0;
     this.bloodGrp='';
 

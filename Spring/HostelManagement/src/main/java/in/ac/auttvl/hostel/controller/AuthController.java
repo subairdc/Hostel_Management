@@ -2,6 +2,8 @@ package in.ac.auttvl.hostel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,5 +80,17 @@ public class AuthController {
 	    public Admin adminLogin(@RequestBody Admin admin) {
 
 	        return authService.adminLogin(admin);
+	    }
+	    
+	 // Get Password by Email and regNo
+	    @PostMapping("/stuForgetPassword")
+	    public  Student stuForgetPassword(@RequestBody Student student) {
+	        return  authService.getStudentByEmailAndRegNo(student);
+	    }
+	    
+	 // Get student by regNo
+	    @PostMapping("/stuForgetEmail")
+	    public  Student stuForgetEmail(@RequestBody Student student) {
+	        return  authService.getStudentByRegNo(student);
 	    }
 }

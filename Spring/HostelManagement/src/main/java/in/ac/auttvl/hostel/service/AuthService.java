@@ -190,4 +190,25 @@ public class AuthService {
         return null;
 
     }
+
+	public Student getStudentByEmailAndRegNo(Student student) {
+		
+		Student existingUser = studentRepository.findByEmailAndRegNo(student.getEmail(), student.getRegNo());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+
+
+
+	public Student getStudentByRegNo(Student student) {
+		Student existingUser = studentRepository.findByRegNo(student.getRegNo());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
 }

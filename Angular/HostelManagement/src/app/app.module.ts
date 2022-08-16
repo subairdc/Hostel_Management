@@ -45,6 +45,7 @@ import { DialogBoxService } from './service/dialog-box.service';
 import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
     StudentDetailsComponent,
     WardenDetailsComponent,
     AdminDetailsComponent,
-    AdminManagementComponent
+    AdminManagementComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

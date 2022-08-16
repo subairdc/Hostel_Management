@@ -18,5 +18,10 @@ public interface StudentRepository extends JpaRepository<Student,Integer>{
 
 	@Query(value = "select max(order_no) from warden" , nativeQuery=true)  //name case as per java classs
 	Student getByMaxOrder();
+	
+	Student findByEmailAndRegNo(String email, String regNo);
+
+	Student findByRegNo(String regNo);
+
 
 }
