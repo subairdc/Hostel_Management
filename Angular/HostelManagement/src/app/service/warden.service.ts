@@ -84,7 +84,7 @@ export class WardenService {
   }
 
   getAllWarden(): Observable<Warden[]>{
-    return this.http.get<Warden[]>(this.getWardenURL);
+    return this.http.get<Warden[]>(this.getAllWardenURL);
   }
 
   updateWarden(warden :Warden) : Observable<Warden>{
