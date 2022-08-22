@@ -22,14 +22,14 @@ import { AdminSignupComponent } from './Components/login/admin-signup/admin-sign
 import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
 import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
 import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
-import { StudentManagementComponent } from './Components/staff/student-management/student-management.component';
+import { StudentManagementComponent } from './Components/student/student-management/student-management.component';
 import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
 import { StudentHomepageComponent } from './Components/student/student-homepage/student-homepage.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
-import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
-import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
-import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
+import { StaffManagementComponent } from './Components/staff/staff-management/staff-management.component';
+import { WardenManagementComponent } from './Components/warden/warden-management/warden-management.component';
+import { LeaveFormComponent } from './Components/leaveForm/leave-form/leave-form.component';
 import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';
 import { AdminService } from './service/admin.service';
 import { AuthService } from './service/auth.service';
@@ -48,6 +48,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
 import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
 import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
+import { LeaveForm2Component } from './Components/leaveForm/leave-form2/leave-form2.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { RoomDetailsComponent } from './Components/room/room-details/room-detail
     AdminManagementComponent,
     ForgetPasswordComponent,
     RoomManagementComponent,
-    RoomDetailsComponent
+    RoomDetailsComponent,
+    LeaveForm2Component
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,8 @@ import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admi
 import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
 import { AdminHomepageComponent } from './Components/admin/admin-homepage/admin-homepage.component';
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
-import { StaffManagementComponent } from './Components/admin/staff-management/staff-management.component';
-import { WardenManagementComponent } from './Components/admin/warden-management/warden-management.component';
+import { StaffManagementComponent } from './Components/staff/staff-management/staff-management.component';
+import { WardenManagementComponent } from './Components/warden/warden-management/warden-management.component';
 import { AdminLoginComponent } from './Components/login/admin-login/admin-login.component';
 import { AdminSignupComponent } from './Components/login/admin-signup/admin-signup.component';
 import { StaffLoginComponent } from './Components/login/staff-login/staff-login.component';
@@ -20,8 +20,8 @@ import { RoomManagementComponent } from './Components/room/room-management/room-
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
 import { StaffDetailsComponent } from './Components/staff/staff-details/staff-details.component';
 import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
-import { StudentManagementComponent } from './Components/staff/student-management/student-management.component';
-import { LeaveFormComponent } from './Components/student/leave-form/leave-form.component';
+import { StudentManagementComponent } from './Components/student/student-management/student-management.component';
+import { LeaveFormComponent } from './Components/leaveForm/leave-form/leave-form.component';
 import { StudentDashboardComponent } from './Components/student/student-dashboard/student-dashboard.component';
 import { StudentHomepageComponent } from './Components/student/student-homepage/student-homepage.component';
 import { StudentProfileComponent } from './Components/student/student-profile/student-profile.component';

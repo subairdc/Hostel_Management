@@ -17,22 +17,23 @@ export class RoomDetailsComponent implements OnInit {
 
   roomDetails = new Room;
 
-  id : number =0;
-  user : Admin = new Admin();
+  // id : number =0;
+  // user : Admin = new Admin();
 
   constructor( private route : Router,private router : ActivatedRoute, public roomService : RoomService, public studentService : StudentService, public adminService : AdminService,
     public dialogRef : MatDialogRef<RoomDetailsComponent>, public notification : NotificationService,
     @Inject(MAT_DIALOG_DATA) public data:any) { }
 
     ngOnInit(): void {
-      this.id = this.router.snapshot.params['id'];
+      // this.id = this.router.snapshot.params['id'];
 
-      this.adminService.getAdminById(this.id).subscribe(res=>{
-        //console.log("result "+ res);
-        this.user = res;
-      },err=>{
-        console.log("Error"+err);
-      })
+      // this.adminService.getAdminById(this.id).subscribe(res=>{
+      //   //console.log("result "+ res);
+      //   this.user = res;
+      //   console.log(this.user.name);
+      // },err=>{
+      //   console.log("Error"+err);
+      // })
     }
 
   get f(){
@@ -79,7 +80,7 @@ export class RoomDetailsComponent implements OnInit {
     roomDetails.stu4FromDate = this.roomService.form.value['stu4FromDate'];
     roomDetails.stu4LeaveDate = this.roomService.form.value['stu4LeaveDate'];
 
-    roomDetails.updatedBy = this.user.name;
+    //roomDetails.updatedBy = this.user.name;
 
 
     this.studentService.getStudentByRegNo(roomDetails.student2).subscribe(
