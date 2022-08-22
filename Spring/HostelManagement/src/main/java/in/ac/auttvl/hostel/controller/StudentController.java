@@ -43,6 +43,12 @@ public class StudentController {
     public Student getStudentById(@PathVariable int id) {
         return studentService.getStudentById(id);
     }
+    
+    // Get student by Id
+    @GetMapping("/getStudentByRegNo/{id}")
+    public Student getStudentByRegNo(@PathVariable String id) {
+        return studentService.getStudentByRegNo(id);
+    }
 
     // Get student by name
     @GetMapping("/getStudentByName/{name}")

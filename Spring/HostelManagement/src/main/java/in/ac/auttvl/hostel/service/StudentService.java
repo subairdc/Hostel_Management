@@ -28,6 +28,10 @@ public class StudentService {
 	    public Student getStudentById(int id) {
 	        return studentRepository.findById(id).orElse(null);
 	    }
+	    
+	    public Student getStudentByRegNo(String id) {
+			return studentRepository.findByRegNo(id);
+		}
 
 	    public Student getStudentByName(String name) {
 	        return  studentRepository.findByName(name);
@@ -73,4 +77,5 @@ public class StudentService {
 		public Student getByMaxOrder() {
 			return studentRepository.getByMaxOrder();
 		}
+
 }

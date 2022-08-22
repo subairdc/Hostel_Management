@@ -13,6 +13,7 @@ export class StudentService {
   addStudentURL : string;
   getStudentURL : string;
   getStudentByIdURL : string;
+  getStudentByRegNoURL : string;
   getAllStudentsURL : string;
   updateStudentURL : string;
   deleteStudentURL : string;
@@ -80,6 +81,7 @@ export class StudentService {
     this.addStudentURL = 'http://localhost:8080/student/addStudent';
     this.getStudentURL = 'http://localhost:8080/student/getStudentById';
     this.getStudentByIdURL = 'http://localhost:8080/student/getStudentById'
+    this.getStudentByRegNoURL = 'http://localhost:8080/student/getStudentByRegNo'
     this.getAllStudentsURL = 'http://localhost:8080/student/getAllStudents';
     this.updateStudentURL = 'http://localhost:8080/student/updateStudent';
     this.deleteStudentURL = 'http://localhost:8080/student/deleteStudentById';
@@ -169,6 +171,12 @@ export class StudentService {
   getStudentById(id : number) : Observable<Student> {
     return this.http.get<Student>(this.getStudentByIdURL+'/'+id);
   }
+
+  //passing only id regNo string
+  getStudentByRegNo(id : string) : Observable<Student> {
+    return this.http.get<Student>(this.getStudentByRegNoURL+'/'+id);
+  }
+
 
   getAllStudents(): Observable<Student[]>{
     return this.http.get<Student[]>(this.getAllStudentsURL);
