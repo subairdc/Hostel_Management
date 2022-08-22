@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.ac.auttvl.hostel.model.Admin;
+import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.service.AdminService;
 
 
@@ -37,10 +38,16 @@ public class AdminController {
         return adminService.addAllAdmins(admins);
     }
 
-    // Get employee by Id
+    // Get Admin by Id
     @GetMapping("/getAdminById/{id}")
     public Admin getAdminById(@PathVariable int id) {
         return adminService.getAdminById(id);
+    }
+    
+ // Get Admin by Id
+    @GetMapping("/getAdminByRegNo/{id}")
+    public Admin getAdminByRegNo(@PathVariable String id) {
+        return adminService.getAdminByRegNo(id);
     }
 
     // Get Admin by name

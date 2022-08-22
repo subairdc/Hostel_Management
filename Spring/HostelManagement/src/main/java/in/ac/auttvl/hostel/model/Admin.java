@@ -14,19 +14,20 @@ public class Admin {
 	@Column(length =100)
 	private int id;
 	private String email;
+	private String regNo;
 	private String name;
 	private String password;
+		
 	
-	
-	
-	public Admin(int id, String email, String name, String password) {
+	public Admin(int id, String email, String regNo, String name, String password) {
 		super();
 		this.id = id;
 		this.email = email;
+		this.regNo = regNo;
 		this.name = name;
 		this.password = password;
 	}
-	
+
 	public Admin() {
 		super();
 	}
@@ -43,6 +44,12 @@ public class Admin {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getRegNo() {
+		return regNo;
+	}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
 	}
 	public String getName() {
 		return name;

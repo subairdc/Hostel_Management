@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.Admin;
+import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.repository.AdminRepository;
 
 @Service
@@ -24,6 +25,10 @@ public class AdminService {
     public Admin getAdminById(int id) {
         return adminRepository.findById(id).orElse(null);
     }
+    
+    public Admin getAdminByRegNo(String id) {
+		return adminRepository.findByRegNo(id);
+	}
 
     public Admin getAdminByName(String name) {
         return  adminRepository.findByName(name);
@@ -56,5 +61,6 @@ public class AdminService {
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
     }
+
 
 }

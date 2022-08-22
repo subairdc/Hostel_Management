@@ -1,0 +1,56 @@
+<mat-toolbar class="top-menu" style="margin-top: 10px;">
+  <span>Room Details</span>
+    <span class="example-spacer"></span>
+    <button  class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+  <form [formGroup]="roomService.form" class="normal-form">
+    <mat-grid-list cols="1" rowHeight="400px">
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <mat-form-field>
+            <!-- <mat-label>Input</mat-label> -->
+            <input matInput formControlName="id" placeholder="Id" autocomplete="off">
+            <mat-error *ngIf="roomService.form.controls['id'].touched && roomService.form.controls['id'].invalid" class="text-danger">
+            </mat-error>
+            </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="roomNo" placeholder="Room No." autocomplete="off">
+            <mat-error *ngIf="roomService.form.controls['roomNo'].touched && roomService.form.controls['roomNo'].invalid" class="text-danger">
+              <div *ngIf="roomService.form.controls['roomNo'].errors && roomService.form.controls['roomNo'].errors['required']">Email is required.</div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="student1" placeholder="Student 1" autocomplete="on">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="student2" placeholder="Student 2" autocomplete="on">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="student3" placeholder="Student 3" autocomplete="on">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="student4" placeholder="Student 4" autocomplete="on">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-toolbar>
+        <span class="example-spacer"></span>
+        <div class="button-row">
+          <button  type="submit" color="primary" mat-raised-button (click)="onSubmit()" [disabled]="roomService.form.invalid">Submit</button>&nbsp;
+          <button color="warn" mat-raised-button (click)="onClear()">Clear</button>
+        </div>
+
+    </mat-toolbar>
+
+  </form>

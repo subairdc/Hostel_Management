@@ -15,6 +15,8 @@ import { StudentSignupComponent } from './Components/login/student-signup/studen
 import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
 import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
+import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
+import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
 import { StaffDashboardComponent } from './Components/staff/staff-dashboard/staff-dashboard.component';
 import { StaffDetailsComponent } from './Components/staff/staff-details/staff-details.component';
 import { StaffHomepageComponent } from './Components/staff/staff-homepage/staff-homepage.component';
@@ -56,7 +58,7 @@ const routes: Routes = [
         { path:'staffDetails' , component: StaffDetailsComponent}]
   },
 
-  { path:'adminHomepage' , component: AdminHomepageComponent,
+  { path:'adminHomepage/:id' , component: AdminHomepageComponent,
         children:
         [{ path:'adminDashboard' , component: AdminDashboardComponent },
         { path:'adminDetails' , component: AdminDetailsComponent },
@@ -64,7 +66,9 @@ const routes: Routes = [
         { path:'staffManagement' , component: StaffManagementComponent},
         { path:'wardenManagement' , component: WardenManagementComponent},
         { path:'adminManagement' , component: AdminManagementComponent},
-        { path:'wardenDetails' , component: WardenDetailsComponent}
+        { path:'wardenDetails' , component: WardenDetailsComponent},
+        { path: 'roomManagement', component: RoomManagementComponent},
+        { path: 'roomDetails', component:RoomDetailsComponent}
       ]
   },
 

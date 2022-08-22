@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Admin } from 'src/app/model/admin';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-admin-homepage',
@@ -7,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-homepage.component.css']
 })
 export class AdminHomepageComponent implements OnInit {
+
+  id : number=0;
+  user : Admin = new Admin();
 
   toggleNav(nav : any) {
     if(nav.opened) {
@@ -18,14 +23,22 @@ export class AdminHomepageComponent implements OnInit {
 
   opened = true;
 
-  constructor(private route : Router) { }
+  constructor(private router : Router, private route: ActivatedRoute, private adminService : AdminService) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getUser();
+  }
+
+  private getUser() {
+    this.adminService.getAdminById(this.id).subscribe(data => {
+      this.user = data;
+    })
   }
 
   logout() {
     localStorage.removeItem("token");
-    this.route.navigate(['/adminLogin']);
+    this.router.navigate(['/adminLogin']);
   }
 
 

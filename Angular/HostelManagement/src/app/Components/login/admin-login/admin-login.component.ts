@@ -51,7 +51,8 @@ export class AdminLoginComponent implements OnInit {
         //this.ngOnInit();
       }else {
         console.log("Login successful");
-        this.route.navigate(['/adminHomepage'])
+        this.user.id = res.id;
+        this.route.navigate(['/adminHomepage',this.user.id])
 
       }
 

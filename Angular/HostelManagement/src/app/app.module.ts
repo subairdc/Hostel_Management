@@ -46,6 +46,8 @@ import { AdminDetailsComponent } from './Components/admin/admin-details/admin-de
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
+import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
+import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-
     WardenDetailsComponent,
     AdminDetailsComponent,
     AdminManagementComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    RoomManagementComponent,
+    RoomDetailsComponent
   ],
   imports: [
     BrowserModule,
