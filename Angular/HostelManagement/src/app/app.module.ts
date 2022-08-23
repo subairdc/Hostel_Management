@@ -49,6 +49,8 @@ import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-
 import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
 import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
 import { LeaveForm2Component } from './Components/leaveForm/leave-form2/leave-form2.component';
+import { LeaveForm2ManagementComponent } from './Components/leaveForm/leave-form2-management/leave-form2-management.component';
+import { LeaveForm2VerifyComponent } from './Components/leaveForm/leave-form2-verify/leave-form2-verify.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { LeaveForm2Component } from './Components/leaveForm/leave-form2/leave-fo
     ForgetPasswordComponent,
     RoomManagementComponent,
     RoomDetailsComponent,
-    LeaveForm2Component
+    LeaveForm2Component,
+    LeaveForm2ManagementComponent,
+    LeaveForm2VerifyComponent
   ],
   imports: [
     BrowserModule,

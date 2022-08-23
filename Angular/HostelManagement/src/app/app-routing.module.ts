@@ -28,6 +28,7 @@ import { StudentProfileComponent } from './Components/student/student-profile/st
 import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
 import { WardenDetailsComponent } from './Components/warden/warden-details/warden-details.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
+import { LeaveForm2ManagementComponent } from './Components/leaveForm/leave-form2-management/leave-form2-management.component';
 
 const routes: Routes = [
   { path:'' , component: StudentLoginComponent },
@@ -48,7 +49,9 @@ const routes: Routes = [
          children:
          [{ path:'studentDashboard' , component: StudentDashboardComponent},
          { path:'studentProfile/:id' , component: StudentProfileComponent},
-         { path:'leaveForm/:id' , component: LeaveFormComponent}]
+         { path:'leaveForm/:id' , component: LeaveFormComponent},
+         { path: 'leaveFormStatus/:id', component: LeaveForm2ManagementComponent}
+        ]
   },
 
   { path:'staffHomepage' , component: StaffHomepageComponent,
@@ -68,7 +71,9 @@ const routes: Routes = [
         { path:'adminManagement' , component: AdminManagementComponent},
         { path:'wardenDetails' , component: WardenDetailsComponent},
         { path: 'roomManagement', component: RoomManagementComponent},
-        { path: 'roomDetails', component:RoomDetailsComponent}
+        { path: 'roomDetails', component:RoomDetailsComponent},
+        { path: 'leaveFormManage', component: LeaveForm2ManagementComponent}
+
       ]
   },
 

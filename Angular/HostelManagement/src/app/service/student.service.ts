@@ -3,7 +3,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Student } from '../model/student';
 import { Observable, Subject } from 'rxjs';
-import { LeaveForm } from '../model/leave-form';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,6 @@ export class StudentService {
   deleteStudentURL : string;
 
   getStudentMaxOrderURL : string;
-  addLeaveFormURL : string;
 
   form !: FormGroup;
 
@@ -87,7 +85,6 @@ export class StudentService {
     this.deleteStudentURL = 'http://localhost:8080/student/deleteStudentById';
 
     this.getStudentMaxOrderURL = 'http://localhost:8080/student/getMaxOrder'
-    this.addLeaveFormURL = 'http://localhost:8080/student/addLeaveForm';
 
   }
 
@@ -159,7 +156,6 @@ export class StudentService {
     this.form.setValue(student);
   }
 
-
   addStudent(student : Student): Observable<Student> {
     return this.http.post<Student>(this.addStudentURL,student);
   }
@@ -192,10 +188,6 @@ export class StudentService {
 
   getMaxOrderNo(): Observable<Student> {
     return this.http.get<Student>(this.getStudentMaxOrderURL);
-  }
-
- addLeaveForm(leaveForm : LeaveForm) : Observable<LeaveForm> {
-    return this.http.post<LeaveForm>(this.addLeaveFormURL,leaveForm);
   }
 
   //Refresh grid Database

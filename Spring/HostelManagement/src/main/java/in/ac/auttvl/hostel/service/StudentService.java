@@ -5,10 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import in.ac.auttvl.hostel.model.LeaveForm;
 import in.ac.auttvl.hostel.model.Student;
-import in.ac.auttvl.hostel.model.Warden;
-import in.ac.auttvl.hostel.repository.LeaveFormRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
 
 @Service
@@ -66,13 +63,6 @@ public class StudentService {
 	        return studentRepository.findAll();
 	    }
 	    
-	    
-	    @Autowired
-	    private LeaveFormRepository leaveFormRepository;
-
-	    public LeaveForm addLeaveForm(LeaveForm leaveForm) {
-	        return leaveFormRepository.save(leaveForm);
-	    }
 
 		public Student getByMaxOrder() {
 			return studentRepository.getByMaxOrder();

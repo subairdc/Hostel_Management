@@ -1,0 +1,91 @@
+<mat-toolbar class="top-menu" style="margin-top: 10px;">
+  <span>Leave Form Verify</span>
+    <span class="example-spacer"></span>
+    <button  class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+  <form [formGroup]="leaveFormService.form" class="normal-form">
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controllers-container">
+
+          <mat-form-field>
+            <input matInput formControlName="roomNo" placeholder="Room No." autocomplete="off">
+          </mat-form-field>
+          <mat-form-field>
+            <!-- <mat-label>Input</mat-label> -->
+            <input matInput formControlName="name" placeholder="Name" autocomplete="off">
+            <mat-error *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+              <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be in min 4 char</div>
+            </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="regNo" placeholder="Reg No." autocomplete="off">
+              </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" formControlName="parent" placeholder="Parent"
+            aria-label="Number" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+
+          <mat-form-field>
+            <input matInput type="text" formControlName="staff" placeholder="Staff" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" formControlName="warden" placeholder="Warden" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="remark" placeholder="Remark" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" formControlName="leaveStatus" placeholder="Status" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-toolbar>
+        <span class="example-spacer"></span>
+        <div class="button-row">
+          <button  type="submit" color="primary" mat-raised-button (click)="onSubmit()" [disabled]="leaveFormService.form.invalid">Submit</button>&nbsp;
+          <button color="warn" mat-raised-button (click)="onClear()">Clear</button>
+        </div>
+
+    </mat-toolbar>
+
+  </form>

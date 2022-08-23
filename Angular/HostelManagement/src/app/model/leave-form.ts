@@ -1,7 +1,7 @@
 export class LeaveForm {
   name : string = '';
   regNo : string = '';
-  roomNo : string = '';
+  roomNo : number = 0;
   hostel : string = '';
 
   degree : string = '';

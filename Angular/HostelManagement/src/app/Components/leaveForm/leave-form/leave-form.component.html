@@ -85,7 +85,7 @@
 
         <div class="col-md-12 mb-6 mt-2">
           <div class="inputs"> <label>Leave Category</label>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="leaveCategory"  formControlName="leaveCategory" required>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="leaveCategory"  formControlName="leaveCategory">
               <option [selected]="1" >Select Option</option>
               <option value="During Working Hour" >During Working Hour</option>
               <option value="During Working Day">During Working Day</option>
@@ -96,11 +96,11 @@
 
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>Select Date</label>
-             <input class="form-control" type="date" placeholder="date" [(ngModel)]="date"  formControlName="date" required> </div>
+             <input class="form-control" type="date" placeholder="date" [(ngModel)]="date"  formControlName="date"> </div>
         </div>
         <div class="col-md-6 mb-2 mt-2">
           <div class="inputs"> <label>Day</label>
-            <select class="form-select" aria-label="Default select example"  [(ngModel)]="day"  formControlName="day" required>
+            <select class="form-select" aria-label="Default select example"  [(ngModel)]="day"  formControlName="day">
               <option [selected]="1">Select day</option>
               <option value="ForeNoon">ForeNoon</option>
               <option value="AfterNoon">AfterNoon</option>
@@ -108,28 +108,28 @@
         </div>
         <div class="col-md-12 mt-2">
           <div class="inputs"> <label>Purpose Of Leave</label>
-            <input class="form-control" type="text" placeholder="Purpose for Leave" [(ngModel)]="leavePurpose"  formControlName="leavePurpose" required> </div>
+            <input class="form-control" type="text" placeholder="Purpose for Leave" [(ngModel)]="leavePurpose"  formControlName="leavePurpose"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>Leaving Time</label>
-            <input class="form-control" type="time" placeholder="leaving Time" [(ngModel)]="leavingTime"  formControlName="leavingTime" required> </div>
+            <input class="form-control" type="time" placeholder="leaving Time" [(ngModel)]="leavingTime"  formControlName="leavingTime"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>Reporting Time</label>
-            <input class="form-control" type="time" placeholder="reporting Time" [(ngModel)]="reportingTime"  formControlName="reportingTime" required> </div>
+            <input class="form-control" type="time" placeholder="reporting Time" [(ngModel)]="reportingTime"  formControlName="reportingTime"> </div>
         </div>
 
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>From Date</label>
-             <input class="form-control" type="date" placeholder="date" [(ngModel)]="fromDate"  formControlName="date" required> </div>
+             <input class="form-control" type="date" placeholder="date" [(ngModel)]="fromDate"  formControlName="date"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>To Date</label>
-             <input class="form-control" type="date" placeholder="date" [(ngModel)]="toDate"  formControlName="date" required> </div>
+             <input class="form-control" type="date" placeholder="date" [(ngModel)]="toDate"  formControlName="date"> </div>
         </div>
         <div class="col-md-6 mt-2">
           <div class="inputs"> <label>No. Of Days</label>
-             <input class="form-control" type="number" placeholder="No. Of Days" [(ngModel)]="noOfDays"  formControlName="noOfDays" required> </div>
+             <input class="form-control" type="number" placeholder="No. Of Days" [(ngModel)]="noOfDays"  formControlName="noOfDays"> </div>
         </div>
 
     </div>
@@ -137,7 +137,7 @@
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
           <div class="inputs"> <label>Contact Person</label>
-            <select class="form-select" aria-label="Default select example"  [(ngModel)]="contactPerson"  formControlName="contactPerson" required>
+            <select class="form-select" aria-label="Default select example"  [(ngModel)]="contactPerson"  formControlName="contactPerson">
               <option [selected]="1">Select Person</option>
               <option value="Father">Father</option>
               <option value="Mother">Mother</option>
@@ -147,7 +147,7 @@
 
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Contact Person Name</label>
-          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="personName"  formControlName="personName" required> </div>
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="personName"  formControlName="personName"> </div>
           <div *ngIf="f['personName'].touched && f['personName'].invalid" class="text-danger">
             <div *ngIf="f['personName'].errors && f['personName'].errors['required']">Name is required.</div>
             <div *ngIf="f['personName'].errors && f['personName'].errors['minlength']">Name should be min 4 char.</div>
@@ -160,7 +160,7 @@
       </div>
       <div class="col-md-6 mt-2">
         <div class="inputs"> <label>Phone No.</label>
-          <input class="form-control" type="text" maxlength="10" placeholder="phone No." [(ngModel)]="contactPhoneNo"  formControlName="contactPhoneNo" required> </div>
+          <input class="form-control" type="text" maxlength="10" placeholder="phone No." [(ngModel)]="contactPhoneNo"  formControlName="contactPhoneNo"> </div>
       </div>
     </div>
 

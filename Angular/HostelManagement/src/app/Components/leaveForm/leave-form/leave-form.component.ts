@@ -5,6 +5,8 @@ import { Student } from 'src/app/model/student';
 import { LeaveForm } from 'src/app/model/leave-form';
 import { StudentService } from 'src/app/service/student.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { LeaveForm2 } from 'src/app/model/leave-form2';
+import { LeaveFormService } from 'src/app/service/leave-form.service';
 
 
 @Component({
@@ -19,10 +21,11 @@ export class LeaveFormComponent implements OnInit {
 
   user : Student = new Student();
   form : LeaveForm = new LeaveForm();
+  leaveForm2 :LeaveForm2 = new LeaveForm2();
 
   name : string = '';
   regNo : string = '';
-  roomNo : string = '';
+  roomNo : number = 0;
   hostel : string = '';
   phoneNo : string = '';
 
@@ -49,7 +52,7 @@ export class LeaveFormComponent implements OnInit {
   contactPhoneNo : string = '';
 
   constructor(private studentService : StudentService, private route : Router,private router : ActivatedRoute, private formBuilder: FormBuilder,
-    public notification : NotificationService) {
+    public notification : NotificationService, public leaveFormService : LeaveFormService) {
 
     this.leaveForm = this.formBuilder.group({
       name : [''],
@@ -102,15 +105,15 @@ export class LeaveFormComponent implements OnInit {
 
     //console.log(this.name+" "+this.phoneNo);
 
-    this.form.name = this.name;
-    this.form.regNo = this.regNo;
-    this.form.roomNo = this.roomNo;
-    this.form.hostel = this.hostel;
+    this.form.name = this.user.name;
+    this.form.regNo = this.user.regNo;
+    this.form.roomNo = this.user.roomNo;
+    this.form.hostel = this.user.hostel;
 
-    this.form.degree = this.degree;
-    this.form.dept = this.dept;
-    this.form.year = this.year;
-    this.form.semester = this.semester;
+    this.form.degree = this.user.degree;
+    this.form.dept = this.user.dept;
+    this.form.year = this.user.year;
+    this.form.semester = this.user.sem;
 
     this.form.leaveCategory = this.leaveCategory;
 
@@ -129,21 +132,44 @@ export class LeaveFormComponent implements OnInit {
     this.form.relation = this.relation;
     this.form.contactPhoneNo = this.contactPhoneNo;
 
+    //this.studentService.addLeaveForm2
 
-    this.studentService.addLeaveForm(this.form).subscribe(res => {
+    this.leaveForm2.name = this.user.name;
+    this.leaveForm2.regNo = this.user.regNo;
+    this.leaveForm2.roomNo = this.user.roomNo;
+    this.leaveForm2.parent = "Pending";
+    this.leaveForm2.staff = "Pending";
+    this.leaveForm2.warden = "Pending";
+    this.leaveForm2.leaveStatus = "Pending";
+
+
+    this.leaveFormService.addLeaveForm(this.form).subscribe(res => {
       if(res == null) {
         alert("Leave Form submit failed");
-        this.ngOnInit();
+        //this.ngOnInit();
       }else {
         console.log("Leave Form submitted successful");
         alert("Leave Form submitted successful");
         this.leaveForm.reset();
-        //this.route.navigate(['/studentLogin']);
       }
     }, err => {
       alert("Registration failed.ERROR");
       this.ngOnInit();
-    })
+    });
+
+    this.leaveFormService.addLeaveForm2(this.leaveForm2).subscribe(res => {
+      if(res == null) {
+        alert("Leave Form2 submit failed");
+        //this.ngOnInit();
+      }else {
+        console.log("Leave Form2 submitted successful");
+        //alert("Leave Form submitted successful");
+        this.route.navigate(['/studentDashboard']);
+      }
+    }, err => {
+      alert("Registration2 failed.ERROR");
+      //this.ngOnInit();
+    });
 
   }
 

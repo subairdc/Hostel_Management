@@ -19,6 +19,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule,MatDialogRef } from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 @NgModule({
@@ -33,7 +35,7 @@ import {MatRadioModule} from '@angular/material/radio';
     FormsModule,
     MatGridListModule,
     MatTableModule,MatSortModule,MatPaginatorModule,
-    MatSnackBarModule,MatDialogModule,MatRadioModule
+    MatSnackBarModule,MatDialogModule,MatRadioModule,MatAutocompleteModule
   ],
   exports: [
     MatCardModule,MatSidenavModule,MatListModule,MatFormFieldModule,MatInputModule,MatSelectModule,
@@ -43,7 +45,7 @@ import {MatRadioModule} from '@angular/material/radio';
     ReactiveFormsModule,
     FormsModule,
     MatGridListModule,MatTableModule,MatSortModule,MatPaginatorModule,
-    MatSnackBarModule,MatDialogModule,MatRadioModule
+    MatSnackBarModule,MatDialogModule,MatRadioModule,MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

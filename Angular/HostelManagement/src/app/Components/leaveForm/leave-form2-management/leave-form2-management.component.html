@@ -1,0 +1,110 @@
+<div class="container-fuild" style="margin:15px;">
+  <mat-toolbar class="top-menu" style="margin-top: 10px;">
+  <span>Leave Form</span>
+</mat-toolbar>
+
+<div class="search-div">
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button (click)="onCreate()" color="accent">
+    <mat-icon>add</mat-icon>Add Leave Form
+  </button>
+</div>
+
+<div class="mat-elevation-z5">
+  <table mat-table [dataSource]="girdListData" matSort>
+
+    <ng-container matColumnDef="id" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="roomNo" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Room No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.roomNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="regNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Reg No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.regNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="parent">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Parent</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.parent}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="staff">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Staff</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.staff}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="warden">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Warden</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.warden}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="remark">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Remark</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.remark}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="leaveStatus">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.leaveStatus}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+        <button mat-icon-button color="primary" title="View" (click)="onEdit(row)">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" title="delete" (click)="onDelete(row)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="4">
+        Loading Data...
+      </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="4">
+       No Data...
+      </mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide' : girdListData !=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide' : !(girdListData !=null && girdListData.data.length==0)}"></mat-footer-row>
+  </table>
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page" showFirstLastButtons>
+</mat-paginator>
+</div>
+
+</div>
