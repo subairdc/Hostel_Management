@@ -151,6 +151,7 @@ export class LeaveFormComponent implements OnInit {
         console.log("Leave Form submitted successful");
         alert("Leave Form submitted successful");
         this.leaveForm.reset();
+        // this.ngOnInit();
       }
     }, err => {
       alert("Registration failed.ERROR");
@@ -164,7 +165,7 @@ export class LeaveFormComponent implements OnInit {
       }else {
         console.log("Leave Form2 submitted successful");
         //alert("Leave Form submitted successful");
-        this.route.navigate(['/studentDashboard']);
+        this.route.navigate(['/studentDashboard',this.user.id]);
       }
     }, err => {
       alert("Registration2 failed.ERROR");

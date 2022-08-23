@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LeaveForm2 } from 'src/app/model/leave-form2';
 import { DialogBoxService } from 'src/app/service/dialog-box.service';
 import { LeaveFormService } from 'src/app/service/leave-form.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -106,5 +105,5 @@ export class LeaveForm2ManagementComponent implements OnInit {
       }
     });
   }
-  
+
 }
