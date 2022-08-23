@@ -34,13 +34,13 @@ export class StudentHomepageComponent implements OnInit {
     })
   }
 
-  profile() {
-    this.router.navigate(['studentHomepage/'+this.id+'/studentProfile',this.id]);
-  }
+  // profile() {
+  //   this.router.navigate(['studentHomepage/'+this.id+'/studentProfile',this.id]);
+  // }
 
-  leaveForm() {
-    this.router.navigate(['studentHomepage/'+this.id+'/leaveForm',this.id]);
-  }
+  // leaveForm() {
+  //   this.router.navigate(['studentHomepage/'+this.id+'/leaveForm',this.id]);
+  // }
 
   logout() {
     localStorage.removeItem("token");

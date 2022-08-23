@@ -13,7 +13,7 @@ import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
 export class WardenLoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-
+  id : number=0;
   email : string = '';
   password : string = '';
 
@@ -53,7 +53,8 @@ export class WardenLoginComponent implements OnInit {
         //this.ngOnInit();
       }else {
         console.log("Login successful");
-        this.route.navigate(['/wardenHomepage']);
+        this.user.id = res.id;
+        this.route.navigate(['wardenHomepage/'+this.user.id +'/wardenDashboard',this.user.id]);
       }
 
     }, err => {

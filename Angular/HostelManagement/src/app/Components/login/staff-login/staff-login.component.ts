@@ -61,7 +61,8 @@ export class StaffLoginComponent implements OnInit {
       }else {
         console.log("Login successful");
         //localStorage.setItem("token",res.token);
-        this.route.navigate(['/staffHomepage/staffDashboard']);
+        this.user.id = res.id;
+        this.route.navigate(['/staffHomepage/'+this.user.id +'/staffDashboard',this.user.id]);
 
         // if(this.role == 'user') {
         //   this.route.navigate(['/staffDashboard']);

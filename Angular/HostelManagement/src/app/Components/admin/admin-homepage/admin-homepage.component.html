@@ -86,7 +86,8 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav opened mode="side" style="background-color: #eee;" class="vertical-menu">
     <mat-nav-list style="width:200px">
-      <a mat-list-item routerLink="adminDashboard"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
+      <a mat-list-item routerLink="adminDashboard/{{user.id}}"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
+      <a mat-list-item routerLink="studentProfile/{{user.id}}"> <mat-icon>person</mat-icon> &nbsp; Profile</a>
       <a mat-list-item routerLink="adminDetails"> <mat-icon>dashboard</mat-icon>&nbsp; Admin Details</a>
       <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student List</a>
       <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff List</a>

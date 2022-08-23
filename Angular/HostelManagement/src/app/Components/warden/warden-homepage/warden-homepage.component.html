@@ -15,7 +15,8 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav mode="side" opened>
     <mat-nav-list style="width:200px">
-      <a mat-list-item routerLink="." > <mat-icon>dashboard</mat-icon>Dashboard</a>
+      <a mat-list-item routerLink="wardenDashboard/{{user.id}}" > <mat-icon>dashboard</mat-icon>Dashboard</a>
+      <a mat-list-item routerLink="wardenProfile/{{user.id}}"> <mat-icon>person</mat-icon> &nbsp; Profile</a>
       <a mat-list-item routerLink="wardenDetails"> <mat-icon>student</mat-icon>Student Details</a>
       <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Student Details</a>
       <a mat-list-item routerLink="staffManagement"> <mat-icon></mat-icon>Staff Details</a>

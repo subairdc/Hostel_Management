@@ -54,16 +54,17 @@ const routes: Routes = [
         ]
   },
 
-  { path:'staffHomepage' , component: StaffHomepageComponent,
+  { path:'staffHomepage/:id' , component: StaffHomepageComponent,
         children:
-        [{ path:'staffDashboard' , component: StaffDashboardComponent },
+        [{ path:'staffDashboard/:id' , component: StaffDashboardComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
-        { path:'staffDetails' , component: StaffDetailsComponent}]
+        { path:'staffDetails' , component: StaffDetailsComponent},
+        { path: 'leaveFormManage', component: LeaveForm2ManagementComponent}]
   },
 
   { path:'adminHomepage/:id' , component: AdminHomepageComponent,
         children:
-        [{ path:'adminDashboard' , component: AdminDashboardComponent },
+        [{ path:'adminDashboard/:id' , component: AdminDashboardComponent },
         { path:'adminDetails' , component: AdminDetailsComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffManagement' , component: StaffManagementComponent},
@@ -77,9 +78,9 @@ const routes: Routes = [
       ]
   },
 
-  { path:'wardenHomepage' , component: WardenHomepageComponent,
+  { path:'wardenHomepage/:id' , component: WardenHomepageComponent,
   children:
-  [{ path:'wardenDashboard' , component: WardenDashboardComponent },
+  [{ path:'wardenDashboard/:id' , component: WardenDashboardComponent },
   { path:'studentManagement' , component: StudentManagementComponent},
   { path:'wardenDetails' , component: WardenDetailsComponent},
   { path:'staffManagement' , component: StaffManagementComponent}]

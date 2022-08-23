@@ -52,7 +52,7 @@ export class AdminLoginComponent implements OnInit {
       }else {
         console.log("Login successful");
         this.user.id = res.id;
-        this.route.navigate(['/adminHomepage',this.user.id])
+        this.route.navigate(['adminHomepage/'+this.user.id +'/adminDashboard',this.user.id])
 
       }
 
