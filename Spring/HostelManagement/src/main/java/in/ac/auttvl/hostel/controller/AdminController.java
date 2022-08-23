@@ -45,9 +45,9 @@ public class AdminController {
     }
     
  // Get Admin by Id
-    @GetMapping("/getAdminByRegNo/{id}")
-    public Admin getAdminByRegNo(@PathVariable String id) {
-        return adminService.getAdminByRegNo(id);
+    @GetMapping("/getAdminByAdminId/{id}")
+    public Admin getAdminByAdminId(@PathVariable String id) {
+        return adminService.getAdminByAdminId(id);
     }
 
     // Get Admin by name

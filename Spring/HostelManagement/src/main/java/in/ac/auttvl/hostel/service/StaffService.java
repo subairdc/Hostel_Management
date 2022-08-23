@@ -26,6 +26,10 @@ public class StaffService {
         return staffRepository.findById(id).orElse(null);
     }
 
+    public Staff getStaffByStaffId(String id) {
+		return staffRepository.findByStaffId(id);
+	}
+    
     public Staff getStaffByName(String name) {
         return  staffRepository.findByName(name);
     }
@@ -57,6 +61,6 @@ public class StaffService {
     public List<Staff> getAllStaffs() {
         return staffRepository.findAll();
     }
- 
 
+    
 }

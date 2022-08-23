@@ -25,6 +25,10 @@ public class WardenService {
     public Warden getWardenById(int id) {
         return wardenRepository.findById(id).orElse(null);
     }
+    
+    public Warden getWardenByWardenId(String id) {
+		return wardenRepository.findByWardenId(id);
+	}
 
     public Warden getWardenByName(String name) {
         return  wardenRepository.findByName(name);
@@ -62,6 +66,5 @@ public class WardenService {
 	public Warden getByMaxOrder() {
 		return wardenRepository.getByMaxOrder();
 	}
-
 
 }

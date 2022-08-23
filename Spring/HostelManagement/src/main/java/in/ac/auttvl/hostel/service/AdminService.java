@@ -26,8 +26,8 @@ public class AdminService {
         return adminRepository.findById(id).orElse(null);
     }
     
-    public Admin getAdminByRegNo(String id) {
-		return adminRepository.findByRegNo(id);
+    public Admin getAdminByAdminId(String id) {
+		return adminRepository.findByAdminId(id);
 	}
 
     public Admin getAdminByName(String name) {
@@ -61,6 +61,5 @@ public class AdminService {
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
     }
-
 
 }

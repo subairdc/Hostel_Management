@@ -11,6 +11,9 @@ export class StaffService {
 
   addStaffURL : string;
   getStaffURL : string;
+  getStaffByIdURL : string;
+  getStaffByStaffIdURL : string;
+  getAllStaffURL : string;
   updateStaffUrl : string;
   deleteStaffUrl : string;
 
@@ -28,7 +31,10 @@ export class StaffService {
     });
 
     this.addStaffURL = 'http://localhost:8080/staff/addStaff';
-    this.getStaffURL = 'http://localhost:8080/staff/getAll';
+    this.getStaffURL = 'http://localhost:8080/staff/getStaff';
+    this.getStaffByIdURL = 'http://localhost:8080/staff/getStaffById';
+    this.getStaffByStaffIdURL = 'http://localhost:8080/staff/getStaffByStaffId';
+    this.getAllStaffURL = 'http://localhost:8080/staff/getAllStaff';
     this.updateStaffUrl = 'http://localhost:8080/staff/updateStaff';
     this.deleteStaffUrl = 'http://localhost:8080/staff/deleteStaffById';
    }
@@ -54,8 +60,23 @@ export class StaffService {
     return this.http.post<Staff>(this.addStaffURL,staff);
   }
 
+  //Passing whole class
+  getStaff(staff : Staff) : Observable<Staff> {
+    return this.http.get<Staff>(this.getStaffURL+'/'+staff.id);
+  }
+  //passing only id
+  getStaffById(id : number) : Observable<Staff> {
+    return this.http.get<Staff>(this.getStaffByIdURL+'/'+id);
+  }
+
+  //passing only id staffId string
+  getStaffByStaffId(id : string) : Observable<Staff> {
+    return this.http.get<Staff>(this.getStaffByStaffIdURL+'/'+id);
+  }
+
+
   getAllStaff(): Observable<Staff[]>{
-    return this.http.get<Staff[]>(this.getStaffURL);
+    return this.http.get<Staff[]>(this.getAllStaffURL);
   }
 
   updateStaff(staff :Staff) : Observable<Staff>{

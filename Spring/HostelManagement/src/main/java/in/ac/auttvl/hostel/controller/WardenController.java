@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import in.ac.auttvl.hostel.model.Warden;
 import in.ac.auttvl.hostel.service.WardenService;
 
@@ -42,6 +41,12 @@ public class WardenController {
 	    public Warden getWardenById(@PathVariable int id) {
 	        return wardenService.getWardenById(id);
 	    }
+	    
+	 // Get Warden by Id
+	    @GetMapping("/getWardenByWardenId/{id}")
+	    public Warden getWardenByRegNo(@PathVariable String id) {
+	        return wardenService.getWardenByWardenId(id);
+	    }
 
 	    // Get warden by name
 	    @GetMapping("/getWardenByName/{name}")
@@ -62,7 +67,7 @@ public class WardenController {
 	    }
 
 	    // Get all warden
-	    @GetMapping("/getAll")
+	    @GetMapping("/getAllWarden")
 	    public List<Warden> getAllWardens() {
 	        return wardenService.getAllWardens();
 	    }

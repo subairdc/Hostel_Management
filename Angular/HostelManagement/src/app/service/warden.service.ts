@@ -11,6 +11,8 @@ export class WardenService {
 
   addWardenURL : string;
   getWardenURL : string;
+  getWardenByIdURL : string;
+  getWardenByWardenIdURL : string;
   getAllWardenURL : string;
   updateWardenUrl : string;
   deleteWardenUrl : string;
@@ -40,8 +42,10 @@ export class WardenService {
   });
 
     this.addWardenURL = 'http://localhost:8080/warden/addWarden';
-    this.getWardenURL = 'http://localhost:8080/warden/getWardenById'
-    this.getAllWardenURL = 'http://localhost:8080/warden/getAll';
+    this.getWardenURL = 'http://localhost:8080/warden/getWardenById';
+    this.getWardenByIdURL = 'http://localhost:8080/warden/getWardenById'
+    this.getWardenByWardenIdURL = 'http://localhost:8080/warden/getWardenByWardenId'
+    this.getAllWardenURL = 'http://localhost:8080/warden/getAllWarden';
     this.updateWardenUrl = 'http://localhost:8080/warden/updateWarden';
     this.deleteWardenUrl = 'http://localhost:8080/warden/deleteWardenById';
     this.getWardenMaxOrderURL = 'http://localhost:8080/warden/getMaxOrder';
@@ -79,8 +83,18 @@ export class WardenService {
     return this.http.post<Warden>(this.addWardenURL,warden);
   }
 
-  getWarden(warden : Warden): Observable<Warden> {
+  //Passing whole class
+  getWarden(warden : Warden) : Observable<Warden> {
     return this.http.get<Warden>(this.getWardenURL+'/'+warden.id);
+  }
+  //passing only id
+  getWardenById(id : number) : Observable<Warden> {
+    return this.http.get<Warden>(this.getWardenByIdURL+'/'+id);
+  }
+
+  //passing only id regNo string
+  getWardenByWardenId(id : string) : Observable<Warden> {
+    return this.http.get<Warden>(this.getWardenByWardenIdURL+'/'+id);
   }
 
   getAllWarden(): Observable<Warden[]>{

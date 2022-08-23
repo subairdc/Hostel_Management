@@ -36,10 +36,16 @@ public class StaffController {
         return staffService.addAllStaffs(staffs);
     }
 
-    // Get employee by Id
+    // Get staff by Id
     @GetMapping("/getStaffById/{id}")
     public Staff getStaffById(@PathVariable int id) {
         return staffService.getStaffById(id);
+    }
+    
+ // Get staff by Id
+    @GetMapping("/getStaffByStaffId/{id}")
+    public Staff getStaffByStaffId(@PathVariable String id) {
+        return staffService.getStaffByStaffId(id);
     }
 
     // Get staff by name
@@ -61,7 +67,7 @@ public class StaffController {
     }
 
     // Get all staff
-    @GetMapping("/getAll")
+    @GetMapping("/getAllStaff")
     public List<Staff> getAllStaff() {
         return staffService.getAllStaffs();
     }

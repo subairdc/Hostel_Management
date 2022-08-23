@@ -18,4 +18,6 @@ public interface WardenRepository extends JpaRepository<Warden, Integer> {
 	@Query(value = "select max(order_no) from warden" , nativeQuery=true)  //name case as per java classs
 	Warden getByMaxOrder();
 
+	Warden findByWardenId(String id);
+
 }

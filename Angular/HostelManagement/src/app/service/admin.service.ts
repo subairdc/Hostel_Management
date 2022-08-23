@@ -14,7 +14,7 @@ export class AdminService {
   getAllAdminURL : string;
   getAdminURL : string;
   getAdminByIdURL : string;
-  getAdminByRegNoURL : string;
+  getAdminByAdminIdURL : string;
   updateAdminUrl : string;
   deleteAdminUrl : string;
 
@@ -33,7 +33,7 @@ export class AdminService {
     this.getAllAdminURL = 'http://localhost:8080/admin/getAll';
     this.getAdminURL = 'http://localhost:8080/admin/getAdminById';
     this.getAdminByIdURL = 'http://localhost:8080/admin/getAdminById';
-    this.getAdminByRegNoURL = 'http://localhost:8080/admin/getAdminByRegNo';
+    this.getAdminByAdminIdURL = 'http://localhost:8080/admin/getAdminByAdminId';
     this.updateAdminUrl = 'http://localhost:8080/admin/updateAdmin';
     this.deleteAdminUrl = 'http://localhost:8080/admin/deleteAdminById';
    }
@@ -71,9 +71,9 @@ export class AdminService {
     return this.http.get<Admin>(this.getAdminByIdURL+'/'+id);
   }
 
-  //passing only id regNo string
-  getAdminByRegNo(id : string) : Observable<Admin> {
-    return this.http.get<Admin>(this.getAdminByRegNoURL+'/'+id);
+  //passing only id AdminId string
+  getAdminByAdminId(id : string) : Observable<Admin> {
+    return this.http.get<Admin>(this.getAdminByAdminIdURL+'/'+id);
   }
 
   updateAdmin(admin :Admin) : Observable<Admin>{
