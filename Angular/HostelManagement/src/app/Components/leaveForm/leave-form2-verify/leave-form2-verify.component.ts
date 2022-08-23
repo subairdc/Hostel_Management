@@ -15,7 +15,7 @@ import { StaffService } from 'src/app/service/staff.service';
 })
 export class LeaveForm2VerifyComponent implements OnInit {
 
-  options: string[] = ['Pending', 'Approved', 'Rejected'];
+  options: string[] = ['Approved','Pending', 'Rejected'];
   // filteredOptions!: Observable<string[]>;
 
   constructor(private router : Router,private route: ActivatedRoute, public leaveFormService : LeaveFormService, public staffService : StaffService,private formBuilder: FormBuilder,
