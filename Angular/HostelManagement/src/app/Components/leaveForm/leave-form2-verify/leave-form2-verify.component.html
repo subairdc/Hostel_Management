@@ -29,10 +29,9 @@
               </mat-form-field>
 
           <mat-form-field>
-            <input matInput type="text" formControlName="parent" placeholder="Parent"
-            aria-label="Number" [matAutocomplete]="auto">
+            <input matInput type="text" formControlName="parent" placeholder="Parent" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              <mat-option *ngFor="let option of options" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>
@@ -47,7 +46,7 @@
           <mat-form-field>
             <input matInput type="text" formControlName="staff" placeholder="Staff" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              <mat-option *ngFor="let option of options" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>
@@ -56,7 +55,7 @@
           <mat-form-field>
             <input matInput type="text" formControlName="warden" placeholder="Warden" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              <mat-option *ngFor="let option of options" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>
@@ -69,7 +68,7 @@
           <mat-form-field>
             <input matInput type="text" formControlName="leaveStatus" placeholder="Status" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              <mat-option *ngFor="let option of options" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>

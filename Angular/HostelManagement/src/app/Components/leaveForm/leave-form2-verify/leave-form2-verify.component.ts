@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 export class LeaveForm2VerifyComponent implements OnInit {
 
   options: string[] = ['Pending', 'Approved', 'Rejected'];
-  filteredOptions!: Observable<string[]>;
+  // filteredOptions!: Observable<string[]>;
 
   constructor(private route : Router, public leaveFormService : LeaveFormService,private formBuilder: FormBuilder,
     public dialogRef : MatDialogRef<LeaveForm2VerifyComponent>, public notification : NotificationService,
@@ -24,17 +24,17 @@ export class LeaveForm2VerifyComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.filteredOptions = this.leaveFormService.form.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+    // this.filteredOptions = this.leaveFormService.form.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value || '')),
+    // );
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  // }
 
   get f(){
     return this.leaveFormService.form.controls;
@@ -54,6 +54,10 @@ export class LeaveForm2VerifyComponent implements OnInit {
 
   onSubmit() {
     var leaveForm2Verify = new LeaveForm2;
+    leaveForm2Verify.id = this.leaveFormService.form.value['id'];
+    leaveForm2Verify.name = this.leaveFormService.form.value['name'];
+    leaveForm2Verify.regNo = this.leaveFormService.form.value['regNo'];
+    leaveForm2Verify.roomNo = this.leaveFormService.form.value['roomNo'];
     leaveForm2Verify.parent = this.leaveFormService.form.value['parent'];
     leaveForm2Verify.staff = this.leaveFormService.form.value['staff'];
     leaveForm2Verify.warden = this.leaveFormService.form.value['warden'];
