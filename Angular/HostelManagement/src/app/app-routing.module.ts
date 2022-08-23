@@ -47,7 +47,7 @@ const routes: Routes = [
 
   { path:'studentHomepage/:id' , component: StudentHomepageComponent,
          children:
-         [{ path:'studentDashboard' , component: StudentDashboardComponent},
+         [{ path:'studentDashboard/:id' , component: StudentDashboardComponent},
          { path:'studentProfile/:id' , component: StudentProfileComponent},
          { path:'leaveForm/:id' , component: LeaveFormComponent},
          { path: 'leaveFormStatus/:id', component: LeaveForm2ManagementComponent}

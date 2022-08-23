@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Student } from 'src/app/model/student';
 import { StudentService } from 'src/app/service/student.service';
 
 @Component({
@@ -9,13 +10,24 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  constructor(private route : Router, public studentService : StudentService) { }
+  id : number=0;
+  user : Student = new Student();
+
+  constructor(private router : Router, private route: ActivatedRoute, private studentService : StudentService) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getStudent();
+  }
+
+  private getStudent() {
+    this.studentService.getStudentById(this.id).subscribe(data => {
+      this.user = data;
+    })
   }
 
   logout() {
-    this.route.navigate(['/studentLogin']);
+    this.router.navigate(['/studentLogin']);
   }
 
 }

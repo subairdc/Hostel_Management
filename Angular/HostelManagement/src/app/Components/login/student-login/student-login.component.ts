@@ -56,7 +56,7 @@ export class StudentLoginComponent implements OnInit {
       }else {
         console.log("Login successful");
         this.user.id = res.id;
-        this.route.navigate(['/studentHomepage',this.user.id])
+        this.route.navigate(['studentHomepage/'+this.user.id +'/studentDashboard',this.user.id])
       }
 
     }, err => {
