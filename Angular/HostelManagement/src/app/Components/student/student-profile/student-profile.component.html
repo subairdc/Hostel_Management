@@ -1,11 +1,11 @@
 <div class="container  mt-3 align-items-center">
   <div class="card col-md-5 mt-sm-5  p-3" style="margin: auto">
 
-      <h4 class="pb-4 text-center border-bottom" style="text-align: center;">Student Profile
+      <h3 class="pb-4 text-center border-bottom" style="text-align: center;">Student Profile
 
       <button mat-raised-button color="primary" title="Edit" (click)="onEdit()" style="left: 150px;">
         <mat-icon>edit</mat-icon>
-      </button></h4>
+      </button></h3>
 
 
       <form [formGroup]="studentService.form" (ngSubmit)="updateDetails()">
@@ -71,7 +71,6 @@
           <div class="inputs"> <label>Gender</label>
             <select class="form-select" [(ngModel)]="genderS" aria-label="Default select example" [(ngModel)]="user.gender" formControlName="gender" >
               <option *ngFor="let n of gender" value="{{n}}">{{n}}</option>
-
             </select> </div>
         </div>
 

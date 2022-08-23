@@ -17,13 +17,13 @@ export class StudentProfileComponent implements OnInit {
   user : Student = new Student();
 
   gender=["Select Gender","Male","Female","Others"];
-  genderS : string ="Select Gender";
+  genderS : string ="";
 
   bloodGrp = ["Select Blood Group","A+","A-","B+","B-","AB+","AB-","O+","O-","A1B+","A1B-","A2+","A2-","Others"];
-  bloodGrpS : string = "Select Blood Group";
+  bloodGrpS : string = "";
 
   hostel = ["Select Hostel","Pothigai Boys Hostel","Thamirabharani Girls Hostel"]
-  hostelS : string = "Select Hostel";
+  hostelS : string = "";
 
 
   constructor(private router : Router, private route : ActivatedRoute, private formBuilder : FormBuilder, public studentService : StudentService, public notification : NotificationService) {
@@ -72,6 +72,7 @@ export class StudentProfileComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
     this.id = this.route.snapshot.params['id'];
 
     this.studentService.getStudentById(this.id).subscribe(res=>{
