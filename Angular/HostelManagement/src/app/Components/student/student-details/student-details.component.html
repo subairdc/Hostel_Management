@@ -8,16 +8,16 @@
 
 
   <form [formGroup]="studentService.form" class="normal-form">
-    <mat-grid-list cols="1" rowHeight="200px">
+    <mat-grid-list cols="4" rowHeight="480px">
       <mat-grid-tile>
         <div class="controllers-container">
+          <input  type="hidden" formControlName="confirmPassword" placeholder="confirm password" autocomplete="off">
           <mat-form-field>
             <!-- <mat-label>Input</mat-label> -->
             <input matInput formControlName="name" placeholder="Name" autocomplete="off">
             <mat-error *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
               <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
               <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be in min 4 char</div>
-
             </mat-error>
             </mat-form-field>
 
@@ -30,8 +30,123 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="password" placeholder="password" autocomplete="off">
+            <mat-select matInput formControlName="gender" placeholder="Select Gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Others">Others</mat-option>
+            </mat-select>
           </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="date" formControlName="dateOfBirth" placeholder="Date Of Birth" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="age" placeholder="Age" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="bloodGrp" placeholder="Blood Group" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="status" placeholder="Status" autocomplete="off">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="phoneNo" placeholder="phone No." autocomplete="off">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+            <mat-form-field>
+              <input matInput formControlName="hostel" placeholder="Hostel" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="roomNo" placeholder="Room No." autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="degree" placeholder="Degree" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="dept" placeholder="dept" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="regNo" placeholder="regNo" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="year" placeholder="year" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="sem" placeholder="sem" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="password"  placeholder="password" autocomplete="off">
+              <mat-icon matSuffix>remove_red_eye</mat-icon>
+            </mat-form-field>
+
+          </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+
+            <mat-form-field>
+              <input matInput formControlName="confirmPassword"  placeholder="Confirm Password" autocomplete="off">
+              <mat-icon matSuffix>remove_red_eye</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="street" placeholder="Street" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="city" placeholder="City" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="district" placeholder="District" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="state" placeholder="State" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="pincode" placeholder="Pincode" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="fatherName" placeholder="Father Name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="fatherPhoneNo" placeholder="Father Phone No." autocomplete="off">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+            <mat-form-field>
+              <input matInput formControlName="motherName" placeholder="Mother Name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="motherPhoneNo" placeholder="Mother Phone No." autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="guardianName" [ngModel]="user.phoneNo" placeholder="Guardian Name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="guardianPhoneNo" [ngModel]="user.phoneNo" placeholder="Guardian Phone No." autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="guardianRelation" [ngModel]="user.phoneNo" placeholder="Guardian Relation" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="guardianAddress" [ngModel]="user.phoneNo" placeholder="Guardian Address" autocomplete="off">
+            </mat-form-field>
+          </div>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

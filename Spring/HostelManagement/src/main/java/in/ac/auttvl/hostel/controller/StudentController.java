@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.StudentFemale;
+import in.ac.auttvl.hostel.model.StudentMale;
 import in.ac.auttvl.hostel.service.StudentService;
 
 @RestController
@@ -77,5 +79,17 @@ public class StudentController {
     @GetMapping("/getMaxOrder")
     public  Student getMaxOrder() {
         return studentService.getByMaxOrder();
+    }
+    
+ // Add new  verified student
+    @PostMapping("/addVerifiedStuMale")
+    public StudentMale addVerifiedStuMale(@RequestBody StudentMale studentMale) {
+        return studentService.addVerifiedStuMale(studentMale);
+    }
+    
+ // Add new  verified student
+    @PostMapping("/addVerifiedStuFemale")
+    public StudentFemale addVerifiedStuFemale(@RequestBody StudentFemale studentFemale) {
+        return studentService.addVerifiedStuFemale(studentFemale);
     }
 }

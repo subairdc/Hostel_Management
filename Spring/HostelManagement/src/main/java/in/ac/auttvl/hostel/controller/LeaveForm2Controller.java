@@ -45,7 +45,7 @@ public class LeaveForm2Controller {
     
     // Get LeaveForm2 by Id
     @GetMapping("/getLeaveForm2ByRegNo/{id}")
-    public LeaveForm2 getLeaveForm2ByRegNo(@PathVariable String id) {
+    public List<LeaveForm2> getLeaveForm2ByRegNo(@PathVariable String id) {
         return leaveForm2Service.getLeaveForm2ByRegNo(id);
     }
 
@@ -71,6 +71,12 @@ public class LeaveForm2Controller {
     @GetMapping("/getAllLeaveForm2")
     public List<LeaveForm2> getAllLeaveForm2() {
         return leaveForm2Service.getAllLeaveForm2();
+    }
+    
+ // Get all LeaveForm single student
+    @GetMapping("/getStudentLeaveForm2/{regNo}")
+    public List<LeaveForm2> getStudentLeaveForm2(@PathVariable String regNo) {
+        return leaveForm2Service.getStudentLeaveForm2(regNo);
     }
 
 }

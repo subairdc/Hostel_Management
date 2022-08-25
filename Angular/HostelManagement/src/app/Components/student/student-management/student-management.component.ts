@@ -18,9 +18,10 @@ import { StudentDetailsComponent } from '../student-details/student-details.comp
 })
 export class StudentManagementComponent implements OnInit {
 
-  studentDetail !: FormGroup;
+  //studentDetail !: FormGroup;
     // studentObj : Student = new Student();
     // studentList : Student[] = [];
+    flag : boolean = false;
 
   girdListData : any;
   displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
@@ -41,12 +42,12 @@ export class StudentManagementComponent implements OnInit {
     this.fillGird();
     //this.getAllStudents();
 
-    this.studentDetail = this.formBuilder.group({
-      name : [''],
-      email: [''],
-      password: [''],
-      phoneNo: ['']
-    });
+    // this.studentDetail = this.formBuilder.group({
+    //   name : [''],
+    //   email: [''],
+    //   password: [''],
+    //   phoneNo: ['']
+    // });
   }
 
   fillGird() {
@@ -71,17 +72,19 @@ export class StudentManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="70%";
     this._dialog.open(StudentDetailsComponent,dialogConfig);
   }
 
   onEdit(row:any) {
+
+
     this.studentService.populateForm(row);
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="70%";
     this._dialog.open(StudentDetailsComponent,dialogConfig);
   }
 
@@ -94,6 +97,34 @@ export class StudentManagementComponent implements OnInit {
           this.studentService.filter('');
         });
       }
+    });
+  }
+
+  onApproved(row : any) {
+
+    this.dialogService.openConfirmDialog('Would you like to Approved and Delete from this table ' + row.name + ' data?').afterClosed().subscribe(res=> {
+      if(res) {
+        if(row.hostel == "Pothigai Boys Hostel") {
+          this.studentService.addVerifiedStuMale(row).subscribe(data => {
+            this.studentService.form.reset();
+            this.studentService.initializeFormGroup();
+            this._notification.success("Added Successfully");
+            this.flag = true;
+          });
+        }else if (row.hostel == "Thamirabharani Girls Hostel") {
+          this.studentService.addVerifiedStuFemale(row).subscribe(data => {
+            this.studentService.form.reset();
+            this.studentService.initializeFormGroup();
+            this._notification.success("Added Successfully");
+            this.flag = true;
+        });
+      }
+    }
+    this.studentService.deleteStudent(row).subscribe(data=> {
+      //this._notification.warn("Deleted Successfully");
+      this.studentService.filter('');
+      this.flag = false;
+    });
     });
   }
 

@@ -1,11 +1,8 @@
 package in.ac.auttvl.hostel.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import in.ac.auttvl.hostel.model.Staff;
 import in.ac.auttvl.hostel.model.Student;
 
 public interface StudentRepository extends JpaRepository<Student,Integer>{
@@ -24,6 +21,5 @@ public interface StudentRepository extends JpaRepository<Student,Integer>{
 	Student findByEmailAndRegNo(String email, String regNo);
 
 	Student findByRegNo(String regNo);
-
 
 }

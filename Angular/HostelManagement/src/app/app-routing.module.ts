@@ -29,6 +29,7 @@ import { WardenDashboardComponent } from './Components/warden/warden-dashboard/w
 import { WardenDetailsComponent } from './Components/warden/warden-details/warden-details.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 import { LeaveForm2ManagementComponent } from './Components/leaveForm/leave-form2-management/leave-form2-management.component';
+import { StudentDetailsComponent } from './Components/student/student-details/student-details.component';
 
 const routes: Routes = [
   { path:'' , component: StudentLoginComponent },
@@ -50,7 +51,9 @@ const routes: Routes = [
          [{ path:'studentDashboard/:id' , component: StudentDashboardComponent},
          { path:'studentProfile/:id' , component: StudentProfileComponent},
          { path:'leaveForm/:id' , component: LeaveFormComponent},
-         { path: 'leaveFormStatus/:id', component: LeaveForm2ManagementComponent}
+         { path: 'leaveFormStatus/:id', component: LeaveForm2ManagementComponent},
+         { path:'studentManagement' , component: StudentManagementComponent},
+         { path:'studentDetails' , component: StudentDetailsComponent},
         ]
   },
 
@@ -59,6 +62,7 @@ const routes: Routes = [
         [{ path:'staffDashboard/:id' , component: StaffDashboardComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffDetails' , component: StaffDetailsComponent},
+        { path:'staffManagement' , component: StaffManagementComponent},
         { path: 'leaveFormManage', component: LeaveForm2ManagementComponent}]
   },
 
@@ -82,7 +86,7 @@ const routes: Routes = [
   children:
   [{ path:'wardenDashboard/:id' , component: WardenDashboardComponent },
   { path:'studentManagement' , component: StudentManagementComponent},
-  { path:'wardenDetails' , component: WardenDetailsComponent},
+  { path:'wardenDetails/:id' , component: WardenDetailsComponent},
   { path:'staffManagement' , component: StaffManagementComponent}]
 }
 

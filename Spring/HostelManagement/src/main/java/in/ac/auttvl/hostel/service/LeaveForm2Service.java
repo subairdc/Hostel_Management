@@ -33,7 +33,7 @@ public class LeaveForm2Service {
 		return leaveForm2Repository.findById(id).orElse(null);
 	}
 
-	public LeaveForm2 getLeaveForm2ByRegNo(String id) {
+	public List<LeaveForm2> getLeaveForm2ByRegNo(String id) {
 		return leaveForm2Repository.findByRegNo(id);
 	}
 
@@ -72,6 +72,20 @@ public class LeaveForm2Service {
 
 	public List<LeaveForm2> getAllLeaveForm2() {
 		return leaveForm2Repository.findAll();
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<LeaveForm2> getStudentLeaveForm2(String regNo) {
+		return leaveForm2Repository.findByRegNo(regNo);
 	}
 
 }

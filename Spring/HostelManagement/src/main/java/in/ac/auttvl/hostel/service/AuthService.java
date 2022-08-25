@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 import in.ac.auttvl.hostel.model.Admin;
 import in.ac.auttvl.hostel.model.Staff;
 import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.StudentFemale;
+import in.ac.auttvl.hostel.model.StudentMale;
 import in.ac.auttvl.hostel.model.Warden;
 import in.ac.auttvl.hostel.repository.AdminRepository;
 import in.ac.auttvl.hostel.repository.StaffRepository;
+import in.ac.auttvl.hostel.repository.StudentFemaleRepository;
+import in.ac.auttvl.hostel.repository.StudentMaleRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
 import in.ac.auttvl.hostel.repository.WardenRepository;
 
@@ -23,6 +27,10 @@ public class AuthService {
     private StaffRepository staffRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private StudentMaleRepository studentMaleRepository;
+    @Autowired
+    private StudentFemaleRepository studentFemaleRepository; 
     @Autowired
     private WardenRepository wardenRepository;
     @Autowired
@@ -83,14 +91,29 @@ public class AuthService {
     public Student studentRegister(Student student) {
 		
 		 // Check if user with username exist or not
-       if(checkStudentExist(student)== true)
-		return null;
+    	if(student.getGender().equalsIgnoreCase("Male")){
+    		 if(checkStudentMale(student)== true)
+    			 return null;			
+    	}else {
+    		if(checkStudentFemale(student)== true)
+   			 return null;
+    	}
+    		
+      
 
        return studentRepository.save(student);
 	}
     
-    private boolean checkStudentExist(Student student) {
-    	Student existingUser = studentRepository.findByEmail(student.getEmail());
+    private boolean checkStudentMale(Student student) {
+    	StudentMale existingUser = studentMaleRepository.findByEmail(student.getEmail());
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+    
+    private boolean checkStudentFemale(Student student) {
+    	StudentFemale existingUser = studentFemaleRepository.findByEmail(student.getEmail());
 
         if(existingUser == null)
             return false;
@@ -98,19 +121,27 @@ public class AuthService {
     }
 
     public Student studentLogin(Student student) {
-    	Student existingUser = studentRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
 
-//        if(existingUser.getEmail().equals(student.getEmail()) &&
-//                existingUser.getPassword().equals(student.getPassword())) {
-//            existingUser.setPassword("");
-//            return existingUser;
-//        }
+    	StudentMale existingUserM = studentMaleRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
+    	StudentFemale existingUserF = studentFemaleRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
+//          if(existingUser.getEmail().equals(student.getEmail()) &&
+//                  existingUser.getPassword().equals(student.getPassword())) {
+//              existingUser.setPassword("");
+//              return existingUser;
+//          }
+      	
+      	if(existingUserM != null) {
+      		existingUserM.setPassword("");
+      		Student s = new Student();
+      		s.setId(existingUserM.getId());
+      		 return s;
+      	}else if (existingUserF != null) {
+      		existingUserF.setPassword("");
+      		Student s = new Student();
+      		s.setId(existingUserF.getId());
+      		 return s;
+      	}
     	
-    	if(existingUser != null) {
-    		existingUser.setPassword("");
-    		 return existingUser;
-    	}
-
         return null;
 
     }

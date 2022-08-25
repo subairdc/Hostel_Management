@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.Student;
+import in.ac.auttvl.hostel.model.StudentFemale;
+import in.ac.auttvl.hostel.model.StudentMale;
+import in.ac.auttvl.hostel.repository.StudentFemaleRepository;
+import in.ac.auttvl.hostel.repository.StudentMaleRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
 
 @Service
@@ -13,7 +17,11 @@ public class StudentService {
 	
 	 	@Autowired
 	    private StudentRepository studentRepository;
-
+	 	@Autowired
+	 	private StudentMaleRepository studentMaleRepository;
+	 	@Autowired
+	 	private StudentFemaleRepository studentFemaleRepository;
+	 	
 	    public Student addStudent(Student student) {
 	        return studentRepository.save(student);
 	    }
@@ -42,9 +50,35 @@ public class StudentService {
 	            return  studentRepository.save(student);
 	        }else  {
 	            existingStudent.setName(student.getName());
+	            existingStudent.setGender(student.getGender());
+	            existingStudent.setDateOfBirth(student.getDateOfBirth());
+	            existingStudent.setAge(student.getAge());
+	            existingStudent.setBloodGrp(student.getBloodGrp());
+	            
+	            existingStudent.setDegree(student.getDegree());
+	            existingStudent.setDept(student.getDept());
+	            existingStudent.setYear(student.getYear());
+	            existingStudent.setSem(student.getSem());
+	            
+	            existingStudent.setRegNo(student.getRegNo());
+	            existingStudent.setPhoneNo(student.getPhoneNo());
 	            existingStudent.setEmail(student.getEmail());
 	            existingStudent.setPassword(student.getPassword());
-	            existingStudent.setPhoneNo(student.getPhoneNo());
+	            existingStudent.setConfirmPassword(student.getConfirmPassword());
+	            existingStudent.setStatus(student.getStatus());
+	            existingStudent.setHostel(student.getHostel());
+	            existingStudent.setRoomNo(student.getRoomNo());
+	            existingStudent.setStreet(student.getStreet());
+	            existingStudent.setCity(student.getCity());
+	            existingStudent.setDistrict(student.getDistrict());
+	            existingStudent.setState(student.getState());
+	            existingStudent.setPincode(student.getPincode());
+	            
+	            existingStudent.setGuardianName(student.getGuardianName());
+	            existingStudent.setGuardianRelation(student.getGuardianRelation());
+	            existingStudent.setGuardianAddress(student.getGuardianAddress());
+	            existingStudent.setGuardianPhoneNo(student.getGuardianPhoneNo());
+	            
 	            studentRepository.save(existingStudent);
 	        }
 	        return student;
@@ -66,6 +100,23 @@ public class StudentService {
 
 		public Student getByMaxOrder() {
 			return studentRepository.getByMaxOrder();
+		}
+
+//		public Student addVerifiedStudent(Student student) {
+//	    	Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
+//	    	if(existingStudent.getHostel() == "Pothigai Boys Hostel") {
+//	    		return studentMaleRepository.save(student);
+//	    	}else if(existingStudent.getHostel() == "Thamirabharani Girls Hostel")
+//	    		return studentFemaleRepository.save(student);
+//			return null;
+//		}
+
+		public StudentMale addVerifiedStuMale(StudentMale studentMale) {
+			return studentMaleRepository.save(studentMale);
+		}
+
+		public StudentFemale addVerifiedStuFemale(StudentFemale studentFemale) {
+			return studentFemaleRepository.save(studentFemale);
 		}
 
 }
