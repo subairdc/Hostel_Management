@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin';
 import { AuthService } from 'src/app/service/auth.service';
 import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
+import { NotificationService } from 'src/app/service/notification.service';
+import { AdminService } from 'src/app/service/admin.service';
 
 
 @Component({
@@ -12,37 +14,55 @@ import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
 })
 export class AdminSignupComponent implements OnInit {
 
-  signupForm!: FormGroup;
-
-  name : string = '';
-  email : string = '';
-  password : string = '';
-
   user : Admin = new Admin();
 
-  constructor(private authService : AuthService, private route : Router, private formBuilder : FormBuilder) {
+  gender=["Select Gender","Male","Female","Others"];
+  genderS : string ="Select Gender";
 
-    this.signupForm = this.formBuilder.group({
-      name : ['',[Validators.required,Validators.minLength(4)]],
-      email : ['',[Validators.required,Validators.email]],
-      password : ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
-    })
-  }
+  bloodGrp = ["Select Blood Group","A+","A-","B+","B-","AB+","AB-","O+","O-","A1B+","A1B-","A2+","A2-","Others"];
+  bloodGrpS : string = "Select Blood Group";
 
-  get f(){
-    return this.signupForm.controls;
+
+  constructor(private authService : AuthService, private route : Router, private formBuilder : FormBuilder,
+    public notification : NotificationService,public adminService : AdminService) {
+
   }
 
   ngOnInit(): void {
   }
 
+  get f(){
+    return this.adminService.form.controls;
+  }
+
+  onClear() {
+    this.adminService.form.reset();
+    this.adminService.initializeFormGroup();
+  }
+
   signup() {
 
-    console.log(this.name+" "+ this.email+ " " + this.password);
+    this.user.name = this.adminService.form.value['name'];
+    this.user.gender = this.adminService.form.value['gender'];
+    this.user.dateOfBirth = this.adminService.form.value['dateOfBirth'];
+    this.user.age = this.adminService.form.value['age'];
+    this.user.bloodGrp = this.adminService.form.value['bloodGrp'];
 
-    this.user.email = this.email;
-    this.user.password = this.password;
-    this.user.name = this.name;
+
+    this.user.adminId = this.adminService.form.value['adminId'];
+    this.user.phoneNo = this.adminService.form.value['phoneNo'];
+    this.user.email = this.adminService.form.value['email'];
+    this.user.password = this.adminService.form.value['password'];
+
+    this.user.status = this.adminService.form.value['status'];
+
+    this.user.street = this.adminService.form.value['street'];
+    this.user.city = this.adminService.form.value['city'];
+    this.user.district = this.adminService.form.value['district'];
+    this.user.state = this.adminService.form.value['state'];
+    this.user.pincode = this.adminService.form.value['pincode'];
+
+    // this.user.dateOfEnrollment =
     // this.user.role = 'user';
 
     this.authService.adminSignup(this.user).subscribe(res => {
@@ -59,6 +79,11 @@ export class AdminSignupComponent implements OnInit {
       this.ngOnInit();
     })
 
+  }
+
+  onCancel() {
+    this.adminService.form.reset();
+    this.adminService.initializeFormGroup();
   }
 
 }

@@ -25,9 +25,39 @@ export class AdminService {
     this.form = this.formBuilder.group({
       id : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      gender : [''],
+      dateOfBirth:['',Validators.required],
+      age:[''],
+      bloodGrp: [''],
+
+
+      adminId : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(12)]],
       email :['',[Validators.required, Validators.email]],
-    password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
-    });
+      phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
+
+
+      password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+      confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+
+      status : [''],
+
+      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
+      city : [''],
+      district : [''],
+      state : [''],
+      pincode : ['',[Validators.required,Validators.minLength(6)]],
+
+      image : [''],
+      imagePath : [''],
+      updatedBy : [''],
+      updatedOn : [''],
+      dateOfEnrollment : ['']
+  },
+  {
+    validators: this.confirmingPassword("password", "confirmPassword")
+  }
+  );
+
 
     this.addAdminURL = 'http://localhost:8080/admin/addAdmin';
     this.getAllAdminURL = 'http://localhost:8080/admin/getAll';
@@ -44,11 +74,50 @@ export class AdminService {
   initializeFormGroup() {
     this.form.setValue({
       id : 0,
-      name :'',
-      email : '',
-      password : ''
+      name : '',
+      gender : '',
+      dateOfBirth:'',
+      age:'',
+      bloodGrp: '',
+
+      adminId : '',
+      phoneNo : '',
+      email :'',
+
+      password: '',
+      confirmPassword: '',
+
+      status : '',
+
+      street : '',
+      city : '',
+      district : '',
+      state : '',
+      pincode : '',
+
+      image : '',
+      imagePath : '',
+      updatedBy : '',
+      updatedOn : '',
+      dateOfEnrollment : ''
     });
   }
+
+  confirmingPassword(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      let control = formGroup.controls[controlName];
+      let matchingControl = formGroup.controls[matchingControlName]
+      if (matchingControl.errors && !matchingControl.errors['confirmingPassword']) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmingPassword: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+  }
+}
+
 
   populateForm(admin : Admin) {
     this.form.setValue(admin);

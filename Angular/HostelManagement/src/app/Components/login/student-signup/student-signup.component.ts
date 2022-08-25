@@ -109,6 +109,8 @@ export class StudentSignupComponent implements OnInit {
     this.user.guardianRelation = this.studentService.form.value['guardianRelation'];
     this.user.guardianAddress = this.studentService.form.value['guardianAddress'];
 
+    // this.user.dateOfEnrollment =
+
 
     this.authService.studentSignup(this.user).subscribe(res => {
       if(res == null) {
