@@ -20,7 +20,6 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(length =100)
 	private int id;
-	private int orderNo;
 	private String name;
 	private String gender;
 	private String dateOfBirth;
@@ -35,6 +34,7 @@ public class Student {
 	
 	private String email;
 	private String password;
+	private String confirmPassword;
 	
 	private String status;
 	private String hostel;
@@ -70,15 +70,15 @@ public class Student {
 	}
 
 
-	public Student(int id, int orderNo, String name, String gender, String dateOfBirth, int age, String bloodGrp,
-			String degree, String dept, String regNo, int year, int sem, String email, String password, String status,
-			String hostel, int roomNo, String street, String city, String district, String state, String pincode,
-			String fatherName, String fatherPhoneNo, String motherName, String motherPhoneNo, String phoneNo,
-			String guardianName, String guardianRelation, String guardianAddress, String guardianPhoneNo, String image,
-			String imagePath, String updatedBy, String updatedOn, String dateOfEnrollment) {
+	public Student(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String degree,
+			String dept, String regNo, int year, int sem, String email, String password, String confirmPassword,
+			String status, String hostel, int roomNo, String street, String city, String district, String state,
+			String pincode, String fatherName, String fatherPhoneNo, String motherName, String motherPhoneNo,
+			String phoneNo, String guardianName, String guardianRelation, String guardianAddress,
+			String guardianPhoneNo, String image, String imagePath, String updatedBy, String updatedOn,
+			String dateOfEnrollment) {
 		super();
 		this.id = id;
-		this.orderNo = orderNo;
 		this.name = name;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
@@ -91,6 +91,7 @@ public class Student {
 		this.sem = sem;
 		this.email = email;
 		this.password = password;
+		this.confirmPassword = confirmPassword;
 		this.status = status;
 		this.hostel = hostel;
 		this.roomNo = roomNo;
@@ -116,6 +117,7 @@ public class Student {
 	}
 
 
+
 	public int getId() {
 		return id;
 	}
@@ -123,16 +125,6 @@ public class Student {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-
-	public int getOrderNo() {
-		return orderNo;
-	}
-
-
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
 	}
 
 
@@ -253,6 +245,16 @@ public class Student {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 
@@ -474,6 +476,5 @@ public class Student {
 	public void setDateOfEnrollment(String dateOfEnrollment) {
 		this.dateOfEnrollment = dateOfEnrollment;
 	}
-	
-		
+
 }

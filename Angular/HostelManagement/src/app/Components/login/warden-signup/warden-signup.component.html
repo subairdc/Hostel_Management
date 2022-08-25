@@ -1,47 +1,156 @@
 <app-header></app-header>
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-6">
-          <img src="../../../assets/login_img.svg" height="100%" width="100%">
-      </div>
-      <div class="col-md-4 mt-3 mb-2">
-          <h3 class="text-success text-center"><b>WARDEN SIGNUP </b></h3>
 
-          <form [formGroup]="signupForm" (ngSubmit)="signup()" action="" class="mt-5 p-5">
-              <h5 class="text-primary mb-3">Sign up </h5>
-              <div class="form-floating mb-3">
-                  <input type="text" class="form-control" minlength="4" id="floatingInput" placeholder="name" name="name" [(ngModel)]="name" formControlName="name" required>
-                  <label for="floatingInput">Name</label>
-                  <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
-                    <div *ngIf="f['name'].errors && f['name'].errors['required']">name is required.</div>
-                    <div *ngIf="f['name'].errors && f['name'].errors['minlength']">name should be max 4 char.</div>
-                  </div>
-              </div>
-              <div class="form-floating mb-3">
-                  <input type="text" class="form-control" maxlength="30" id="floatingInputEmail" placeholder="Email" name="email" [(ngModel)]="email" formControlName="email" required>
-                  <label for="floatingInput">Email address</label>
-                  <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
-                    <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
-                    <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
-                  </div>
-              </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control" minlength="8" maxlength="16" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="password" formControlName="password" required>
-                  <label for="floatingPassword">Password</label>
-                  <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
-                    <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
-                    <div *ngIf="f['password'].errors && f['password'].errors['pattern']">password should be 8-16 char.</div>
-                  </div>
+<div class="container  mt-3 align-items-center">
+  <div class="card col-md-5 mt-sm-5  p-3" style="margin: auto">
+
+      <h4 class="pb-4 text-center border-bottom">Warden Signup</h4>
+
+      <form [formGroup]="wardenService.form" (ngSubmit)="signup()">
+        <div class="row ">
+          <div class="col-md-6 mt-2">
+              <div class="inputs"> <label class="text-muted mandatory">Name</label>
+                <input class="form-control" type="text" placeholder="Name" name="name" formControlName="name"> </div>
+                <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+                  <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+                  <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be min 4 char.</div>
+                  <div *ngIf="f['name'].errors && f['name'].errors['maxlength']">Name should be max 25 char.</div>
                 </div>
+          </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button class="btn btn-outline-success me-md-2" type="submit" [disabled]="signupForm.invalid" >Register</button>
+          <div class="col-md-6 mt-2">
+              <div class="inputs"> <label>Email</label>
+                <input class="form-control" type="text" placeholder="Email" name="email" formControlName="email"> </div>
+                <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                  <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+                  <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
                 </div>
+          </div>
 
-                <a routerLink="/wardenLogin" class="text-primary" style="text-decoration: none;">Log In ? </a>
-          </form>
+          <div class="col-md-6 mt-2">
+            <div class="inputs"> <label>Phone No.</label>
+               <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" formControlName="phoneNo"> </div>
+               <div *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
+              </div>
+          </div>
+
+          <div class="col-md-6 mb-4 mt-2">
+            <div class="inputs"> <label>Marital Status</label>
+              <select class="form-select" aria-label="Default select example" formControlName="status">
+                <option [selected]="1">Select Option</option>
+                <option value="Single" >Single</option>
+                <option value="Married">Married</option>
+              </select> </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="inputs"> <label>Password</label>
+              <input class="form-control" type="password" maxlength="25" placeholder="Password" name="password" formControlName="password"> </div>
+              <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
+                <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
+                <div *ngIf="f['password'].errors && f['password'].errors['pattern']">Password should be Mixed of A-Z a-z @ 1234</div>
+              </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="inputs"> <label>Confirm Password</label>
+              <input class="form-control" type="password" maxlength="25" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
+              <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid" class="text-danger">
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Password is required.</div>
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['pattern']">Password should be Mixed of A-Z a-z @ 1234</div>
+                <div *ngIf="f['confirmPassword'].getError('confirmingPassword')">Password didn't match</div>
+                <!-- <div *ngIf="f['confirmPassword'].errors ">Password didn't match</div> -->
+              </div>
+          </div>
+
+          <div class="col-md-6 mb-4 mt-2">
+
+            <div class="inputs"> <label>Gender</label>
+              <select class="form-select" [(ngModel)]="genderS" aria-label="Default select example" formControlName="gender" >
+                <option *ngFor="let n of gender" value="{{n}}">{{n}}</option>
+
+              </select> </div>
+          </div>
+
+          <div class="col-md-4 mt-2">
+              <div class="inputs"> <label>Date of Birth</label>
+                <input class="form-control" type="date" maxlength="10" placeholder="Date of Birth" formControlName="dateOfBirth"> </div>
+          </div>
+          <div class=" col-md-2 mt-2">
+            <div class="inputs"> <label>Age</label>
+               <input class="form-control" type="number" placeholder="Age" formControlName="age"> </div>
+               <!-- <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
+                <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
+                <div *ngIf="f['age'].errors && f['age'].errors['minlength']">Please enter valid age</div>
+              </div> -->
+          </div>
+
+          <div class="col-md-6 mb-4">
+
+            <div class="inputs"> <label>Blood Group</label>
+              <select class="form-select" [(ngModel)]="bloodGrpS" aria-label="Default select example" formControlName="bloodGrp" >
+                <option *ngFor="let n of bloodGrp" value="{{n}}">{{n}}</option>
+              </select> </div>
+          </div>
+
+
+
+          <div class="col-md-6 ">
+            <div class="inputs"> <label>Warden Id</label>
+              <input class="form-control" type="text" maxlength="12" placeholder="Warden Id"  formControlName="wardenId"> </div>
+              <div *ngIf="f['wardenId'].touched && f['wardenId'].invalid" class="text-danger">
+                <div *ngIf="f['wardenId'].errors && f['wardenId'].errors['required']">wardenId is required.</div>
+                <div *ngIf="f['wardenId'].errors && f['wardenId'].errors['minlength']">Please enter valid Admin Id</div>
+                <div *ngIf="f['wardenId'].errors && f['wardenId'].errors['maxlength']">Please enter valid Admin Id</div>
+              </div>
+          </div>
+
+          <div class="col-md-12 mb-4">
+            <div class="inputs"> <label>Hostel</label>
+              <select class="form-select" [(ngModel)]="hostelS" aria-label="Default select example" formControlName="hostel">
+                <option *ngFor="let n of hostel" value="{{n}}">{{n}} </option>
+              </select> </div>
+          </div>
       </div>
-      <div class="col-md-2">
-      </div>
+
+      <div class="row mt-2">
+
+        <div class="col-md-12 mt-2">
+          <div class="inputs"> <label>Street</label>
+             <input class="form-control" type="text" placeholder="Door No. & Street Name"  formControlName="street"> </div>
+             <div *ngIf="f['street'].touched && f['street'].invalid" class="text-danger">
+              <div *ngIf="f['street'].errors && f['street'].errors['required']">street is required.</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['minlength']">Street name should be in min 5 char</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['maxlength']">Street name should be in max 40 char</div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="inputs"> <label>City</label>
+             <input class="form-control" type="text" placeholder="City"  formControlName="city"> </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="inputs"> <label>District</label>
+            <input class="form-control" type="text" placeholder="District" formControlName="district"> </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="inputs"> <label>State</label>
+            <input class="form-control" type="text" placeholder="State" formControlName="state"> </div>
+        </div>
+        <div class="col-md-6 mt-2">
+          <div class="inputs"> <label>Pincode</label>
+            <input class="form-control" type="text" maxlength="6" placeholder="Pincode" formControlName="pincode"> </div>
+            <div *ngIf="f['pincode'].touched && f['pincode'].invalid" class="text-danger">
+              <div *ngIf="f['pincode'].errors && f['pincode'].errors['required']">pincode is required.</div>
+              <div *ngIf="f['pincode'].errors && f['pincode'].errors['minlength']">please enter valid pincode</div>
+            </div>
+        </div>
+
+    </div>
+
+      <div class="mt-3 gap-2 d-flex justify-content-end">
+         <button class="px-3 btn btn-sm btn-outline-primary" type="button" (click)="onClear()">Cancel</button>
+        <button class="px-3 btn btn-sm btn-primary" type="submit" [disabled]="wardenService.form.invalid">Save</button> </div>
+      </form>
   </div>
 </div>

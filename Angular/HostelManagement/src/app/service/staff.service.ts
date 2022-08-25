@@ -18,17 +18,47 @@ export class StaffService {
   deleteStaffUrl : string;
 
 
-  staffForm !: FormGroup;
+  form !: FormGroup;
 
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
-    this.staffForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       id : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      gender : [''],
+      dateOfBirth:['',Validators.required],
+      age:[''],
+      bloodGrp: [''],
+
+
+      staffId : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(12)]],
       email :['',[Validators.required, Validators.email]],
-    password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
-    });
+      phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
+
+
+      password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+      confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+
+      status : [''],
+      hostel : [''],
+
+      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
+      city : [''],
+      district : [''],
+      state : [''],
+      pincode : ['',[Validators.required,Validators.minLength(6)]],
+
+      image : [''],
+      imagePath : [''],
+      updatedBy : [''],
+      updatedOn : [''],
+      dateOfEnrollment : ['']
+  },
+  {
+    validators: this.confirmingPassword("password", "confirmPassword")
+  }
+  );
 
     this.addStaffURL = 'http://localhost:8080/staff/addStaff';
     this.getStaffURL = 'http://localhost:8080/staff/getStaff';
@@ -44,16 +74,55 @@ export class StaffService {
   }
 
   initializeFormGroup() {
-    this.staffForm.setValue({
+    this.form.setValue({
       id : 0,
-      name :'',
-      email : '',
-      password : ''
+      name : '',
+      gender : '',
+      dateOfBirth:'',
+      age:'',
+      bloodGrp: '',
+
+      staffId : '',
+      phoneNo : '',
+      email :'',
+
+      password: '',
+      confirmPassword: '',
+
+      status : '',
+      hostel : '',
+
+      street : '',
+      city : '',
+      district : '',
+      state : '',
+      pincode : '',
+
+      image : '',
+      imagePath : '',
+      updatedBy : '',
+      updatedOn : '',
+      dateOfEnrollment : ''
     });
   }
 
+  confirmingPassword(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      let control = formGroup.controls[controlName];
+      let matchingControl = formGroup.controls[matchingControlName]
+      if (matchingControl.errors && !matchingControl.errors['confirmingPassword']) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmingPassword: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+  }
+}
+
   populateForm(staff : Staff) {
-    this.staffForm.setValue(staff);
+    this.form.setValue(staff);
   }
 
   addStaff(staff : Staff): Observable<Staff> {

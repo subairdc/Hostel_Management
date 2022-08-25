@@ -1,6 +1,5 @@
 export class Student {
   id : number;
-  orderNo : number;
   name : string;
   gender : string;
   dateOfBirth : string;
@@ -60,7 +59,6 @@ export class Student {
 
   constructor() {
     this.id =0;
-    this.orderNo =0;
     this.name = '';
     this.gender = '';
     this.dateOfBirth = '';

@@ -16,30 +16,48 @@ export class WardenService {
   getAllWardenURL : string;
   updateWardenUrl : string;
   deleteWardenUrl : string;
-  getWardenMaxOrderURL : string;
 
   form !: FormGroup;
-
-  MaxOrderNo: number =0;
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
     this.form = this.formBuilder.group({
       id : [''],
-      orderNo : [''],
-      wardenId : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
-      email :['',[Validators.required, Validators.email]],
       gender : [''],
-      dateOfBirth:[''],
-      phoneNo :[''],
+      dateOfBirth:['',Validators.required],
+      age:[''],
+      bloodGrp: [''],
+
+
+      wardenId : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(12)]],
+      email :['',[Validators.required, Validators.email]],
+      phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
+
+
       password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
-      photo : [''],
-      photoPath :[''],
-      updatedBy: [''],
-      updatedOn: ['']
-  });
+
+      status : [''],
+      hostel : [''],
+
+      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
+      city : [''],
+      district : [''],
+      state : [''],
+      pincode : ['',[Validators.required,Validators.minLength(6)]],
+
+      image : [''],
+      imagePath : [''],
+      updatedBy : [''],
+      updatedOn : [''],
+      dateOfEnrollment : ['']
+  },
+  {
+    validators: this.confirmingPassword("password", "confirmPassword")
+  }
+  );
+
 
     this.addWardenURL = 'http://localhost:8080/warden/addWarden';
     this.getWardenURL = 'http://localhost:8080/warden/getWardenById';
@@ -48,7 +66,6 @@ export class WardenService {
     this.getAllWardenURL = 'http://localhost:8080/warden/getAllWarden';
     this.updateWardenUrl = 'http://localhost:8080/warden/updateWarden';
     this.deleteWardenUrl = 'http://localhost:8080/warden/deleteWardenById';
-    this.getWardenMaxOrderURL = 'http://localhost:8080/warden/getMaxOrder';
    }
 
    ngOnInit(): void {
@@ -57,21 +74,50 @@ export class WardenService {
   initializeFormGroup() {
     this.form.setValue({
       id : 0,
-      orderNo : this.MaxOrderNo,
-      wardenId: '',
-      name :'',
-      email : '',
-      gender:'',
+      name : '',
+      gender : '',
       dateOfBirth:'',
-      phoneNo:'',
-      password : '',
-      confirmPassword : '',
-      photo : '',
-      photoPath : '',
+      age:'',
+      bloodGrp: '',
+
+      wardenId : '',
+      phoneNo : '',
+      email :'',
+
+      password: '',
+      confirmPassword: '',
+
+      status : '',
+      hostel : '',
+
+      street : '',
+      city : '',
+      district : '',
+      state : '',
+      pincode : '',
+
+      image : '',
+      imagePath : '',
       updatedBy : '',
-      updatedOn : ''
+      updatedOn : '',
+      dateOfEnrollment : ''
     });
   }
+
+  confirmingPassword(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      let control = formGroup.controls[controlName];
+      let matchingControl = formGroup.controls[matchingControlName]
+      if (matchingControl.errors && !matchingControl.errors['confirmingPassword']) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmingPassword: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+  }
+}
 
   populateForm(warden : Warden) {
     // let dateOfBirth: Date = new Date(warden.dateOfBirth);
@@ -107,10 +153,6 @@ export class WardenService {
 
   deleteWarden(warden : Warden) : Observable<Warden> {
     return this.http.delete<Warden>(this.deleteWardenUrl+'/'+warden.id);
-  }
-
-  getMaxOrderNo(): Observable<Warden> {
-    return this.http.get<Warden>(this.getWardenMaxOrderURL);
   }
 
   //Refresh grid Database

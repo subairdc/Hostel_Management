@@ -17,17 +17,18 @@ export class StudentService {
   updateStudentURL : string;
   deleteStudentURL : string;
 
+  addVerifiedStuMaleURL : string;
+  addVerifiedStuFemaleURL : string;
+
   getStudentMaxOrderURL : string;
 
   form !: FormGroup;
-
-  maxOrderNo : number =0;
+  editForm !: FormGroup;
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
     this.form = this.formBuilder.group({
       id : [''],
-      orderNo : [''],
       name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
       email :['',[Validators.required, Validators.email]],
       gender : [''],
@@ -70,6 +71,7 @@ export class StudentService {
       imagePath : [''],
       updatedBy : [''],
       updatedOn : [''],
+      dateOfEnrollment : ['']
   },
   {
     validators: this.confirmingPassword("password", "confirmPassword")
@@ -86,14 +88,15 @@ export class StudentService {
 
     this.getStudentMaxOrderURL = 'http://localhost:8080/student/getMaxOrder'
 
+    this.addVerifiedStuMaleURL = 'http://localhost:8080/student/addVerifiedStuMale';
+    this.addVerifiedStuFemaleURL = 'http://localhost:8080/student/addVerifiedStuFemale';
+
   }
 
   initializeFormGroup() {
     this.form.setValue({
       id : 0,
-      orderNo : this.maxOrderNo,
       name : '',
-      email :'',
       gender : '',
       dateOfBirth:'',
       age:'',
@@ -101,10 +104,11 @@ export class StudentService {
 
       degree : '',
       dept : '',
-      regNo : '',
       year : '',
       sem : '',
 
+      email :'',
+      regNo : '',
       password: '',
       confirmPassword: '',
 
@@ -133,7 +137,8 @@ export class StudentService {
       image : '',
       imagePath : '',
       updatedBy : '',
-      updatedOn : ''
+      updatedOn : '',
+      dateOfEnrollment : '',
     });
   }
 
@@ -186,10 +191,13 @@ export class StudentService {
     return this.http.delete<Student>(this.deleteStudentURL+'/'+student.id);
   }
 
-  getMaxOrderNo(): Observable<Student> {
-    return this.http.get<Student>(this.getStudentMaxOrderURL);
+  addVerifiedStuMale(student : Student): Observable<Student> {
+    return this.http.post<Student>(this.addVerifiedStuMaleURL,student);
   }
 
+  addVerifiedStuFemale(student : Student): Observable<Student> {
+    return this.http.post<Student>(this.addVerifiedStuFemaleURL,student);
+  }
   //Refresh grid Database
   private _listeners = new Subject<any>();
   listen() : Observable<any> {

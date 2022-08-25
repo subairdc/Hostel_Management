@@ -67,12 +67,6 @@ export class WardenManagementComponent implements OnInit {
   }
 
   onCreate() {
-
-    this.wardenService.getMaxOrderNo().subscribe(data => {
-      this.wardenService.MaxOrderNo = data.orderNo;
-      this.wardenService.initializeFormGroup();
-    })
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;

@@ -53,6 +53,7 @@ export class AdminSignupComponent implements OnInit {
     this.user.phoneNo = this.adminService.form.value['phoneNo'];
     this.user.email = this.adminService.form.value['email'];
     this.user.password = this.adminService.form.value['password'];
+    this.user.confirmPassword = this.adminService.form.value['confirmPassword'];
 
     this.user.status = this.adminService.form.value['status'];
 
@@ -67,11 +68,12 @@ export class AdminSignupComponent implements OnInit {
 
     this.authService.adminSignup(this.user).subscribe(res => {
       if(res == null) {
-        alert("Registration failed");
+        alert("User Already Exist(Email)");
         this.ngOnInit();
       }else {
         console.log("Registration successful");
-        alert("Registration successful");
+        this.adminService.form.reset();
+        this.notification.success("Student Registration Successful");
         this.route.navigate(['/adminLogin']);
       }
     }, err => {

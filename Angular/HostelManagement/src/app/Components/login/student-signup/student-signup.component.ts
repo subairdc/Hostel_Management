@@ -114,7 +114,7 @@ export class StudentSignupComponent implements OnInit {
 
     this.authService.studentSignup(this.user).subscribe(res => {
       if(res == null) {
-        alert("Registration failed");
+        alert("User Already Exist(Email)");
         this.ngOnInit();
       }else {
         alert("Registration successful");
