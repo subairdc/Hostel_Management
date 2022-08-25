@@ -64,6 +64,8 @@ public class Student {
 	private String updatedOn;
 	private String dateOfEnrollment;
 	
+	private String verify;
+	
 	
 	public Student() {
 		
@@ -76,7 +78,7 @@ public class Student {
 			String pincode, String fatherName, String fatherPhoneNo, String motherName, String motherPhoneNo,
 			String phoneNo, String guardianName, String guardianRelation, String guardianAddress,
 			String guardianPhoneNo, String image, String imagePath, String updatedBy, String updatedOn,
-			String dateOfEnrollment) {
+			String dateOfEnrollment, String verify) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -114,8 +116,8 @@ public class Student {
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 		this.dateOfEnrollment = dateOfEnrollment;
+		this.verify = verify;
 	}
-
 
 
 	public int getId() {
@@ -475,6 +477,16 @@ public class Student {
 
 	public void setDateOfEnrollment(String dateOfEnrollment) {
 		this.dateOfEnrollment = dateOfEnrollment;
+	}
+
+
+	public String getVerify() {
+		return verify;
+	}
+
+
+	public void setVerify(String verify) {
+		this.verify = verify;
 	}
 
 }

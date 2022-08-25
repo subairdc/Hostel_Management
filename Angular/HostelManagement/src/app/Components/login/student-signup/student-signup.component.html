@@ -9,7 +9,7 @@
         <div class="row ">
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label class="text-muted mandatory">Name</label>
-                <input class="form-control" type="text" placeholder="Name" name="name" formControlName="name"> </div>
+                <input class="form-control" maxlength="25" type="text" placeholder="Name" name="name" formControlName="name"> </div>
                 <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
                   <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
                   <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be min 4 char.</div>
@@ -19,7 +19,7 @@
 
           <div class="col-md-6 mt-2">
               <div class="inputs"> <label>Email</label>
-                <input class="form-control" type="text" placeholder="Email" name="email" formControlName="email"> </div>
+                <input class="form-control" maxlength="35" type="text" placeholder="Email" name="email" formControlName="email"> </div>
                 <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
                   <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
                   <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
@@ -80,10 +80,10 @@
           <div class=" col-md-2 mt-2">
             <div class="inputs"> <label>Age</label>
                <input class="form-control" type="number" placeholder="Age" formControlName="age"> </div>
-               <!-- <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
+               <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
                 <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
                 <div *ngIf="f['age'].errors && f['age'].errors['minlength']">Please enter valid age</div>
-              </div> -->
+              </div>
           </div>
 
           <div class="col-md-6 mb-4">

@@ -50,6 +50,8 @@ export class Student {
   updatedOn : string;
   dateOfEnrollment : string;
 
+  verify : string;
+
   // //office use
   // roomAllotted : string;
   // Floor : string; //Ground or first floor
@@ -106,6 +108,8 @@ export class Student {
     this.updatedBy = '';
     this.updatedOn = '';
     this.dateOfEnrollment = '';
+
+    this.verify = '';
 
     // //office use
     // roomAllotted = '';

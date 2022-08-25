@@ -27,6 +27,8 @@ export class Admin {
   updatedOn : string;
   dateOfEnrollment : string;
 
+  verify : string;
+
   constructor(){
     this.id = 0;
     this.name = '';
@@ -54,5 +56,7 @@ export class Admin {
     this.updatedBy = '';
     this.updatedOn = '';
     this.dateOfEnrollment = '';
+
+    this.verify = '';
   }
 }

@@ -47,6 +47,8 @@ public class Warden {
 	private String updatedOn;
 	private String dateOfEnrollment;
 	
+	private String verify;
+	
 	public Warden() {
 		super();
 	}
@@ -54,7 +56,7 @@ public class Warden {
 	public Warden(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String wardenId,
 			String phoneNo, String email, String password, String confirmPassword, String status, String hostel,
 			String street, String city, String district, String state, String pincode, String image, String imagePath,
-			String updatedBy, String updatedOn, String dateOfEnrollment) {
+			String updatedBy, String updatedOn, String dateOfEnrollment, String verify) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -79,6 +81,7 @@ public class Warden {
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 		this.dateOfEnrollment = dateOfEnrollment;
+		this.verify = verify;
 	}
 
 	public int getId() {
@@ -264,5 +267,13 @@ public class Warden {
 	public void setDateOfEnrollment(String dateOfEnrollment) {
 		this.dateOfEnrollment = dateOfEnrollment;
 	}
-	
+
+	public String getVerify() {
+		return verify;
+	}
+
+	public void setVerify(String verify) {
+		this.verify = verify;
+	}
+
 }

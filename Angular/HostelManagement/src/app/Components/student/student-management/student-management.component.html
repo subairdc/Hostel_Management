@@ -42,6 +42,11 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
       <mat-cell *matCellDef="let row">
+
+        <button mat-icon-button color="primary" title="View" (click)="onView(row)">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+
         <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
           <mat-icon>edit</mat-icon>
         </button>

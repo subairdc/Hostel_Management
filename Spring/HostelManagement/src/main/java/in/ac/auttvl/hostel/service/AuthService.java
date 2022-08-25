@@ -30,47 +30,25 @@ import in.ac.auttvl.hostel.repository.WardenRepository;
 @Service
 public class AuthService {
 	
-
+	@Autowired
+    private StudentRepository studentRepository;
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
-    private StaffMaleRepository staffMaleRepository;
-    @Autowired
-    private StaffFemaleRepository staffFemaleRepository;
-    
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private StudentMaleRepository studentMaleRepository;
-    @Autowired
-    private StudentFemaleRepository studentFemaleRepository; 
-    
-    @Autowired
     private WardenRepository wardenRepository;
     @Autowired
-    private WardenMaleRepository wardenMaleRepository;
-    @Autowired
-    private WardenFemaleRepository wardenFemaleRepository; 
-    @Autowired
-    
     private AdminRepository adminRepository;
+       
     
 //    private static final SecureRandom secureRandom = new SecureRandom();
 //    private static final Base64.Encoder base64enocder = Base64.getUrlEncoder();
 
 	public Staff staffRegister(Staff staff) {
-//      staff.setToken(generateToken());
 		
+		// Check if user with username exist or not
 		if(checkStaffExist(staff)== true)
 				return null;
-		 // Check if user with username exist or not
-		if(staff.getHostel().equalsIgnoreCase("Pothigai Boys Hostel")){
-   		 if(checkStaffMale(staff)== true)
-   			 return null;			
-		}else {
-   		if(checkStaffFemale(staff)== true)
-  			 return null;
-   	}
+//      staff.setToken(generateToken());
 
       return staffRepository.save(staff);
 	}
@@ -82,23 +60,7 @@ public class AuthService {
             return false;
         return true;
     }
-   
-   private boolean checkStaffMale(Staff staff) {
-   	StaffMale existingUser = staffMaleRepository.findByEmail(staff.getEmail());
-
-       if(existingUser == null)
-           return false;
-       return true;
-   }
-   
-   private boolean checkStaffFemale(Staff staff) {
-   	StaffFemale existingUser = staffFemaleRepository.findByEmail(staff.getEmail());
-
-       if(existingUser == null)
-           return false;
-       return true;
-   }
-   
+      
 //	private String generateToken() {
 //
 //        byte[] token = new byte[24];
@@ -108,26 +70,12 @@ public class AuthService {
 //    }
 
     public Staff staffLogin(Staff staff) {
-    	StaffMale existingUserM = staffMaleRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
-    	StaffFemale existingUserF = staffFemaleRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
-//          if(existingUser.getEmail().equals(student.getEmail()) &&
-//                  existingUser.getPassword().equals(student.getPassword())) {
-//              existingUser.setPassword("");
-//              return existingUser;
-//          }
-      	
-      	if(existingUserM != null) {
-      		existingUserM.setPassword("");
-      		Staff s = new Staff();
-      		s.setId(existingUserM.getId());
-      		 return s;
-      	}else if (existingUserF != null) {
-      		existingUserF.setPassword("");
-      		Staff s = new Staff();
-      		s.setId(existingUserF.getId());
-      		 return s;
+    	Staff existingUser = staffRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
+
+      	if((existingUser != null  && existingUser.getVerify().equalsIgnoreCase("Verified"))) {
+      		existingUser.setPassword("");
+      		 return existingUser;
       	}
-    	
         return null;
     }
     
@@ -135,17 +83,10 @@ public class AuthService {
     //Student Auth controller
     public Student studentRegister(Student student) {
 		
+    	// Check if user with username exist or not
     	if(checkStudentExist(student)== true)
 			return null;
-		 // Check if user with username exist or not
-    	if(student.getGender().equalsIgnoreCase("Male")){
-    		 if(checkStudentMale(student)== true)
-    			 return null;			
-    	}else {
-    		if(checkStudentFemale(student)== true)
-   			 return null;
-    	}
-
+    	
        return studentRepository.save(student);
 	}
     
@@ -157,44 +98,16 @@ public class AuthService {
         return true;
     }
     
-    private boolean checkStudentMale(Student student) {
-    	StudentMale existingUser = studentMaleRepository.findByEmail(student.getEmail());
-
-        if(existingUser == null)
-            return false;
-        return true;
-    }
     
-    private boolean checkStudentFemale(Student student) {
-    	StudentFemale existingUser = studentFemaleRepository.findByEmail(student.getEmail());
-
-        if(existingUser == null)
-            return false;
-        return true;
-    }
-
     public Student studentLogin(Student student) {
 
-    	StudentMale existingUserM = studentMaleRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
-    	StudentFemale existingUserF = studentFemaleRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
-//          if(existingUser.getEmail().equals(student.getEmail()) &&
-//                  existingUser.getPassword().equals(student.getPassword())) {
-//              existingUser.setPassword("");
-//              return existingUser;
-//          }
-      	
-      	if(existingUserM != null) {
-      		existingUserM.setPassword("");
-      		Student s = new Student();
-      		s.setId(existingUserM.getId());
-      		 return s;
-      	}else if (existingUserF != null) {
-      		existingUserF.setPassword("");
-      		Student s = new Student();
-      		s.setId(existingUserF.getId());
-      		 return s;
-      	}
+    	Student existingUser = studentRepository.findByEmailAndPassword(student.getEmail(), student.getPassword());
     	
+      	if((existingUser != null  && existingUser.getVerify().equalsIgnoreCase("Verified"))) {
+      		existingUser.setPassword("");
+      		 return existingUser;
+      	}
+      	
         return null;
     }
 
@@ -203,18 +116,10 @@ public class AuthService {
     //Warden Auth controller
     public Warden wardenRegister(Warden warden) {
     	
-    	
+    	 // Check if user with username exist or not
     	if(checkWardenExist(warden)== true)
 			return null;
-		 // Check if user with username exist or not
-    	if(warden.getHostel().equalsIgnoreCase("Pothigai Boys Hostel")){
-    		 if(checkWardenMale(warden)== true)
-    			 return null;			
-    	}else {
-    		if(checkWardenFemale(warden)== true)
-   			 return null;
-    	}
-
+		
        return wardenRepository.save(warden);
 	}
     
@@ -226,44 +131,15 @@ public class AuthService {
         return true;
     }
     
-    private boolean checkWardenMale(Warden warden) {
-    	WardenMale existingUser = wardenMaleRepository.findByEmail(warden.getEmail());
-
-        if(existingUser == null)
-            return false;
-        return true;
-    }
-    
-    private boolean checkWardenFemale(Warden warden) {
-    	WardenFemale existingUser = wardenFemaleRepository.findByEmail(warden.getEmail());
-
-        if(existingUser == null)
-            return false;
-        return true;
-    }
-
     public Warden wardenLogin(Warden warden) {
     	
-    	WardenMale existingUserM = wardenMaleRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
-    	WardenFemale existingUserF = wardenFemaleRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
-//          if(existingUser.getEmail().equals(student.getEmail()) &&
-//                  existingUser.getPassword().equals(student.getPassword())) {
-//              existingUser.setPassword("");
-//              return existingUser;
-//          }
-      	
-      	if(existingUserM != null) {
-      		existingUserM.setPassword("");
-      		Warden s = new Warden();
-      		s.setId(existingUserM.getId());
-      		 return s;
-      	}else if (existingUserF != null) {
-      		existingUserF.setPassword("");
-      		Warden s = new Warden();
-      		s.setId(existingUserF.getId());
-      		 return s;
-      	}
+    	Warden existingUser = wardenRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
     	
+      	if((existingUser != null  && existingUser.getVerify().equalsIgnoreCase("Verified"))) {
+      		existingUser.setPassword("");
+      		 return existingUser;
+      	}
+      	
         return null;
     }
     
@@ -271,7 +147,7 @@ public class AuthService {
     //Admin Auth controller
     public Admin adminRegister(Admin admin) {
 		
-		 // Check if user with username exist or not
+	// Check if user with username exist or not
        if(checkAdminExist(admin)== true)
 		return null;
 
@@ -316,7 +192,6 @@ public class AuthService {
 		}
 		return null;
 	}
-
 
 
 	public Student getStudentByRegNo(Student student) {

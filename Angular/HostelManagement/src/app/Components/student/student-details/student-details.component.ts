@@ -30,6 +30,7 @@ export class StudentDetailsComponent implements OnInit {
  }
 
  onClose() {
+  this.studentService.form.enable();
    this.studentService.form.reset();
    this.studentService.initializeFormGroup();
    this.dialogRef.close();
@@ -81,13 +82,15 @@ export class StudentDetailsComponent implements OnInit {
    studentDetails.guardianRelation = this.studentService.form.value['guardianRelation'];
    studentDetails.guardianAddress = this.studentService.form.value['guardianAddress'];
 
+   studentDetails.verify = this.studentService.form.value['verify'];
+
    console.log(studentDetails);
 
    this.studentService.updateStudent(studentDetails).subscribe(
      data => {
        this.studentService.form.reset();
        this.studentService.initializeFormGroup();
-       this.notification.success("Submitted Successfully")
+       this.notification.success("Updated Successfully")
        this.onClose();
      }
    )

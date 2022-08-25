@@ -17,43 +17,40 @@ export class StudentService {
   updateStudentURL : string;
   deleteStudentURL : string;
 
-  addVerifiedStuMaleURL : string;
-  addVerifiedStuFemaleURL : string;
-
-  getStudentMaxOrderURL : string;
+  // addVerifiedStuMaleURL : string;
+  // addVerifiedStuFemaleURL : string;
 
   form !: FormGroup;
-  editForm !: FormGroup;
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
     this.form = this.formBuilder.group({
       id : [''],
-      name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
+      name : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
       email :['',[Validators.required, Validators.email]],
-      gender : [''],
-      dateOfBirth:['',Validators.required],
-      age:[''],
-      bloodGrp: [''],
+      gender : ['',Validators.required],
+      dateOfBirth:['',[Validators.required,Validators.maxLength(10)]],
+      age:['',[Validators.required,Validators.maxLength(2)]],
+      bloodGrp: ['',Validators.required],
 
-      degree : [''],
-      dept : [''],
+      degree : ['',Validators.required],
+      dept : ['',Validators.required],
       regNo : ['',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]],
-      year : [''],
-      sem : [''],
+      year : ['',Validators.required],
+      sem : ['',Validators.required],
 
       password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
 
-      status : [''],
-      hostel : [''],
+      status : ['',Validators.required],
+      hostel : ['',Validators.required],
 
-      roomNo :[''],
+      roomNo :['',Validators.required],
 
-      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
-      city : [''],
-      district : [''],
-      state : [''],
+      street : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+      city : ['',Validators.required],
+      district : ['',Validators.required],
+      state : ['',Validators.required],
       pincode : ['',[Validators.required,Validators.minLength(6)]],
 
       fatherName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
@@ -71,7 +68,8 @@ export class StudentService {
       imagePath : [''],
       updatedBy : [''],
       updatedOn : [''],
-      dateOfEnrollment : ['']
+      dateOfEnrollment : [''],
+      verify : ['']
   },
   {
     validators: this.confirmingPassword("password", "confirmPassword")
@@ -86,10 +84,8 @@ export class StudentService {
     this.updateStudentURL = 'http://localhost:8080/student/updateStudent';
     this.deleteStudentURL = 'http://localhost:8080/student/deleteStudentById';
 
-    this.getStudentMaxOrderURL = 'http://localhost:8080/student/getMaxOrder'
-
-    this.addVerifiedStuMaleURL = 'http://localhost:8080/student/addVerifiedStuMale';
-    this.addVerifiedStuFemaleURL = 'http://localhost:8080/student/addVerifiedStuFemale';
+    // this.addVerifiedStuMaleURL = 'http://localhost:8080/student/addVerifiedStuMale';
+    // this.addVerifiedStuFemaleURL = 'http://localhost:8080/student/addVerifiedStuFemale';
 
   }
 
@@ -139,6 +135,8 @@ export class StudentService {
       updatedBy : '',
       updatedOn : '',
       dateOfEnrollment : '',
+
+      verify : ''
     });
   }
 
@@ -191,13 +189,13 @@ export class StudentService {
     return this.http.delete<Student>(this.deleteStudentURL+'/'+student.id);
   }
 
-  addVerifiedStuMale(student : Student): Observable<Student> {
-    return this.http.post<Student>(this.addVerifiedStuMaleURL,student);
-  }
+  // addVerifiedStuMale(student : Student): Observable<Student> {
+  //   return this.http.post<Student>(this.addVerifiedStuMaleURL,student);
+  // }
 
-  addVerifiedStuFemale(student : Student): Observable<Student> {
-    return this.http.post<Student>(this.addVerifiedStuFemaleURL,student);
-  }
+  // addVerifiedStuFemale(student : Student): Observable<Student> {
+  //   return this.http.post<Student>(this.addVerifiedStuFemaleURL,student);
+  // }
   //Refresh grid Database
   private _listeners = new Subject<any>();
   listen() : Observable<any> {

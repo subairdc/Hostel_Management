@@ -50,7 +50,7 @@ export class StudentLoginComponent implements OnInit {
     this.authService.studentLogin(this.user).subscribe(res => {
 
       if(res == null) {
-        alert("email or password is wrong");
+        alert("email or password is wrong or your id not verified");
         this.loginForm.reset();
         //this.ngOnInit();
       }else {

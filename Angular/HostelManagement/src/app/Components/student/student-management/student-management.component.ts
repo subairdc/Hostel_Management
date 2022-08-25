@@ -76,6 +76,17 @@ export class StudentManagementComponent implements OnInit {
     this._dialog.open(StudentDetailsComponent,dialogConfig);
   }
 
+  onView(row:any) {
+    this.studentService.populateForm(row);
+    this.studentService.form.disable();
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose =true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width ="70%";
+    this._dialog.open(StudentDetailsComponent,dialogConfig);
+  }
+
   onEdit(row:any) {
 
 
@@ -102,32 +113,48 @@ export class StudentManagementComponent implements OnInit {
 
   onApproved(row : any) {
 
-    this.dialogService.openConfirmDialog('Would you like to Approved and Delete from this table ' + row.name + ' data?').afterClosed().subscribe(res=> {
+    this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
       if(res) {
-        if(row.hostel == "Pothigai Boys Hostel") {
-          this.studentService.addVerifiedStuMale(row).subscribe(data => {
+          row.verify = "Verified";
+          this.studentService.updateStudent(row).subscribe(data => {
             this.studentService.form.reset();
             this.studentService.initializeFormGroup();
-            this._notification.success("Added Successfully");
-            this.flag = true;
+            this._notification.success("Student Verified Successfully");
           });
-        }else if (row.hostel == "Thamirabharani Girls Hostel") {
-          this.studentService.addVerifiedStuFemale(row).subscribe(data => {
-            this.studentService.form.reset();
-            this.studentService.initializeFormGroup();
-            this._notification.success("Added Successfully");
-            this.flag = true;
-        });
       }
-    }
-    this.studentService.deleteStudent(row).subscribe(data=> {
-      //this._notification.warn("Deleted Successfully");
-      this.studentService.filter('');
-      this.flag = false;
     });
-    });
-  }
+}
 
+
+  // onApproved(row : any) {
+
+  //   this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
+  //     if(res) {
+  //       if(row.hostel == "Pothigai Boys Hostel") {
+  //         this.studentService.addVerifiedStuMale(row).subscribe(data => {
+  //           this.studentService.form.reset();
+  //           this.studentService.initializeFormGroup();
+  //           this._notification.success("Added Successfully");
+  //           this.flag = true;
+  //         });
+  //       }else if (row.hostel == "Thamirabharani Girls Hostel") {
+  //         this.studentService.addVerifiedStuFemale(row).subscribe(data => {
+  //           this.studentService.form.reset();
+  //           this.studentService.initializeFormGroup();
+  //           this._notification.success("Added Successfully");
+  //           this.flag = true;
+  //       });
+  //     }
+  //   }
+  //   if(this.flag) {
+  //     this.studentService.deleteStudent(row).subscribe(data=> {
+  //       //this._notification.warn("Deleted Successfully");
+  //       this.studentService.filter('');
+  //       this.flag = false;
+  //     });
+  //   }
+  //   });
+  // }
 
   // addStudent() {
   //   console.log(this.studentDetail);
