@@ -96,11 +96,6 @@ public class StudentService {
 	    public List<Student> getAllStudents() {
 	        return studentRepository.findAll();
 	    }
-	    
-
-		public Student getByMaxOrder() {
-			return studentRepository.getByMaxOrder();
-		}
 
 //		public Student addVerifiedStudent(Student student) {
 //	    	Student existingStudent = studentRepository.findById(student.getId()).orElse(null);

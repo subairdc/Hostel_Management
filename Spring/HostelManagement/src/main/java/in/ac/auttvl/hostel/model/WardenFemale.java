@@ -6,8 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
-public class Admin {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class WardenFemale {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,12 +26,14 @@ public class Admin {
 	private int age;
 	private String bloodGrp;
 	
-	private String adminId;
+	private String wardenId;
 	private String phoneNo;
 	private String email;
 	private String password;
+	private String confirmPassword;
 	
 	private String status;
+	private String hostel;
 	
 	private String street;
 	private String city;
@@ -38,18 +47,14 @@ public class Admin {
 	private String updatedOn;
 	private String dateOfEnrollment;
 	
-	private String verify;
-
-		
-	public Admin() {
+	public WardenFemale() {
 		super();
 	}
 
-
-	public Admin(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String adminId,
-			String phoneNo, String email, String password, String status, String street, String city, String district,
-			String state, String pincode, String image, String imagePath, String updatedBy, String updatedOn,
-			String dateOfEnrollment, String verify) {
+	public WardenFemale(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String wardenId,
+			String phoneNo, String email, String password, String confirmPassword, String status, String hostel,
+			String street, String city, String district, String state, String pincode, String image, String imagePath,
+			String updatedBy, String updatedOn, String dateOfEnrollment) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -57,11 +62,13 @@ public class Admin {
 		this.dateOfBirth = dateOfBirth;
 		this.age = age;
 		this.bloodGrp = bloodGrp;
-		this.adminId = adminId;
+		this.wardenId = wardenId;
 		this.phoneNo = phoneNo;
 		this.email = email;
 		this.password = password;
+		this.confirmPassword = confirmPassword;
 		this.status = status;
+		this.hostel = hostel;
 		this.street = street;
 		this.city = city;
 		this.district = district;
@@ -72,228 +79,191 @@ public class Admin {
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 		this.dateOfEnrollment = dateOfEnrollment;
-		this.verify = verify;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getGender() {
 		return gender;
 	}
 
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
 
 	public int getAge() {
 		return age;
 	}
 
-
 	public void setAge(int age) {
 		this.age = age;
 	}
-
 
 	public String getBloodGrp() {
 		return bloodGrp;
 	}
 
-
 	public void setBloodGrp(String bloodGrp) {
 		this.bloodGrp = bloodGrp;
 	}
 
-
-	public String getAdminId() {
-		return adminId;
+	public String getWardenId() {
+		return wardenId;
 	}
 
-
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setWardenId(String wardenId) {
+		this.wardenId = wardenId;
 	}
-
 
 	public String getPhoneNo() {
 		return phoneNo;
 	}
 
-
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 
 	public String getStatus() {
 		return status;
 	}
 
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	public String getHostel() {
+		return hostel;
+	}
+
+	public void setHostel(String hostel) {
+		this.hostel = hostel;
+	}
 
 	public String getStreet() {
 		return street;
 	}
 
-
 	public void setStreet(String street) {
 		this.street = street;
 	}
-
 
 	public String getCity() {
 		return city;
 	}
 
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 
 	public String getDistrict() {
 		return district;
 	}
 
-
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
 
 	public String getState() {
 		return state;
 	}
 
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
 
 	public String getPincode() {
 		return pincode;
 	}
 
-
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-
 
 	public String getImage() {
 		return image;
 	}
 
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 
 	public String getImagePath() {
 		return imagePath;
 	}
 
-
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
 
 	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-
 
 	public String getUpdatedOn() {
 		return updatedOn;
 	}
 
-
 	public void setUpdatedOn(String updatedOn) {
 		this.updatedOn = updatedOn;
 	}
 
-
 	public String getDateOfEnrollment() {
 		return dateOfEnrollment;
 	}
-
 
 	public void setDateOfEnrollment(String dateOfEnrollment) {
 		this.dateOfEnrollment = dateOfEnrollment;
 	}
 
 
-	public String getVerify() {
-		return verify;
-	}
-
-
-	public void setVerify(String verify) {
-		this.verify = verify;
-	}
-	
-
-	}
+}

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.Staff;
+import in.ac.auttvl.hostel.model.StaffFemale;
+import in.ac.auttvl.hostel.model.StaffMale;
+import in.ac.auttvl.hostel.repository.StaffFemaleRepository;
+import in.ac.auttvl.hostel.repository.StaffMaleRepository;
 import in.ac.auttvl.hostel.repository.StaffRepository;
 
 @Service
@@ -13,6 +17,12 @@ public class StaffService {
 	
 	@Autowired
     private StaffRepository staffRepository;
+	
+	@Autowired
+    private StaffMaleRepository staffMaleRepository;
+	
+	@Autowired
+    private StaffFemaleRepository staffFemaleRepository;
 
     public Staff addStaff(Staff staff) {
         return staffRepository.save(staff);
@@ -61,6 +71,16 @@ public class StaffService {
     public List<Staff> getAllStaffs() {
         return staffRepository.findAll();
     }
+
+   //Verify Staff Service
+	public StaffMale addVerifiedStaffMale(StaffMale staffMale) {
+	
+		return staffMaleRepository.save(staffMale);
+	}
+
+	public StaffFemale addVerifiedStaffFemale(StaffFemale staffFemale) {
+		return staffFemaleRepository.save(staffFemale);
+	}
 
     
 }

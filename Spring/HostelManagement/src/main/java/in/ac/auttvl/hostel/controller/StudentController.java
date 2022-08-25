@@ -74,13 +74,6 @@ public class StudentController {
         return studentService.getAllStudents();
     }
     
-    
- //Get Student Max Order
-    @GetMapping("/getMaxOrder")
-    public  Student getMaxOrder() {
-        return studentService.getByMaxOrder();
-    }
-    
  // Add new  verified student
     @PostMapping("/addVerifiedStuMale")
     public StudentMale addVerifiedStuMale(@RequestBody StudentMale studentMale) {

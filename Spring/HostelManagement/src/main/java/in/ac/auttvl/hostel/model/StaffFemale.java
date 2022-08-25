@@ -6,8 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
-public class Admin {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class StaffFemale {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,12 +26,14 @@ public class Admin {
 	private int age;
 	private String bloodGrp;
 	
-	private String adminId;
+	private String staffId;
 	private String phoneNo;
 	private String email;
 	private String password;
+	private String confirmPassword;
 	
 	private String status;
+	private String hostel;
 	
 	private String street;
 	private String city;
@@ -37,19 +46,16 @@ public class Admin {
 	private String updatedBy;
 	private String updatedOn;
 	private String dateOfEnrollment;
-	
-	private String verify;
 
+	
+	public StaffFemale(){
 		
-	public Admin() {
-		super();
 	}
 
-
-	public Admin(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String adminId,
-			String phoneNo, String email, String password, String status, String street, String city, String district,
-			String state, String pincode, String image, String imagePath, String updatedBy, String updatedOn,
-			String dateOfEnrollment, String verify) {
+	public StaffFemale(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String staffId,
+			String phoneNo, String email, String password, String confirmPassword, String status, String hostel,
+			String street, String city, String district, String state, String pincode, String image, String imagePath,
+			String updatedBy, String updatedOn, String dateOfEnrollment) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -57,11 +63,13 @@ public class Admin {
 		this.dateOfBirth = dateOfBirth;
 		this.age = age;
 		this.bloodGrp = bloodGrp;
-		this.adminId = adminId;
+		this.staffId = staffId;
 		this.phoneNo = phoneNo;
 		this.email = email;
 		this.password = password;
+		this.confirmPassword = confirmPassword;
 		this.status = status;
+		this.hostel = hostel;
 		this.street = street;
 		this.city = city;
 		this.district = district;
@@ -72,7 +80,6 @@ public class Admin {
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 		this.dateOfEnrollment = dateOfEnrollment;
-		this.verify = verify;
 	}
 
 
@@ -136,13 +143,13 @@ public class Admin {
 	}
 
 
-	public String getAdminId() {
-		return adminId;
+	public String getStaffId() {
+		return staffId;
 	}
 
 
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setStaffId(String staffId) {
+		this.staffId = staffId;
 	}
 
 
@@ -176,6 +183,16 @@ public class Admin {
 	}
 
 
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+
 	public String getStatus() {
 		return status;
 	}
@@ -183,6 +200,16 @@ public class Admin {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+	public String getHostel() {
+		return hostel;
+	}
+
+
+	public void setHostel(String hostel) {
+		this.hostel = hostel;
 	}
 
 
@@ -284,16 +311,5 @@ public class Admin {
 	public void setDateOfEnrollment(String dateOfEnrollment) {
 		this.dateOfEnrollment = dateOfEnrollment;
 	}
-
-
-	public String getVerify() {
-		return verify;
-	}
-
-
-	public void setVerify(String verify) {
-		this.verify = verify;
-	}
 	
-
-	}
+}

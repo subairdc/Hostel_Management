@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.ac.auttvl.hostel.model.Staff;
+import in.ac.auttvl.hostel.model.StaffFemale;
+import in.ac.auttvl.hostel.model.StaffMale;
+import in.ac.auttvl.hostel.model.StudentFemale;
+import in.ac.auttvl.hostel.model.StudentMale;
 import in.ac.auttvl.hostel.service.StaffService;
 
 @RestController
@@ -70,6 +74,18 @@ public class StaffController {
     @GetMapping("/getAllStaff")
     public List<Staff> getAllStaff() {
         return staffService.getAllStaffs();
+    }
+    
+    // Add new  verified staff
+    @PostMapping("/addVerifiedStaffMale")
+    public StaffMale addVerifiedStaffMale(@RequestBody StaffMale staffMale) {
+        return staffService.addVerifiedStaffMale(staffMale);
+    }
+    
+ // Add new  verified staff
+    @PostMapping("/addVerifiedStaffFemale")
+    public StaffFemale addVerifiedStaffFemale(@RequestBody StaffFemale staffFemale) {
+        return staffService.addVerifiedStaffFemale(staffFemale);
     }
 }
 

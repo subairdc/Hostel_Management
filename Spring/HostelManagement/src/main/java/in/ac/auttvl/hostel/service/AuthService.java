@@ -8,15 +8,23 @@ import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.Admin;
 import in.ac.auttvl.hostel.model.Staff;
+import in.ac.auttvl.hostel.model.StaffFemale;
+import in.ac.auttvl.hostel.model.StaffMale;
 import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.model.StudentFemale;
 import in.ac.auttvl.hostel.model.StudentMale;
 import in.ac.auttvl.hostel.model.Warden;
+import in.ac.auttvl.hostel.model.WardenFemale;
+import in.ac.auttvl.hostel.model.WardenMale;
 import in.ac.auttvl.hostel.repository.AdminRepository;
+import in.ac.auttvl.hostel.repository.StaffFemaleRepository;
+import in.ac.auttvl.hostel.repository.StaffMaleRepository;
 import in.ac.auttvl.hostel.repository.StaffRepository;
 import in.ac.auttvl.hostel.repository.StudentFemaleRepository;
 import in.ac.auttvl.hostel.repository.StudentMaleRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
+import in.ac.auttvl.hostel.repository.WardenFemaleRepository;
+import in.ac.auttvl.hostel.repository.WardenMaleRepository;
 import in.ac.auttvl.hostel.repository.WardenRepository;
 
 @Service
@@ -26,32 +34,71 @@ public class AuthService {
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
+    private StaffMaleRepository staffMaleRepository;
+    @Autowired
+    private StaffFemaleRepository staffFemaleRepository;
+    
+    @Autowired
     private StudentRepository studentRepository;
     @Autowired
     private StudentMaleRepository studentMaleRepository;
     @Autowired
     private StudentFemaleRepository studentFemaleRepository; 
+    
     @Autowired
     private WardenRepository wardenRepository;
     @Autowired
+    private WardenMaleRepository wardenMaleRepository;
+    @Autowired
+    private WardenFemaleRepository wardenFemaleRepository; 
+    @Autowired
+    
     private AdminRepository adminRepository;
     
 //    private static final SecureRandom secureRandom = new SecureRandom();
 //    private static final Base64.Encoder base64enocder = Base64.getUrlEncoder();
 
 	public Staff staffRegister(Staff staff) {
+//      staff.setToken(generateToken());
 		
+		if(checkStaffExist(staff)== true)
+				return null;
 		 // Check if user with username exist or not
-        if(checkStaffExist(staff)== true)
-		return null;
-        
-//        staff.setToken(generateToken());
+		if(staff.getGender().equalsIgnoreCase("Male")){
+   		 if(checkStaffMale(staff)== true)
+   			 return null;			
+		}else {
+   		if(checkStaffFemale(staff)== true)
+  			 return null;
+   	}
 
-        return staffRepository.save(staff);
+      return staffRepository.save(staff);
 	}
-	
-	
-	
+
+	private boolean checkStaffExist(Staff staff) {
+    	Staff existingUser = staffRepository.findByEmail(staff.getEmail());
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+   
+   private boolean checkStaffMale(Staff staff) {
+   	StaffMale existingUser = staffMaleRepository.findByEmail(staff.getEmail());
+
+       if(existingUser == null)
+           return false;
+       return true;
+   }
+   
+   private boolean checkStaffFemale(Staff staff) {
+   	StaffFemale existingUser = staffFemaleRepository.findByEmail(staff.getEmail());
+
+       if(existingUser == null)
+           return false;
+       return true;
+   }
+   
 //	private String generateToken() {
 //
 //        byte[] token = new byte[24];
@@ -60,36 +107,36 @@ public class AuthService {
 //
 //    }
 
-    private boolean checkStaffExist(Staff staff) {
-    	Staff existingUser = staffRepository.findByEmail(staff.getEmail());
-
-        if(existingUser == null)
-            return false;
-        return true;
-    }
-
     public Staff staffLogin(Staff staff) {
-        Staff existingUser = staffRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
-
-//        if(existingUser.getEmail().equals(staff.getEmail()) &&
-//                existingUser.getPassword().equals(staff.getPassword())) {
-//            existingUser.setPassword("");
-//            return existingUser;
-//        }
-        
-        if(existingUser != null) {
-    		existingUser.setPassword("");
-    		 return existingUser;
-    	}
-
+    	StaffMale existingUserM = staffMaleRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
+    	StaffFemale existingUserF = staffFemaleRepository.findByEmailAndPassword(staff.getEmail(), staff.getPassword());
+//          if(existingUser.getEmail().equals(student.getEmail()) &&
+//                  existingUser.getPassword().equals(student.getPassword())) {
+//              existingUser.setPassword("");
+//              return existingUser;
+//          }
+      	
+      	if(existingUserM != null) {
+      		existingUserM.setPassword("");
+      		Staff s = new Staff();
+      		s.setId(existingUserM.getId());
+      		 return s;
+      	}else if (existingUserF != null) {
+      		existingUserF.setPassword("");
+      		Staff s = new Staff();
+      		s.setId(existingUserF.getId());
+      		 return s;
+      	}
+    	
         return null;
-
     }
     
     
     //Student Auth controller
     public Student studentRegister(Student student) {
 		
+    	if(checkStudentExist(student)== true)
+			return null;
 		 // Check if user with username exist or not
     	if(student.getGender().equalsIgnoreCase("Male")){
     		 if(checkStudentMale(student)== true)
@@ -98,11 +145,17 @@ public class AuthService {
     		if(checkStudentFemale(student)== true)
    			 return null;
     	}
-    		
-      
 
        return studentRepository.save(student);
 	}
+    
+    private boolean checkStudentExist(Student student) {
+    	Student existingUser = studentRepository.findByEmail(student.getEmail());
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
     
     private boolean checkStudentMale(Student student) {
     	StudentMale existingUser = studentMaleRepository.findByEmail(student.getEmail());
@@ -143,17 +196,24 @@ public class AuthService {
       	}
     	
         return null;
-
     }
 
     
     
     //Warden Auth controller
     public Warden wardenRegister(Warden warden) {
-		
+    	
+    	
+    	if(checkWardenExist(warden)== true)
+			return null;
 		 // Check if user with username exist or not
-       if(checkWardenExist(warden)== true)
-		return null;
+    	if(warden.getGender().equalsIgnoreCase("Male")){
+    		 if(checkWardenMale(warden)== true)
+    			 return null;			
+    	}else {
+    		if(checkWardenFemale(warden)== true)
+   			 return null;
+    	}
 
        return wardenRepository.save(warden);
 	}
@@ -165,23 +225,46 @@ public class AuthService {
             return false;
         return true;
     }
+    
+    private boolean checkWardenMale(Warden warden) {
+    	WardenMale existingUser = wardenMaleRepository.findByEmail(warden.getEmail());
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
+    
+    private boolean checkWardenFemale(Warden warden) {
+    	WardenFemale existingUser = wardenFemaleRepository.findByEmail(warden.getEmail());
+
+        if(existingUser == null)
+            return false;
+        return true;
+    }
 
     public Warden wardenLogin(Warden warden) {
-    	Warden existingUser = wardenRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
-
-//        if(existingUser.getEmail().equals(warden.getEmail()) &&
-//                existingUser.getPassword().equals(warden.getPassword())) {
-//            existingUser.setPassword("");
-//            return existingUser;
-//        }
     	
-    	if(existingUser != null) {
-    		existingUser.setPassword("");
-    		 return existingUser;
-    	}
-
+    	WardenMale existingUserM = wardenMaleRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
+    	WardenFemale existingUserF = wardenFemaleRepository.findByEmailAndPassword(warden.getEmail(), warden.getPassword());
+//          if(existingUser.getEmail().equals(student.getEmail()) &&
+//                  existingUser.getPassword().equals(student.getPassword())) {
+//              existingUser.setPassword("");
+//              return existingUser;
+//          }
+      	
+      	if(existingUserM != null) {
+      		existingUserM.setPassword("");
+      		Warden s = new Warden();
+      		s.setId(existingUserM.getId());
+      		 return s;
+      	}else if (existingUserF != null) {
+      		existingUserF.setPassword("");
+      		Warden s = new Warden();
+      		s.setId(existingUserF.getId());
+      		 return s;
+      	}
+    	
         return null;
-
     }
     
     
@@ -210,9 +293,9 @@ public class AuthService {
 //                existingUser.getName().equals(admin.getName())) {
 //            existingUser.setPassword("");
 //            return existingUser;
-//        }
+//        }student.getGender().equalsIgnoreCase("Male")
     	
-    	if(existingUser != null) {
+    	if(existingUser != null  && existingUser.getVerify().equalsIgnoreCase("Verified")) {
     		existingUser.setPassword("");
     		 return existingUser;
     	}
@@ -221,6 +304,8 @@ public class AuthService {
         return null;
 
     }
+    
+// forget Password
 
 	public Student getStudentByEmailAndRegNo(Student student) {
 		
