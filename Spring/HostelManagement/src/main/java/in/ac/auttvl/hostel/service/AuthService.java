@@ -64,7 +64,7 @@ public class AuthService {
 		if(checkStaffExist(staff)== true)
 				return null;
 		 // Check if user with username exist or not
-		if(staff.getGender().equalsIgnoreCase("Male")){
+		if(staff.getHostel().equalsIgnoreCase("Pothigai Boys Hostel")){
    		 if(checkStaffMale(staff)== true)
    			 return null;			
 		}else {
@@ -207,7 +207,7 @@ public class AuthService {
     	if(checkWardenExist(warden)== true)
 			return null;
 		 // Check if user with username exist or not
-    	if(warden.getGender().equalsIgnoreCase("Male")){
+    	if(warden.getHostel().equalsIgnoreCase("Pothigai Boys Hostel")){
     		 if(checkWardenMale(warden)== true)
     			 return null;			
     	}else {
