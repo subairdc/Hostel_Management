@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Warden } from 'src/app/model/warden';
 import { NotificationService } from 'src/app/service/notification.service';
 import { WardenService } from 'src/app/service/warden.service';
@@ -20,12 +20,31 @@ export class WardenDetailsComponent implements OnInit {
   orderNo: string='';
   gender!: any[];
 
-  constructor(private route : Router, public wardenService : WardenService,
+  id : number=0;
+  user : Warden = new Warden();
+
+  constructor(private router : Router, private route: ActivatedRoute, public wardenService : WardenService,
     public dialogRef : MatDialogRef<WardenDetailsComponent>, public notification : NotificationService,
     @Inject(MAT_DIALOG_DATA) public data:any) { }
 
- ngOnInit(): void {
- }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getWarden();
+  }
+
+  private getWarden() {
+    this.wardenService.getWardenById(this.id).subscribe(data => {
+      this.user = data;
+      console.log(this.user.name);
+    //this.wardenService.form.value['name'] = this.user.name;
+    console.log(this.wardenService.form.value['name']);
+    console.log(this.user.name);
+    })
+  }
+
+  get f(){
+    return this.wardenService.form.controls;
+  }
 
  onClose() {
    this.wardenService.form.reset();
@@ -45,16 +64,16 @@ export class WardenDetailsComponent implements OnInit {
    wardenDetails.name = this.wardenService.form.value['name'];
    wardenDetails.email = this.wardenService.form.value['email'];
    wardenDetails.password = this.wardenService.form.value['password'];
-   wardenDetails.orderNo = this.wardenService.form.value['orderNo'];
 
-   this.wardenService.updateWarden(wardenDetails).subscribe(
-     data => {
-       this.wardenService.form.reset();
-       this.wardenService.initializeFormGroup();
-       this.notification.success("Submitted Successfully")
-       this.onClose();
-     }
-   )
+   console.log(wardenDetails);
+  //  this.wardenService.updateWarden(wardenDetails).subscribe(
+  //    data => {
+  //      this.wardenService.form.reset();
+  //      this.wardenService.initializeFormGroup();
+  //      this.notification.success("Submitted Successfully")
+  //      this.onClose();
+  //    }
+  //  )
  }
 
  fileChangeEvent(fileInput : any) {
@@ -106,7 +125,7 @@ export class WardenDetailsComponent implements OnInit {
 
  logout() {
    localStorage.removeItem("token");
-   this.route.navigate(['/staffLogin']);
+   this.router.navigate(['/staffLogin']);
  }
 
 }

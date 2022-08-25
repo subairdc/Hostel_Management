@@ -1,3 +1,4 @@
+<div class="container-fuild" style="margin:15px;">
 <mat-toolbar class="top-menu" style="margin-top: 10px;">
   <span>Warden Details:</span>
   <span>&nbsp;<mat-label style="color:blue;">{{orderNo}}</mat-label></span>
@@ -14,28 +15,26 @@
         <div class="controllers-container">
           <input type="hidden" formControlName="id">
           <input type="hidden" formControlName="photo">
-          <mat-form-field>
-            <input matInput formControlName="orderNo" placeholder="order No" autocomplete="off">
-          </mat-form-field>
+
 
           <mat-form-field>
-            <input matInput formControlName="name" placeholder="Name" autocomplete="off">
-            <mat-error *ngIf="wardenService.form.controls['name'].touched && wardenService.form.controls['name'].invalid" class="text-danger">
-              <div *ngIf="wardenService.form.controls['name'].errors && wardenService.form.controls['name'].errors['required']">Name is required.</div>
-              <div *ngIf="wardenService.form.controls['name'].errors && wardenService.form.controls['name'].errors['minlength']">Name should be in min 4 char</div>
+            <input matInput formControlName="name" [ngModel]="user.name" placeholder="Name" autocomplete="off">
+            <mat-error *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+              <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be in min 4 char</div>
             </mat-error>
             </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="email" placeholder="email" autocomplete="off">
-            <mat-error *ngIf="wardenService.form.controls['email'].touched && wardenService.form.controls['email'].invalid" class="text-danger">
-              <div *ngIf="wardenService.form.controls['email'].errors && wardenService.form.controls['email'].errors['required']">Email is required.</div>
-              <div *ngIf="wardenService.form.controls['email'].errors && wardenService.form.controls['email'].errors['email']">Please, enter valid email address.</div>
+            <input matInput formControlName="email" [ngModel]="user.email" placeholder="email" autocomplete="off">
+            <mat-error *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+              <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+              <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-select matInput formControlName="gender" placeholder="Select Gender">
+            <mat-select matInput formControlName="gender" [ngModel]="user.gender" placeholder="Select Gender">
               <mat-option value="Male">Male</mat-option>
               <mat-option value="Female">Female</mat-option>
               <mat-option value="Others">Others</mat-option>
@@ -43,11 +42,11 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput type="date" formControlName="dateOfBirth" placeholder="Date Of Birth" autocomplete="off">
+            <input matInput type="date" formControlName="dateOfBirth" [ngModel]="user.dateOfBirth" placeholder="Date Of Birth" autocomplete="off">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="phoneNo" placeholder="phone No." autocomplete="off">
+            <input matInput formControlName="phoneNo" [ngModel]="user.phoneNo" placeholder="phone No." autocomplete="off">
           </mat-form-field>
 
         </div>
@@ -56,7 +55,8 @@
         <div class="controllers-container">
           <div class="add-top-padding" >
             <mat-form-field>
-              <input matInput formControlName="password" placeholder="password" autocomplete="off">
+              <input matInput formControlName="password" [ngModel]="user.password" placeholder="password" autocomplete="off">
+              <mat-icon matSuffix>remove_red_eye</mat-icon>
             </mat-form-field>
 
             <mat-form-field>
@@ -82,7 +82,7 @@
 
           </div>
           <mat-form-field>
-            <input matInput formControlName="photoPath" placeholder="Image" autocomplete="off">
+            <input matInput formControlName="photoPath" [ngModel]="user.imagePath" placeholder="Image" autocomplete="off">
           </mat-form-field>
 
         </div>
@@ -99,3 +99,4 @@
     </mat-toolbar>
 
   </form>
+</div>

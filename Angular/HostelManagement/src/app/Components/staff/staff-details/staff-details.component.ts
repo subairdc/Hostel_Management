@@ -19,28 +19,32 @@ export class StaffDetailsComponent implements OnInit {
  ngOnInit(): void {
  }
 
+ get f() {
+  return this.staffService.form.controls
+ }
+
  onClose() {
-   this.staffService.staffForm.reset();
+   this.staffService.form.reset();
    this.staffService.initializeFormGroup();
    this.dialogRef.close();
    this.staffService.filter('');
  }
 
  onClear() {
-   this.staffService.staffForm.reset();
+   this.staffService.form.reset();
    this.staffService.initializeFormGroup();
  }
 
  onSubmit() {
    var staffDetails = new Staff;
-   staffDetails.id = this.staffService.staffForm.value['id'];
-   staffDetails.name = this.staffService.staffForm.value['name'];
-   staffDetails.email = this.staffService.staffForm.value['email'];
-   staffDetails.password = this.staffService.staffForm.value['password'];
+   staffDetails.id = this.staffService.form.value['id'];
+   staffDetails.name = this.staffService.form.value['name'];
+   staffDetails.email = this.staffService.form.value['email'];
+   staffDetails.password = this.staffService.form.value['password'];
 
    this.staffService.updateStaff(staffDetails).subscribe(
      data => {
-       this.staffService.staffForm.reset();
+       this.staffService.form.reset();
        this.staffService.initializeFormGroup();
        this.notification.success("Submitted Successfully")
        this.onClose();
