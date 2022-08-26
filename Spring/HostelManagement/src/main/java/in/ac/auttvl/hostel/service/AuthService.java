@@ -169,7 +169,7 @@ public class AuthService {
 
     }
     
-// forget Password
+// forget Password     Student
 
 	public Student getStudentByEmailAndRegNo(Student student) {
 		
@@ -190,4 +190,73 @@ public class AuthService {
 		}
 		return null;
 	}
+	
+// forget Password         Staff
+
+	public Staff getStaffByEmailAndStaffId(Staff staff) {
+		
+		Staff existingUser = staffRepository.findByEmailAndStaffId(staff.getEmail(), staff.getStaffId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+
+	public Staff getStaffByStaffId(Staff staff) {
+		
+		Staff existingUser = staffRepository.findByStaffId(staff.getStaffId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+
+// forget Password         Warden
+	
+	public Warden getWardenByEmailAndWardenId(Warden warden) {
+
+		Warden existingUser = wardenRepository.findByEmailAndWardenId(warden.getEmail(), warden.getWardenId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+
+	public Warden getWardenByWardenId(Warden warden) {
+
+		Warden existingUser = wardenRepository.findByWardenId(warden.getWardenId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+	
+// forget Password         Admin
+
+	public Admin getAdminByEmailAndAdminId(Admin admin) {
+
+		Admin existingUser = adminRepository.findByEmailAndAdminId(admin.getEmail(), admin.getAdminId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+
+	public Admin getAdminByAdminId(Admin admin) {
+
+		Admin existingUser = adminRepository.findByAdminId(admin.getAdminId());
+		
+		if(existingUser!=null) {
+			return existingUser;
+		}
+		return null;
+	}
+	
+
+	
 }

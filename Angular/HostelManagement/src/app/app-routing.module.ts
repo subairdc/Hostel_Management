@@ -12,7 +12,6 @@ import { StaffLoginComponent } from './Components/login/staff-login/staff-login.
 import { StaffSignupComponent } from './Components/login/staff-signup/staff-signup.component';
 import { StudentLoginComponent } from './Components/login/student-login/student-login.component';
 import { StudentSignupComponent } from './Components/login/student-signup/student-signup.component';
-import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { WardenLoginComponent } from './Components/login/warden-login/warden-login.component';
 import { WardenSignupComponent } from './Components/login/warden-signup/warden-signup.component';
 import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
@@ -30,6 +29,10 @@ import { WardenDetailsComponent } from './Components/warden/warden-details/warde
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
 import { StudentDetailsComponent } from './Components/student/student-details/student-details.component';
 import { LeaveFormManagementComponent } from './Components/leaveForm/leave-form-management/leave-form-management.component';
+import { StudentForgetPasswordComponent } from './Components/login/student-forget-password/student-forget-password.component';
+import { StaffForgetPasswordComponent } from './Components/login/staff-forget-password/staff-forget-password.component';
+import { WardenForgetPasswordComponent } from './Components/login/warden-forget-password/warden-forget-password.component';
+import { AdminForgetPasswordComponent } from './Components/login/admin-forget-password/admin-forget-password.component';
 
 const routes: Routes = [
   { path:'' , component: StudentLoginComponent },
@@ -43,8 +46,10 @@ const routes: Routes = [
   { path:'staffSignup' , component: StaffSignupComponent },
   { path:'wardenSignup' , component: WardenSignupComponent },
 
-  { path:'StuForgetPassword', component: ForgetPasswordComponent},
-
+  { path:'stuForgetPassword', component: StudentForgetPasswordComponent},
+  { path:'staffForgetPassword', component: StaffForgetPasswordComponent},
+  { path:'wardenForgetPassword', component: WardenForgetPasswordComponent},
+  { path:'adminForgetPassword', component: AdminForgetPasswordComponent},
 
   { path:'studentHomepage/:id' , component: StudentHomepageComponent,
          children:

@@ -20,4 +20,6 @@ public interface WardenRepository extends JpaRepository<Warden, Integer> {
 
 	Warden findByWardenId(String id);
 
+	Warden findByEmailAndWardenId(String email, String wardenId);
+
 }

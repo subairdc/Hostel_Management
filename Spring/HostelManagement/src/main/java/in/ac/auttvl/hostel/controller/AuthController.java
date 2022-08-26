@@ -80,7 +80,7 @@ public class AuthController {
 	        return authService.adminLogin(admin);
 	    }
 	    
-	 // Get Password by Email and regNo
+	 // Get Password by Email and regNo      Student
 	    @PostMapping("/stuForgetPassword")
 	    public  Student stuForgetPassword(@RequestBody Student student) {
 	        return  authService.getStudentByEmailAndRegNo(student);
@@ -91,4 +91,41 @@ public class AuthController {
 	    public  Student stuForgetEmail(@RequestBody Student student) {
 	        return  authService.getStudentByRegNo(student);
 	    }
+	    
+	 // Get Password by Email and regNo         Staff
+	    @PostMapping("/staffForgetPassword")
+	    public  Staff staffForgetPassword(@RequestBody Staff staff) {
+	        return  authService.getStaffByEmailAndStaffId(staff);
+	    }
+	    
+	 // Get student by regNo
+	    @PostMapping("/staffForgetEmail")
+	    public  Staff stuForgetEmail(@RequestBody Staff staff) {
+	        return  authService.getStaffByStaffId(staff);
+	    }
+	    
+	 // Get Password by Email and regNo           Warden
+	    @PostMapping("/wardenForgetPassword")
+	    public  Warden wardenForgetPassword(@RequestBody Warden warden) {
+	        return  authService.getWardenByEmailAndWardenId(warden);
+	    }
+	    
+	 // Get student by regNo
+	    @PostMapping("/wardenForgetEmail")
+	    public  Warden wardenForgetEmail(@RequestBody Warden warden) {
+	        return  authService.getWardenByWardenId(warden);
+	    }
+	    
+	 // Get Password by Email and regNo             Admin
+	    @PostMapping("/adminForgetPassword")
+	    public  Admin adminForgetPassword(@RequestBody Admin admin) {
+	        return  authService.getAdminByEmailAndAdminId(admin);
+	    }
+	    
+	 // Get student by regNo
+	    @PostMapping("/adminForgetEmail")
+	    public  Admin adminForgetEmail(@RequestBody Admin admin) {
+	        return  authService.getAdminByAdminId(admin);
+	    }    
+	    
 }

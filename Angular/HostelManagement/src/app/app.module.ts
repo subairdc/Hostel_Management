@@ -45,11 +45,14 @@ import { DialogBoxService } from './service/dialog-box.service';
 import { AdminDetailsComponent } from './Components/admin/admin-details/admin-details.component';
 import { AdminManagementComponent } from './Components/admin/admin-management/admin-management.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
 import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
 import { LeaveFormManagementComponent } from './Components/leaveForm/leave-form-management/leave-form-management.component';
 import { LeaveFormVerifyComponent } from './Components/leaveForm/leave-form-verify/leave-form-verify.component';
+import { AdminForgetPasswordComponent } from './Components/login/admin-forget-password/admin-forget-password.component';
+import { StaffForgetPasswordComponent } from './Components/login/staff-forget-password/staff-forget-password.component';
+import { WardenForgetPasswordComponent } from './Components/login/warden-forget-password/warden-forget-password.component';
+import { StudentForgetPasswordComponent } from './Components/login/student-forget-password/student-forget-password.component';
 
 @NgModule({
   declarations: [
@@ -83,11 +86,14 @@ import { LeaveFormVerifyComponent } from './Components/leaveForm/leave-form-veri
     WardenDetailsComponent,
     AdminDetailsComponent,
     AdminManagementComponent,
-    ForgetPasswordComponent,
     RoomManagementComponent,
     RoomDetailsComponent,
     LeaveFormManagementComponent,
-    LeaveFormVerifyComponent
+    LeaveFormVerifyComponent,
+    AdminForgetPasswordComponent,
+    StaffForgetPasswordComponent,
+    WardenForgetPasswordComponent,
+    StudentForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
