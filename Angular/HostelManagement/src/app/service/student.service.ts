@@ -27,7 +27,6 @@ export class StudentService {
     this.form = this.formBuilder.group({
       id : [''],
       name : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
-      email :['',[Validators.required, Validators.email]],
       gender : ['',Validators.required],
       dateOfBirth:['',[Validators.required,Validators.maxLength(10)]],
       age:['',[Validators.required,Validators.maxLength(2)]],
@@ -39,6 +38,7 @@ export class StudentService {
       year : ['',Validators.required],
       sem : ['',Validators.required],
 
+      email :['',[Validators.required, Validators.email]],
       password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
 

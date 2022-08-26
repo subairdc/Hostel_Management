@@ -18,11 +18,11 @@ public class StaffService {
 	@Autowired
     private StaffRepository staffRepository;
 	
-	@Autowired
-    private StaffMaleRepository staffMaleRepository;
-	
-	@Autowired
-    private StaffFemaleRepository staffFemaleRepository;
+//	@Autowired
+//    private StaffMaleRepository staffMaleRepository;
+//	
+//	@Autowired
+//    private StaffFemaleRepository staffFemaleRepository;
 
     public Staff addStaff(Staff staff) {
         return staffRepository.save(staff);
@@ -45,23 +45,45 @@ public class StaffService {
     }
 
     public Staff updateStaff(Staff staff) {
-    	Staff existingStaff = staffRepository.findById(staff.getId()).orElse(null);
+    	Staff existingUser = staffRepository.findById(staff.getId()).orElse(null);
         System.out.println(staff);
-        if(existingStaff == null) {
+        if(existingUser == null) {
             System.out.println("Staff not found");
             return  staffRepository.save(staff);
         }else  {
-            existingStaff.setName(staff.getName());
-            existingStaff.setEmail(staff.getEmail());
-            existingStaff.setPassword(staff.getPassword());
-            staffRepository.save(existingStaff);
+        	
+        	existingUser.setName(staff.getName());
+	        existingUser.setGender(staff.getGender());
+	        existingUser.setDateOfBirth(staff.getDateOfBirth());
+	        existingUser.setAge(staff.getAge());
+	        existingUser.setBloodGrp(staff.getBloodGrp());
+	           
+	        existingUser.setStaffId(staff.getStaffId());
+	        existingUser.setPhoneNo(staff.getPhoneNo());
+	        existingUser.setEmail(staff.getEmail());
+	        existingUser.setPassword(staff.getPassword());
+	        existingUser.setConfirmPassword(staff.getConfirmPassword());
+	            
+	        existingUser.setStatus(staff.getStatus());
+	        existingUser.setHostel(staff.getHostel());
+	            
+	        existingUser.setStreet(staff.getStreet());
+	        existingUser.setCity(staff.getCity());
+	        existingUser.setDistrict(staff.getDistrict());
+	        existingUser.setState(staff.getState());
+            existingUser.setPincode(staff.getPincode());
+	            
+	        existingUser.setVerify(staff.getVerify());
+	            	            
+	        staffRepository.save(existingUser);
+
         }
         return staff;
     }
 
     public boolean deleteStaffById(int id) {
-    	Staff existingStaff = staffRepository.findById(id).orElse(null);
-        if(existingStaff != null) {
+    	Staff existingUser = staffRepository.findById(id).orElse(null);
+        if(existingUser != null) {
         	staffRepository.deleteById(id);
             return true;
         }
@@ -73,14 +95,14 @@ public class StaffService {
     }
 
    //Verify Staff Service
-	public StaffMale addVerifiedStaffMale(StaffMale staffMale) {
-	
-		return staffMaleRepository.save(staffMale);
-	}
-
-	public StaffFemale addVerifiedStaffFemale(StaffFemale staffFemale) {
-		return staffFemaleRepository.save(staffFemale);
-	}
+//	public StaffMale addVerifiedStaffMale(StaffMale staffMale) {
+//	
+//		return staffMaleRepository.save(staffMale);
+//	}
+//
+//	public StaffFemale addVerifiedStaffFemale(StaffFemale staffFemale) {
+//		return staffFemaleRepository.save(staffFemale);
+//	}
 
     
 }

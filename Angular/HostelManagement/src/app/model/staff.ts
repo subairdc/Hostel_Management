@@ -28,6 +28,8 @@ export class Staff {
   updatedOn : string;
   dateOfEnrollment : string;
 
+  verify : string;
+
   constructor(){
     this.id = 0;
     this.name = '';
@@ -56,5 +58,7 @@ export class Staff {
     this.updatedBy = '';
     this.updatedOn = '';
     this.dateOfEnrollment = '';
+
+    this.verify = '';
   }
 }

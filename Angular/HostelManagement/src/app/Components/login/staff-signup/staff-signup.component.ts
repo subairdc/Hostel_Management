@@ -65,6 +65,7 @@ export class StaffSignupComponent implements OnInit {
     this.user.state = this.staffService.form.value['state'];
     this.user.pincode = this.staffService.form.value['pincode'];
 
+    this.user.verify = "Pending";
 
     this.authService.staffSignup(this.user).subscribe(res => {
       if(res == null) {

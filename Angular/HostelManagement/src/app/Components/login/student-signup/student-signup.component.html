@@ -79,7 +79,7 @@
           </div>
           <div class=" col-md-2 mt-2">
             <div class="inputs"> <label>Age</label>
-               <input class="form-control" type="number" placeholder="Age" formControlName="age"> </div>
+               <input class="form-control" type="number" maxlength="2" placeholder="Age" formControlName="age"> </div>
                <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
                 <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
                 <div *ngIf="f['age'].errors && f['age'].errors['minlength']">Please enter valid age</div>

@@ -17,10 +17,10 @@ public class StudentService {
 	
 	 	@Autowired
 	    private StudentRepository studentRepository;
-	 	@Autowired
-	 	private StudentMaleRepository studentMaleRepository;
-	 	@Autowired
-	 	private StudentFemaleRepository studentFemaleRepository;
+//	 	@Autowired
+//	 	private StudentMaleRepository studentMaleRepository;
+//	 	@Autowired
+//	 	private StudentFemaleRepository studentFemaleRepository;
 	 	
 	    public Student addStudent(Student student) {
 	        return studentRepository.save(student);
@@ -43,50 +43,58 @@ public class StudentService {
 	    }
 
 	    public Student updateStudent(Student student) {
-	    	Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
+	    	Student existingUser = studentRepository.findById(student.getId()).orElse(null);
 	        System.out.println(student);
-	        if(existingStudent == null) {	
+	        if(existingUser == null) {	
 	            System.out.println("Student not found");
 	            return  studentRepository.save(student);
 	        }else  {
-	            existingStudent.setName(student.getName());
-	            existingStudent.setGender(student.getGender());
-	            existingStudent.setDateOfBirth(student.getDateOfBirth());
-	            existingStudent.setAge(student.getAge());
-	            existingStudent.setBloodGrp(student.getBloodGrp());
+	            existingUser.setName(student.getName());
+	            existingUser.setGender(student.getGender());
+	            existingUser.setDateOfBirth(student.getDateOfBirth());
+	            existingUser.setAge(student.getAge());
+	            existingUser.setBloodGrp(student.getBloodGrp());
 	            
-	            existingStudent.setDegree(student.getDegree());
-	            existingStudent.setDept(student.getDept());
-	            existingStudent.setYear(student.getYear());
-	            existingStudent.setSem(student.getSem());
+	            existingUser.setDegree(student.getDegree());
+	            existingUser.setDept(student.getDept());
+	            existingUser.setYear(student.getYear());
+	            existingUser.setSem(student.getSem());
 	            
-	            existingStudent.setRegNo(student.getRegNo());
-	            existingStudent.setPhoneNo(student.getPhoneNo());
-	            existingStudent.setEmail(student.getEmail());
-	            existingStudent.setPassword(student.getPassword());
-	            existingStudent.setConfirmPassword(student.getConfirmPassword());
-	            existingStudent.setStatus(student.getStatus());
-	            existingStudent.setHostel(student.getHostel());
-	            existingStudent.setRoomNo(student.getRoomNo());
-	            existingStudent.setStreet(student.getStreet());
-	            existingStudent.setCity(student.getCity());
-	            existingStudent.setDistrict(student.getDistrict());
-	            existingStudent.setState(student.getState());
-	            existingStudent.setPincode(student.getPincode());
+	            existingUser.setRegNo(student.getRegNo());
+	            existingUser.setPhoneNo(student.getPhoneNo());
+	            existingUser.setEmail(student.getEmail());
+	            existingUser.setPassword(student.getPassword());
+	            existingUser.setConfirmPassword(student.getConfirmPassword());
 	            
-	            existingStudent.setGuardianName(student.getGuardianName());
-	            existingStudent.setGuardianRelation(student.getGuardianRelation());
-	            existingStudent.setGuardianAddress(student.getGuardianAddress());
-	            existingStudent.setGuardianPhoneNo(student.getGuardianPhoneNo());
+	            existingUser.setStatus(student.getStatus());
+	            existingUser.setHostel(student.getHostel());
+	            existingUser.setRoomNo(student.getRoomNo());
 	            
-	            studentRepository.save(existingStudent);
+	            existingUser.setStreet(student.getStreet());
+	            existingUser.setCity(student.getCity());
+	            existingUser.setDistrict(student.getDistrict());
+	            existingUser.setState(student.getState());
+	            existingUser.setPincode(student.getPincode());
+	            
+	            existingUser.setFatherName(student.getFatherName());
+	            existingUser.setFatherPhoneNo(student.getFatherPhoneNo());
+	            existingUser.setMotherName(student.getMotherName());
+	            existingUser.setMotherPhoneNo(student.getMotherPhoneNo());
+	            
+	            existingUser.setGuardianName(student.getGuardianName());
+	            existingUser.setGuardianRelation(student.getGuardianRelation());
+	            existingUser.setGuardianAddress(student.getGuardianAddress());
+	            existingUser.setGuardianPhoneNo(student.getGuardianPhoneNo());
+	            
+	            existingUser.setVerify(student.getVerify());
+	            studentRepository.save(existingUser);
 	        }
 	        return student;
 	    }
 
 	    public boolean deleteStudentById(int id) {
-	    	Student existingStudent = studentRepository.getById(id);
-	        if(existingStudent != null) {
+	    	Student existingUser = studentRepository.getById(id);
+	        if(existingUser != null) {
 	            studentRepository.deleteById(id);
 	            return true;
 	        }
@@ -98,20 +106,20 @@ public class StudentService {
 	    }
 
 //		public Student addVerifiedStudent(Student student) {
-//	    	Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
-//	    	if(existingStudent.getHostel() == "Pothigai Boys Hostel") {
+//	    	Student existingUser = studentRepository.findById(student.getId()).orElse(null);
+//	    	if(existingUser.getHostel() == "Pothigai Boys Hostel") {
 //	    		return studentMaleRepository.save(student);
-//	    	}else if(existingStudent.getHostel() == "Thamirabharani Girls Hostel")
+//	    	}else if(existingUser.getHostel() == "Thamirabharani Girls Hostel")
 //	    		return studentFemaleRepository.save(student);
 //			return null;
 //		}
 
-		public StudentMale addVerifiedStuMale(StudentMale studentMale) {
-			return studentMaleRepository.save(studentMale);
-		}
-
-		public StudentFemale addVerifiedStuFemale(StudentFemale studentFemale) {
-			return studentFemaleRepository.save(studentFemale);
-		}
+//		public StudentMale addVerifiedStuMale(StudentMale studentMale) {
+//			return studentMaleRepository.save(studentMale);
+//		}
+//
+//		public StudentFemale addVerifiedStuFemale(StudentFemale studentFemale) {
+//			return studentFemaleRepository.save(studentFemale);
+//		}
 
 }

@@ -34,20 +34,29 @@
       <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="password">
+    <ng-container matColumnDef="hostel">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.password}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.hostel}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
       <mat-cell *matCellDef="let row">
+
+        <button mat-icon-button color="primary" title="View" (click)="onView(row)">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+
         <button mat-icon-button color="primary" title="Edit" (click)="onEdit(row)">
           <mat-icon>edit</mat-icon>
         </button>
 
         <button mat-icon-button color="accent" title="delete" (click)="onDelete(row)">
           <mat-icon>delete_forever</mat-icon>
+        </button>
+
+        <button mat-icon-button  title="Approved" (click)="onApproved(row)">
+          <mat-icon class="material-icons color_green">verified_user</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

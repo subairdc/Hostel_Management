@@ -23,6 +23,7 @@ public class Admin {
 	private String phoneNo;
 	private String email;
 	private String password;
+	private String confirmPassword;
 	
 	private String status;
 	
@@ -47,9 +48,9 @@ public class Admin {
 
 
 	public Admin(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String adminId,
-			String phoneNo, String email, String password, String status, String street, String city, String district,
-			String state, String pincode, String image, String imagePath, String updatedBy, String updatedOn,
-			String dateOfEnrollment, String verify) {
+			String phoneNo, String email, String password, String confirmPassword, String status, String street,
+			String city, String district, String state, String pincode, String image, String imagePath,
+			String updatedBy, String updatedOn, String dateOfEnrollment, String verify) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -61,6 +62,7 @@ public class Admin {
 		this.phoneNo = phoneNo;
 		this.email = email;
 		this.password = password;
+		this.confirmPassword = confirmPassword;
 		this.status = status;
 		this.street = street;
 		this.city = city;
@@ -173,6 +175,16 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 
@@ -295,5 +307,4 @@ public class Admin {
 		this.verify = verify;
 	}
 	
-
-	}
+}

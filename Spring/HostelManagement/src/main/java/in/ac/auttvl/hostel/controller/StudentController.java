@@ -74,15 +74,15 @@ public class StudentController {
         return studentService.getAllStudents();
     }
     
- // Add new  verified student
-    @PostMapping("/addVerifiedStuMale")
-    public StudentMale addVerifiedStuMale(@RequestBody StudentMale studentMale) {
-        return studentService.addVerifiedStuMale(studentMale);
-    }
-    
- // Add new  verified student
-    @PostMapping("/addVerifiedStuFemale")
-    public StudentFemale addVerifiedStuFemale(@RequestBody StudentFemale studentFemale) {
-        return studentService.addVerifiedStuFemale(studentFemale);
-    }
+// // Add new  verified student
+//    @PostMapping("/addVerifiedStuMale")
+//    public StudentMale addVerifiedStuMale(@RequestBody StudentMale studentMale) {
+//        return studentService.addVerifiedStuMale(studentMale);
+//    }
+//    
+// // Add new  verified student
+//    @PostMapping("/addVerifiedStuFemale")
+//    public StudentFemale addVerifiedStuFemale(@RequestBody StudentFemale studentFemale) {
+//        return studentService.addVerifiedStuFemale(studentFemale);
+//    }
 }

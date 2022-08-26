@@ -35,23 +35,42 @@ public class AdminService {
     }
 
     public Admin updateAdmin(Admin admin) {
-    	Admin existingAdmin = adminRepository.findById(admin.getId()).orElse(null);
+    	Admin existingUser = adminRepository.findById(admin.getId()).orElse(null);
         System.out.println(admin);
-        if(existingAdmin == null) {
+        if(existingUser == null) {
             System.out.println("Admin not found");
             return  adminRepository.save(admin);
         }else  {
-            existingAdmin.setName(admin.getName());
-            existingAdmin.setEmail(admin.getEmail());
-            existingAdmin.setPassword(admin.getPassword());
-            adminRepository.save(existingAdmin);
+        	existingUser.setName(admin.getName());
+	        existingUser.setGender(admin.getGender());
+	        existingUser.setDateOfBirth(admin.getDateOfBirth());
+	        existingUser.setAge(admin.getAge());
+	        existingUser.setBloodGrp(admin.getBloodGrp());
+	           
+	        existingUser.setAdminId(admin.getAdminId());
+	        existingUser.setPhoneNo(admin.getPhoneNo());
+	        existingUser.setEmail(admin.getEmail());
+	        existingUser.setPassword(admin.getPassword());
+	        existingUser.setConfirmPassword(admin.getConfirmPassword());
+	            
+	        existingUser.setStatus(admin.getStatus());
+	            
+	        existingUser.setStreet(admin.getStreet());
+	        existingUser.setCity(admin.getCity());
+	        existingUser.setDistrict(admin.getDistrict());
+	        existingUser.setState(admin.getState());
+            existingUser.setPincode(admin.getPincode());
+	            
+	        existingUser.setVerify(admin.getVerify());
+
+            adminRepository.save(existingUser);
         }
         return admin;
     }
 
     public boolean deleteAdminById(int id) {
-    	Admin existingAdmin = adminRepository.findById(id).orElse(null);
-        if(existingAdmin != null) {
+    	Admin existingUser = adminRepository.findById(id).orElse(null);
+        if(existingUser != null) {
         	adminRepository.deleteById(id);
             return true;
         }

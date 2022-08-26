@@ -77,15 +77,15 @@ public class StaffController {
     }
     
     // Add new  verified staff
-    @PostMapping("/addVerifiedStaffMale")
-    public StaffMale addVerifiedStaffMale(@RequestBody StaffMale staffMale) {
-        return staffService.addVerifiedStaffMale(staffMale);
-    }
-    
- // Add new  verified staff
-    @PostMapping("/addVerifiedStaffFemale")
-    public StaffFemale addVerifiedStaffFemale(@RequestBody StaffFemale staffFemale) {
-        return staffService.addVerifiedStaffFemale(staffFemale);
-    }
+//    @PostMapping("/addVerifiedStaffMale")
+//    public StaffMale addVerifiedStaffMale(@RequestBody StaffMale staffMale) {
+//        return staffService.addVerifiedStaffMale(staffMale);
+//    }
+//    
+// // Add new  verified staff
+//    @PostMapping("/addVerifiedStaffFemale")
+//    public StaffFemale addVerifiedStaffFemale(@RequestBody StaffFemale staffFemale) {
+//        return staffService.addVerifiedStaffFemale(staffFemale);
+//    }
 }
 

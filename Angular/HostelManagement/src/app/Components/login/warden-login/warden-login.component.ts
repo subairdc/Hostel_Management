@@ -48,7 +48,7 @@ export class WardenLoginComponent implements OnInit {
     this.authService.wardenLogin(this.user).subscribe(res => {
 
       if(res == null) {
-        alert("email or password is wrong");
+        alert("email or password is wrong or your id is not verified");
         this.loginForm.reset();
         //this.ngOnInit();
       }else {

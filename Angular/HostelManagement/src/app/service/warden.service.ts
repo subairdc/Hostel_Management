@@ -23,35 +23,34 @@ export class WardenService {
 
     this.form = this.formBuilder.group({
       id : [''],
-      name : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
-      gender : [''],
-      dateOfBirth:['',Validators.required],
-      age:[''],
-      bloodGrp: [''],
+      name : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+      gender : ['',Validators.required],
+      dateOfBirth:['',[Validators.required,Validators.maxLength(10)]],
+      age:['',[Validators.required,Validators.maxLength(2)]],
+      bloodGrp: ['',Validators.required],
 
-
-      wardenId : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(12)]],
-      email :['',[Validators.required, Validators.email]],
+      wardenId : ['',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]],
       phoneNo : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]],
-
-
+      email :['',[Validators.required, Validators.email]],
       password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
 
-      status : [''],
-      hostel : [''],
+      status : ['',Validators.required],
+      hostel : ['',Validators.required],
 
-      street : ['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
-      city : [''],
-      district : [''],
-      state : [''],
+      street : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+      city : ['',Validators.required],
+      district : ['',Validators.required],
+      state : ['',Validators.required],
       pincode : ['',[Validators.required,Validators.minLength(6)]],
 
       image : [''],
       imagePath : [''],
       updatedBy : [''],
       updatedOn : [''],
-      dateOfEnrollment : ['']
+      dateOfEnrollment : [''],
+
+      verify : ['']
   },
   {
     validators: this.confirmingPassword("password", "confirmPassword")
@@ -100,7 +99,9 @@ export class WardenService {
       imagePath : '',
       updatedBy : '',
       updatedOn : '',
-      dateOfEnrollment : ''
+      dateOfEnrollment : '',
+
+      verify : '',
     });
   }
 

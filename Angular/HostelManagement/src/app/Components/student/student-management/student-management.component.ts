@@ -21,7 +21,7 @@ export class StudentManagementComponent implements OnInit {
   //studentDetail !: FormGroup;
     // studentObj : Student = new Student();
     // studentList : Student[] = [];
-    flag : boolean = false;
+   // flag : boolean = false;
 
   girdListData : any;
   displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];

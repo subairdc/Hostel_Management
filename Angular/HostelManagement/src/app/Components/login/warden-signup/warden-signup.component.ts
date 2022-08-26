@@ -68,13 +68,14 @@ export class WardenSignupComponent implements OnInit {
     this.user.state = this.wardenService.form.value['state'];
     this.user.pincode = this.wardenService.form.value['pincode'];
 
+    this.user.verify = "pending";
     // this.user.dateOfEnrollment =
     // this.user.role = 'user';
 
 
     this.authService.wardenSignup(this.user).subscribe(res => {
       if(res == null) {
-        alert("Registration failed");
+        alert("User Already Exist");
         this.ngOnInit();
       }else {
         console.log("Registration successful");

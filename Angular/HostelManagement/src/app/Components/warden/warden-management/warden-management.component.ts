@@ -18,6 +18,14 @@ import { WardenDetailsComponent } from '../warden-details/warden-details.compone
 })
 export class WardenManagementComponent implements OnInit {
 
+  girdListData : any;
+  displayedColumns : string[] = ['id', 'name', 'email','phoneNo', 'hostel', 'action'];
+  searchKey : string="";
+
+  @ViewChild(MatSort) sort: any = MatSort;
+  @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
+
+
   constructor(private route : Router, private formBuilder : FormBuilder, private wardenService : WardenService,
     private _notification : NotificationService, private _dialog : MatDialog, private dialogService : DialogBoxService) {
 
@@ -26,16 +34,9 @@ export class WardenManagementComponent implements OnInit {
      })
  }
 
- wardenDetail !: FormGroup;
+ //wardenDetail !: FormGroup;
   // wardenObj : Warden = new Warden();
   // wardenList : Warden[] = [];
-
-  girdListData : any;
-  displayedColumns : string[] = ['id','orderNo', 'name', 'email','phoneNo', 'password', 'action'];
-  searchKey : string="";
-
-  @ViewChild(MatSort) sort: any = MatSort;
-  @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
 
   ngOnInit(): void {
     this.fillGird();
@@ -74,6 +75,18 @@ export class WardenManagementComponent implements OnInit {
     this._dialog.open(WardenDetailsComponent,dialogConfig);
   }
 
+  onView(row:any) {
+    this.wardenService.populateForm(row);
+    this.wardenService.form.disable();
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose =true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width ="50%";
+    this._dialog.open(WardenDetailsComponent,dialogConfig);
+  }
+
+
   onEdit(row:any) {
     this.wardenService.populateForm(row);
 
@@ -92,6 +105,20 @@ export class WardenManagementComponent implements OnInit {
           this._notification.warn("Deleted Successfully");
           this.wardenService.filter('');
         });
+      }
+    });
+  }
+
+  onApproved(row : any) {
+
+    this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
+      if(res) {
+          row.verify = "Verified";
+          this.wardenService.updateWarden(row).subscribe(data => {
+            this.wardenService.form.reset();
+            this.wardenService.initializeFormGroup();
+            this._notification.success("Student Verified Successfully");
+          });
       }
     });
   }

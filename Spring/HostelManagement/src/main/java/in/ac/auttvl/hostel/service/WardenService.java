@@ -35,16 +35,36 @@ public class WardenService {
     }
 
     public Warden updateWarden(Warden warden) {
-    	Warden existingWarden = wardenRepository.findById(warden.getId()).orElse(null);
+    	Warden existingUser = wardenRepository.findById(warden.getId()).orElse(null);
         System.out.println(warden);
-        if(existingWarden == null) {	
+        if(existingUser == null) {	
             System.out.println("Warden not found");
             return  wardenRepository.save(warden);
         }else  {
-            existingWarden.setName(warden.getName());
-            existingWarden.setEmail(warden.getEmail());
-            existingWarden.setPassword(warden.getPassword());
-            wardenRepository.save(existingWarden);
+        	existingUser.setName(warden.getName());
+	        existingUser.setGender(warden.getGender());
+	        existingUser.setDateOfBirth(warden.getDateOfBirth());
+	        existingUser.setAge(warden.getAge());
+	        existingUser.setBloodGrp(warden.getBloodGrp());
+	           
+	        existingUser.setWardenId(warden.getWardenId());
+	        existingUser.setPhoneNo(warden.getPhoneNo());
+	        existingUser.setEmail(warden.getEmail());
+	        existingUser.setPassword(warden.getPassword());
+	        existingUser.setConfirmPassword(warden.getConfirmPassword());
+	            
+	        existingUser.setStatus(warden.getStatus());
+	        existingUser.setHostel(warden.getHostel());
+	            
+	        existingUser.setStreet(warden.getStreet());
+	        existingUser.setCity(warden.getCity());
+	        existingUser.setDistrict(warden.getDistrict());
+	        existingUser.setState(warden.getState());
+            existingUser.setPincode(warden.getPincode());
+	            
+	        existingUser.setVerify(warden.getVerify());
+
+            wardenRepository.save(existingUser);
         }
         return warden;
     }

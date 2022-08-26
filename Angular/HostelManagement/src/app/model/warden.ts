@@ -28,6 +28,8 @@ export class Warden {
   updatedOn : string;
   dateOfEnrollment : string;
 
+  verify : string;
+
 
   constructor(){
     this.id = 0;
@@ -57,5 +59,7 @@ export class Warden {
     this.updatedBy = '';
     this.updatedOn = '';
     this.dateOfEnrollment = '';
+
+    this.verify = '';
   }
 }

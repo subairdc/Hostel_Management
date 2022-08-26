@@ -47,6 +47,7 @@ export class WardenDetailsComponent implements OnInit {
   }
 
  onClose() {
+  this.wardenService.form.enable();
    this.wardenService.form.reset();
    this.wardenService.initializeFormGroup();
    this.dialogRef.close();
@@ -62,18 +63,37 @@ export class WardenDetailsComponent implements OnInit {
    var wardenDetails = new Warden;
    wardenDetails.id = this.wardenService.form.value['id'];
    wardenDetails.name = this.wardenService.form.value['name'];
+   wardenDetails.gender = this.wardenService.form.value['gender'];
+   wardenDetails.dateOfBirth = this.wardenService.form.value['dateOfBirth'];
+   wardenDetails.age = this.wardenService.form.value['age'];
+   wardenDetails.bloodGrp = this.wardenService.form.value['bloodGrp'];
+
+   wardenDetails.wardenId = this.wardenService.form.value['wardenId'];
    wardenDetails.email = this.wardenService.form.value['email'];
    wardenDetails.password = this.wardenService.form.value['password'];
+   wardenDetails.confirmPassword = this.wardenService.form.value['confirmPassword'];
+   wardenDetails.phoneNo = this.wardenService.form.value['phoneNo'];
+
+   wardenDetails.status = this.wardenService.form.value['status'];
+   wardenDetails.hostel = this.wardenService.form.value['hostel'];
+
+   wardenDetails.street = this.wardenService.form.value['street'];
+   wardenDetails.city = this.wardenService.form.value['city'];
+   wardenDetails.district = this.wardenService.form.value['district'];
+   wardenDetails.state = this.wardenService.form.value['state'];
+   wardenDetails.pincode = this.wardenService.form.value['pincode'];
+
+   wardenDetails.verify = this.wardenService.form.value['verify'];
 
    console.log(wardenDetails);
-  //  this.wardenService.updateWarden(wardenDetails).subscribe(
-  //    data => {
-  //      this.wardenService.form.reset();
-  //      this.wardenService.initializeFormGroup();
-  //      this.notification.success("Submitted Successfully")
-  //      this.onClose();
-  //    }
-  //  )
+   this.wardenService.updateWarden(wardenDetails).subscribe(
+     data => {
+       this.wardenService.form.reset();
+       this.wardenService.initializeFormGroup();
+       this.notification.success("Submitted Successfully")
+       this.onClose();
+     }
+   )
  }
 
  fileChangeEvent(fileInput : any) {

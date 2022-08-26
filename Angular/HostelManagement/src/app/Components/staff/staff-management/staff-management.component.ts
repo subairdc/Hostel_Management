@@ -19,12 +19,12 @@ import { StaffDetailsComponent } from '../staff-details/staff-details.component'
 })
 export class StaffManagementComponent implements OnInit {
 
-  staffDetail !: FormGroup;
+  //staffDetail !: FormGroup;
   // staffObj : Staff = new Staff();
   // staffList : Staff[] = [];
 
   girdListData : any;
-  displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
+  displayedColumns : string[] = ['id', 'name', 'email', 'hostel', 'action'];
   searchKey : string="";
 
   @ViewChild(MatSort) sort: any = MatSort;
@@ -43,11 +43,11 @@ export class StaffManagementComponent implements OnInit {
     this.fillGird();
     // this.getAllStaff();
 
-    this.staffDetail = this.formBuilder.group({
-      name : [''],
-      email: [''],
-      password: [''],
-    });
+    // this.staffDetail = this.formBuilder.group({
+    //   name : [''],
+    //   email: [''],
+    //   password: [''],
+    // });
   }
 
   fillGird() {
@@ -72,7 +72,18 @@ export class StaffManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
+    this._dialog.open(StaffDetailsComponent,dialogConfig);
+  }
+
+  onView(row:any) {
+    this.staffService.populateForm(row);
+    this.staffService.form.disable();
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose =true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width ="50%";
     this._dialog.open(StaffDetailsComponent,dialogConfig);
   }
 
@@ -82,7 +93,7 @@ export class StaffManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
     this._dialog.open(StaffDetailsComponent,dialogConfig);
   }
 
@@ -97,6 +108,20 @@ export class StaffManagementComponent implements OnInit {
       }
     });
   }
+
+  onApproved(row : any) {
+
+    this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
+      if(res) {
+          row.verify = "Verified";
+          this.staffService.updateStaff(row).subscribe(data => {
+            this.staffService.form.reset();
+            this.staffService.initializeFormGroup();
+            this._notification.success("Student Verified Successfully");
+          });
+      }
+    });
+}
 
   // addStaff() {
   //   console.log(this.staffDetail);
