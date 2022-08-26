@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.ac.auttvl.hostel.model.Admin;
-import in.ac.auttvl.hostel.model.Student;
 import in.ac.auttvl.hostel.service.AdminService;
 
 

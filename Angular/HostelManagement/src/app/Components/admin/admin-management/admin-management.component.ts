@@ -17,8 +17,6 @@ import { AdminDetailsComponent } from '../admin-details/admin-details.component'
 })
 export class AdminManagementComponent implements OnInit {
 
-  adminDetail !: FormGroup;
-
   girdListData : any;
   displayedColumns : string[] = ['id', 'name', 'email', 'password', 'action'];
   searchKey : string="";
@@ -34,15 +32,8 @@ export class AdminManagementComponent implements OnInit {
       })
   }
 
-
   ngOnInit(): void {
     this.fillGird();
-
-    this.adminDetail = this.formBuilder.group({
-      name : [''],
-      email: [''],
-      password: [''],
-    });
   }
 
   fillGird() {
@@ -67,7 +58,18 @@ export class AdminManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
+    this._dialog.open(AdminDetailsComponent,dialogConfig);
+  }
+
+  onView(row:any) {
+    this.adminService.populateForm(row);
+    this.adminService.form.disable();
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose =true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width ="50%";
     this._dialog.open(AdminDetailsComponent,dialogConfig);
   }
 
@@ -77,7 +79,7 @@ export class AdminManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="30%";
+    dialogConfig.width ="50%";
     this._dialog.open(AdminDetailsComponent,dialogConfig);
   }
 
@@ -89,6 +91,20 @@ export class AdminManagementComponent implements OnInit {
           this._notification.warn("Deleted Successfully");
           this.adminService.filter('');
         });
+      }
+    });
+  }
+
+  onApproved(row : any) {
+
+    this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
+      if(res) {
+          row.verify = "Verified";
+          this.adminService.updateAdmin(row).subscribe(data => {
+            this.adminService.form.reset();
+            this.adminService.initializeFormGroup();
+            this._notification.success("Student Verified Successfully");
+          });
       }
     });
   }

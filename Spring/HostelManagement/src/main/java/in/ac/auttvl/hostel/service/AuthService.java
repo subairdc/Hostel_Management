@@ -8,23 +8,11 @@ import org.springframework.stereotype.Service;
 
 import in.ac.auttvl.hostel.model.Admin;
 import in.ac.auttvl.hostel.model.Staff;
-import in.ac.auttvl.hostel.model.StaffFemale;
-import in.ac.auttvl.hostel.model.StaffMale;
 import in.ac.auttvl.hostel.model.Student;
-import in.ac.auttvl.hostel.model.StudentFemale;
-import in.ac.auttvl.hostel.model.StudentMale;
 import in.ac.auttvl.hostel.model.Warden;
-import in.ac.auttvl.hostel.model.WardenFemale;
-import in.ac.auttvl.hostel.model.WardenMale;
 import in.ac.auttvl.hostel.repository.AdminRepository;
-import in.ac.auttvl.hostel.repository.StaffFemaleRepository;
-import in.ac.auttvl.hostel.repository.StaffMaleRepository;
 import in.ac.auttvl.hostel.repository.StaffRepository;
-import in.ac.auttvl.hostel.repository.StudentFemaleRepository;
-import in.ac.auttvl.hostel.repository.StudentMaleRepository;
 import in.ac.auttvl.hostel.repository.StudentRepository;
-import in.ac.auttvl.hostel.repository.WardenFemaleRepository;
-import in.ac.auttvl.hostel.repository.WardenMaleRepository;
 import in.ac.auttvl.hostel.repository.WardenRepository;
 
 @Service

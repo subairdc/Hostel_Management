@@ -63,6 +63,7 @@ export class AdminSignupComponent implements OnInit {
     this.user.state = this.adminService.form.value['state'];
     this.user.pincode = this.adminService.form.value['pincode'];
 
+    this.user.verify = "Pending";
     // this.user.dateOfEnrollment =
     // this.user.role = 'user';
 

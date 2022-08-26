@@ -8,30 +8,95 @@
 
 
   <form [formGroup]="adminService.form" class="normal-form">
-    <mat-grid-list cols="1" rowHeight="200px">
+    <mat-grid-list cols="2" rowHeight="400px">
       <mat-grid-tile>
         <div class="controllers-container">
+          <!-- <input  type="hidden" formControlName="confirmPassword" placeholder="confirm password" autocomplete="off"> -->
           <mat-form-field>
             <!-- <mat-label>Input</mat-label> -->
-            <input matInput formControlName="name" placeholder="Name" autocomplete="off">
-            <mat-error *ngIf="adminService.form.controls['name'].touched && adminService.form.controls['name'].invalid" class="text-danger">
-              <div *ngIf="adminService.form.controls['name'].errors && adminService.form.controls['name'].errors['required']">Name is required.</div>
-              <div *ngIf="adminService.form.controls['name'].errors && adminService.form.controls['name'].errors['minlength']">Name should be in min 4 char</div>
-
+            <input matInput formControlName="name" maxlength="25" placeholder="Name" autocomplete="off">
+            <mat-error *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+              <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be in min 4 char</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['maxlength']">Name should be max 25 char.</div>
             </mat-error>
             </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="email" placeholder="email" autocomplete="off">
-            <mat-error *ngIf="adminService.form.controls['email'].touched && adminService.form.controls['email'].invalid" class="text-danger">
-              <div *ngIf="adminService.form.controls['email'].errors && adminService.form.controls['email'].errors['required']">Email is required.</div>
-              <div *ngIf="adminService.form.controls['email'].errors && adminService.form.controls['email'].errors['email']">Please, enter valid email address.</div>
+            <input matInput formControlName="email" maxlength="35" placeholder="email" autocomplete="off">
+            <mat-error *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+              <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+              <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="password" placeholder="password" autocomplete="off">
+            <mat-select matInput formControlName="gender" placeholder="Select Gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Others">Others</mat-option>
+            </mat-select>
           </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="date" formControlName="dateOfBirth" placeholder="Date Of Birth" autocomplete="off">
+            <div *ngIf="f['dateOfBirth'].touched && f['dateOfBirth'].invalid" class="text-danger">
+              <div *ngIf="f['dateOfBirth'].errors && f['dateOfBirth'].errors['required']">Date Of Birth is required.</div>
+              <div *ngIf="f['dateOfBirth'].errors && f['dateOfBirth'].errors['minLength']">Please, enter valid DOB</div>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="age" maxlength="2" placeholder="Age" autocomplete="off">
+            <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
+              <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
+              <div *ngIf="f['age'].errors && f['age'].errors['minlength']">Please enter valid age</div>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="bloodGrp" placeholder="Blood Group" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="status" placeholder="Status" autocomplete="off">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+            <mat-form-field>
+              <input matInput formControlName="phoneNo" maxlength="10" placeholder="phone No." autocomplete="off">
+              <div *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+              </div>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="adminId" placeholder="Admin Id" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="password"  placeholder="password" autocomplete="off">
+              <mat-icon matSuffix>remove_red_eye</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="confirmPassword"  placeholder="Confirm Password" autocomplete="off">
+              <mat-icon matSuffix>remove_red_eye</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="verify" placeholder="Verify">
+                <mat-option value="Verified">Verified</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

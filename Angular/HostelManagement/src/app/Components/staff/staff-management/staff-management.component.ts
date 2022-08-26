@@ -121,7 +121,7 @@ export class StaffManagementComponent implements OnInit {
           });
       }
     });
-}
+  }
 
   // addStaff() {
   //   console.log(this.staffDetail);

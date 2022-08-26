@@ -46,7 +46,6 @@ public class Admin {
 		super();
 	}
 
-
 	public Admin(int id, String name, String gender, String dateOfBirth, int age, String bloodGrp, String adminId,
 			String phoneNo, String email, String password, String confirmPassword, String status, String street,
 			String city, String district, String state, String pincode, String image, String imagePath,

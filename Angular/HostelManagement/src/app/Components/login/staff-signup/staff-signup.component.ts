@@ -14,10 +14,6 @@ import { StaffService } from 'src/app/service/staff.service';
 })
 export class StaffSignupComponent implements OnInit {
 
-  signupForm !: FormGroup;
-
-  submitted = false;
-
   gender=["Select Gender","Male","Female","Others"];
   genderS : string ="Select Gender";
 
