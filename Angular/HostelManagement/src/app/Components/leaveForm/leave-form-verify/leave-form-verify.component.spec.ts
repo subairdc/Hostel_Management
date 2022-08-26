@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeaveForm2VerifyComponent } from './leave-form2-verify.component';
+import { LeaveFormVerifyComponent } from './leave-form-verify.component';
 
-describe('LeaveForm2VerifyComponent', () => {
-  let component: LeaveForm2VerifyComponent;
-  let fixture: ComponentFixture<LeaveForm2VerifyComponent>;
+describe('LeaveFormVerifyComponent', () => {
+  let component: LeaveFormVerifyComponent;
+  let fixture: ComponentFixture<LeaveFormVerifyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeaveForm2VerifyComponent ]
+      declarations: [ LeaveFormVerifyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeaveForm2VerifyComponent);
+    fixture = TestBed.createComponent(LeaveFormVerifyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

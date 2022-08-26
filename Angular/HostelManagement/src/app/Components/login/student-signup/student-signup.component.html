@@ -31,7 +31,7 @@
                <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" formControlName="phoneNo"> </div>
                <div *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
                 <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
-                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+                <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
               </div>
           </div>
 
@@ -107,10 +107,14 @@
           <div class="col-md-3 mb-4">
             <div class="inputs"> <label>Department</label>
               <select class="form-select" aria-label="Default select example" formControlName="dept">
-                <option [selected]="1">Select Department</option>
-                <option value="Civil">Civil</option>
-                <option value="Mech">Mech</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="MECH">MECH</option>
+                <option value="EEE">EEE</option>
+                <option value="ECE">ECE</option>
+                <option value="CSE">CSE</option>
+                <option value="MBA">MBA</option>
                 <option value="MCA">MCA</option>
+                <option value="ME">ME</option>
               </select> </div>
           </div>
 

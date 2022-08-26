@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { LeaveForm } from '../model/leave-form';
-import { LeaveForm2 } from '../model/leave-form2';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +11,22 @@ export class LeaveFormService {
 
   form !: FormGroup;
 
-  addLeaveFormURL : string;
-  addLeaveForm2URL : string;
-  updateLeaveForm2URL : string;
-  getLeaveForm2URL : string;
-  getLeaveForm2ByIdURL : string;
-  getLeaveForm2ByRegNoURL : string;
-  getAllLeaveForm2URL : string;
-  deleteLeaveForm2URL : string;
+  addLeaveURL : string;
+  updateLeaveURL : string;
+  getLeaveURL : string;
+  getLeaveByIdURL : string;
+  getLeaveByRegNoURL : string;
+  getAllLeaveURL : string;
+  deleteLeaveURL : string;
+
+  // addLeaveFormURL : string;
+  // addLeaveForm2URL : string;
+  // updateLeaveForm2URL : string;
+  // getLeaveForm2URL : string;
+  // getLeaveForm2ByIdURL : string;
+  // getLeaveForm2ByRegNoURL : string;
+  // getAllLeaveForm2URL : string;
+  // deleteLeaveForm2URL : string;
 
   constructor(private http : HttpClient, private formBuilder : FormBuilder) {
 
@@ -27,7 +34,32 @@ export class LeaveFormService {
       id: [''],
       name : [''],
       regNo: [''],
+      phoneNo: [''],
       roomNo: [''],
+      hostel: [''],
+
+      degree: [''],
+      dept: [''],
+      year: [''],
+      sem: [''],
+
+      leaveCategory: [''],
+
+      date: [''],
+      day: [''],
+      leavingTime: [''],
+      reportingTime: [''],
+      leavePurpose: [''],
+
+      fromDate: [''],
+      toDate: [''],
+      noOfDays: [''],
+
+      contactPerson: [''],
+      personName: [''],
+      relation: [''],
+      contactPhoneNo: [''],
+
       parent : [''],
       staff: [''],
       warden: [''],
@@ -35,14 +67,23 @@ export class LeaveFormService {
       leaveStatus: ['']
     });
 
-    this.addLeaveFormURL = 'http://localhost:8080/leaveForm/addLeaveForm';
-    this.addLeaveForm2URL = 'http://localhost:8080/leaveForm/addLeaveForm2';
-    this.updateLeaveForm2URL = 'http://localhost:8080/leaveForm/updateLeaveForm2';
-    this.getLeaveForm2URL = 'http://localhost:8080/leaveForm/getLeaveForm2';
-    this.getLeaveForm2ByIdURL = 'http://localhost:8080/leaveForm/getLeaveForm2ById';
-    this.getLeaveForm2ByRegNoURL = 'http://localhost:8080/leaveForm/getLeaveForm2ByRegNo';
-    this.getAllLeaveForm2URL = 'http://localhost:8080/leaveForm/getAllLeaveForm2';
-    this.deleteLeaveForm2URL = 'http://localhost:8080/leaveForm/deleteLeaveForm2';
+    this.addLeaveURL = 'http://localhost:8080/leaveForm/addLeave';
+    this.updateLeaveURL = 'http://localhost:8080/leaveForm/updateLeave';
+    this.getLeaveURL = 'http://localhost:8080/leaveForm/getLeave';
+    this.getLeaveByIdURL = 'http://localhost:8080/leaveForm/getLeaveById';
+    this.getLeaveByRegNoURL = 'http://localhost:8080/leaveForm/getLeaveByRegNo';
+    this.getAllLeaveURL = 'http://localhost:8080/leaveForm/getAllLeave';
+    this.deleteLeaveURL = 'http://localhost:8080/leaveForm/deleteLeave';
+
+
+    // this.addLeaveFormURL = 'http://localhost:8080/leaveForm/addLeaveForm';
+    // this.addLeaveForm2URL = 'http://localhost:8080/leaveForm/addLeaveForm2';
+    // this.updateLeaveForm2URL = 'http://localhost:8080/leaveForm/updateLeaveForm2';
+    // this.getLeaveForm2URL = 'http://localhost:8080/leaveForm/getLeaveForm2';
+    // this.getLeaveForm2ByIdURL = 'http://localhost:8080/leaveForm/getLeaveForm2ById';
+    // this.getLeaveForm2ByRegNoURL = 'http://localhost:8080/leaveForm/getLeaveForm2ByRegNo';
+    // this.getAllLeaveForm2URL = 'http://localhost:8080/leaveForm/getAllLeaveForm2';
+    // this.deleteLeaveForm2URL = 'http://localhost:8080/leaveForm/deleteLeaveForm2';
   }
 
   ngOnInit(): void {
@@ -51,54 +92,75 @@ export class LeaveFormService {
   initializeFormGroup() {
     this.form.setValue({
       id : 0,
-      name :'',
-      regNo : '',
-      roomNo :0,
+      name : '',
+      regNo: '',
+      phoneNo: '',
+      roomNo: 0,
+      hostel: '',
+
+      degree: '',
+      dept: '',
+      year: '',
+      sem: '',
+
+      leaveCategory: '',
+
+      date: '',
+      day: '',
+      leavingTime: '',
+      reportingTime: '',
+      leavePurpose: '',
+
+      fromDate: '',
+      toDate: '',
+      noOfDays: 0,
+
+      contactPerson: '',
+      personName: '',
+      relation: '',
+      contactPhoneNo: '',
+
       parent : '',
-      staff : '',
-      warden : '',
+      staff: '',
+      warden: '',
       remark : '',
-      leaveStatus : ''
+      leaveStatus : '',
     });
   }
 
-  populateForm(leaveForm2 : LeaveForm2) {
-    this.form.setValue(leaveForm2);
+  populateForm(leaveForm : LeaveForm) {
+    this.form.setValue(leaveForm);
   }
 
- addLeaveForm(leaveForm : LeaveForm) : Observable<LeaveForm> {
-    return this.http.post<LeaveForm>(this.addLeaveFormURL,leaveForm);
-  }
-
-  addLeaveForm2(leaveForm2 : LeaveForm2) : Observable<LeaveForm2> {
-    return this.http.post<LeaveForm2>(this.addLeaveForm2URL,leaveForm2);
+ addLeave(leaveForm : LeaveForm) : Observable<LeaveForm> {
+    return this.http.post<LeaveForm>(this.addLeaveURL,leaveForm);
   }
 
   //Passing whole class
-  getLeaveForm2(leaveForm2 : LeaveForm2) : Observable<LeaveForm2>{
-    return this.http.get<LeaveForm2>(this.getLeaveForm2URL+'/'+leaveForm2.id);
+  getLeave(leaveForm : LeaveForm) : Observable<LeaveForm>{
+    return this.http.get<LeaveForm>(this.getLeaveURL+'/'+leaveForm.id);
   }
   //passing only id
-  getLeaveForm2ById(id : number) : Observable<LeaveForm2> {
-    return this.http.get<LeaveForm2>(this.getLeaveForm2ByIdURL+'/'+id);
+  getLeaveById(id : number) : Observable<LeaveForm> {
+    return this.http.get<LeaveForm>(this.getLeaveByIdURL+'/'+id);
   }
 
   //passing only id regNo string
-  getLeaveForm2ByRegNo(id : string) : Observable<LeaveForm2> {
-    return this.http.get<LeaveForm2>(this.getLeaveForm2ByRegNoURL+'/'+id);
+  getLeaveByRegNo(id : string) : Observable<any> {
+    return this.http.get<any>(this.getLeaveByRegNoURL+'/'+id);
   }
 
 
-  getAllLeaveForm2(): Observable<LeaveForm2[]>{
-    return this.http.get<LeaveForm2[]>(this.getAllLeaveForm2URL);
+  getAllLeave(): Observable<LeaveForm[]>{
+    return this.http.get<LeaveForm[]>(this.getAllLeaveURL);
   }
 
-  updateLeaveForm2(leaveForm2 :LeaveForm2) : Observable<LeaveForm2>{
-    return this.http.put<LeaveForm2>(this.updateLeaveForm2URL, leaveForm2);
+  updateLeave(leaveForm :LeaveForm) : Observable<LeaveForm>{
+    return this.http.put<LeaveForm>(this.updateLeaveURL, leaveForm);
   }
 
-  deleteLeaveForm2(leaveForm2 : LeaveForm2) : Observable<LeaveForm2> {
-    return this.http.delete<LeaveForm2>(this.deleteLeaveForm2URL+'/'+leaveForm2.id);
+  deleteLeave(leaveForm : LeaveForm) : Observable<LeaveForm> {
+    return this.http.delete<LeaveForm>(this.deleteLeaveURL+'/'+leaveForm.id);
   }
 
   //Refresh grid Database

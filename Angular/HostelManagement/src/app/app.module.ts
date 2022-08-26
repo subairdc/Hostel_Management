@@ -48,9 +48,8 @@ import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
 import { ForgetPasswordComponent } from './Components/login/studentLogin/forget-password/forget-password.component';
 import { RoomManagementComponent } from './Components/room/room-management/room-management.component';
 import { RoomDetailsComponent } from './Components/room/room-details/room-details.component';
-import { LeaveForm2Component } from './Components/leaveForm/leave-form2/leave-form2.component';
-import { LeaveForm2ManagementComponent } from './Components/leaveForm/leave-form2-management/leave-form2-management.component';
-import { LeaveForm2VerifyComponent } from './Components/leaveForm/leave-form2-verify/leave-form2-verify.component';
+import { LeaveFormManagementComponent } from './Components/leaveForm/leave-form-management/leave-form-management.component';
+import { LeaveFormVerifyComponent } from './Components/leaveForm/leave-form-verify/leave-form-verify.component';
 
 @NgModule({
   declarations: [
@@ -87,9 +86,8 @@ import { LeaveForm2VerifyComponent } from './Components/leaveForm/leave-form2-ve
     ForgetPasswordComponent,
     RoomManagementComponent,
     RoomDetailsComponent,
-    LeaveForm2Component,
-    LeaveForm2ManagementComponent,
-    LeaveForm2VerifyComponent
+    LeaveFormManagementComponent,
+    LeaveFormVerifyComponent
   ],
   imports: [
     BrowserModule,

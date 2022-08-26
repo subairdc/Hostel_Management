@@ -5,7 +5,6 @@ import { Student } from 'src/app/model/student';
 import { LeaveForm } from 'src/app/model/leave-form';
 import { StudentService } from 'src/app/service/student.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { LeaveForm2 } from 'src/app/model/leave-form2';
 import { LeaveFormService } from 'src/app/service/leave-form.service';
 
 
@@ -17,72 +16,14 @@ import { LeaveFormService } from 'src/app/service/leave-form.service';
 export class LeaveFormComponent implements OnInit {
 
   id : number =0;
-  leaveForm !: FormGroup;
 
   user : Student = new Student();
-  form : LeaveForm = new LeaveForm();
-  leaveForm2 :LeaveForm2 = new LeaveForm2();
-
-  name : string = '';
-  regNo : string = '';
-  roomNo : number = 0;
-  hostel : string = '';
-  phoneNo : string = '';
-
-  degree : string = '';
-  dept : string = '';
-  year : number = 0;
-  semester : number = 0;
-
-  leaveCategory : string ='';
-
-  date : any;
-  day : string = '';
-  leavingTime : string = '';
-  reportingTime : string = '';
-  leavePurpose : string = '';
-
-  fromDate : any;
-  toDate : any;
-  noOfDays : number =0;
-
-  contactPerson : string = '';
-  personName : string = '';
-  relation : string = '';
-  contactPhoneNo : string = '';
+  leaveForm : LeaveForm = new LeaveForm();
 
   constructor(private studentService : StudentService, private route : Router,private router : ActivatedRoute, private formBuilder: FormBuilder,
     public notification : NotificationService, public leaveFormService : LeaveFormService) {
 
-    this.leaveForm = this.formBuilder.group({
-      name : [''],
-      regNo : [''],
-      roomNo : [''],
-      hostel : [''],
-      phoneNo : [''],
 
-      degree : [''], //UG OR PG
-      dept : [''],   //ECE
-      year : [''], //12
-      semester : [''],
-
-      leaveCategory : [''],
-
-      date : [''],
-      day : [''],
-      leavingTime : [''],
-      reportingTime : [''],
-      leavePurpose : [''],
-
-      fromDate : [''],
-      toDate : [''],
-      noOfDays : [''],
-
-      contactPerson : [''],
-      personName : ['',[Validators.required,Validators.minLength(4),Validators.maxLength(25)]],
-      relation : [''],
-      contactPhoneNo : ['',[Validators.required,Validators.maxLength(10),Validators.maxLength(10)]]
-    })
    }
 
   ngOnInit(): void {
@@ -97,7 +38,7 @@ export class LeaveFormComponent implements OnInit {
   }
 
   get f(){
-    return this.leaveForm.controls;
+    return this.leaveFormService.form.controls;
   }
 
 
@@ -105,73 +46,59 @@ export class LeaveFormComponent implements OnInit {
 
     //console.log(this.name+" "+this.phoneNo);
 
-    this.form.name = this.user.name;
-    this.form.regNo = this.user.regNo;
-    this.form.roomNo = this.user.roomNo;
-    this.form.hostel = this.user.hostel;
+    this.leaveForm.name = this.user.name;
+    this.leaveForm.regNo = this.user.regNo;
+    this.leaveForm.phoneNo = this.user.phoneNo;
+    this.leaveForm.roomNo = this.user.roomNo;
+    this.leaveForm.hostel = this.user.hostel;
 
-    this.form.degree = this.user.degree;
-    this.form.dept = this.user.dept;
-    this.form.year = this.user.year;
-    this.form.semester = this.user.sem;
+    this.leaveForm.degree = this.user.degree;
+    this.leaveForm.dept = this.user.dept;
+    this.leaveForm.year = this.user.year;
+    this.leaveForm.sem = this.user.sem;
 
-    this.form.leaveCategory = this.leaveCategory;
+    this.leaveForm.leaveCategory = this.leaveFormService.form.value['leaveCategory'];
 
-    this.form.date = this.date;
-    this.form.day = this.day;
-    this.form.leavingTime = this.leavingTime;
-    this.form.reportingTime = this.reportingTime;
-    this.form.leavePurpose = this.leavePurpose;
+    this.leaveForm.date = this.leaveFormService.form.value['date'];
+    this.leaveForm.day = this.leaveFormService.form.value['day'];
+    this.leaveForm.leavingTime = this.leaveFormService.form.value['leavingTime'];
+    this.leaveForm.reportingTime = this.leaveFormService.form.value['reportingTime'];
+    this.leaveForm.leavePurpose = this.leaveFormService.form.value['leavePurpose'];
 
-    this.form.fromDate= this.fromDate;
-    this.form.toDate = this.toDate;
-    this.form.noOfDays = this.noOfDays;
+    this.leaveForm.fromDate= this.leaveFormService.form.value['fromDate'];
+    this.leaveForm.toDate = this.leaveFormService.form.value['toDate'];
+    this.leaveForm.noOfDays = this.leaveFormService.form.value['noOfDays'];
 
-    this.form.contactPerson = this.contactPerson;
-    this.form.personName = this.personName;
-    this.form.relation = this.relation;
-    this.form.contactPhoneNo = this.contactPhoneNo;
+    this.leaveForm.contactPerson = this.leaveFormService.form.value['contactPerson'];
+    this.leaveForm.personName = this.leaveFormService.form.value['personName'];
+    this.leaveForm.relation = this.leaveFormService.form.value['relation'];
+    this.leaveForm.contactPhoneNo = this.leaveFormService.form.value['contactPhoneNo'];
 
-    //this.studentService.addLeaveForm2
+    this.leaveForm.parent = "Pending";
+    this.leaveForm.staff = "Pending";
+    this.leaveForm.warden = "Pending";
+    this.leaveForm.remark = "";
+    this.leaveForm.leaveStatus = "Pending";
 
-    this.leaveForm2.name = this.user.name;
-    this.leaveForm2.regNo = this.user.regNo;
-    this.leaveForm2.roomNo = this.user.roomNo;
-    this.leaveForm2.parent = "Pending";
-    this.leaveForm2.staff = "Pending";
-    this.leaveForm2.warden = "Pending";
-    this.leaveForm2.leaveStatus = "Pending";
+    console.log(this.leaveForm);
 
-
-    this.leaveFormService.addLeaveForm(this.form).subscribe(res => {
+    this.leaveFormService.addLeave(this.leaveForm).subscribe(res => {
       if(res == null) {
         alert("Leave Form submit failed");
         //this.ngOnInit();
       }else {
         console.log("Leave Form submitted successful");
-        alert("Leave Form submitted successful");
-        this.leaveForm.reset();
-        // this.ngOnInit();
+        this.notification.success("Leave Form submitted successful");
+        this.leaveFormService.form.reset();
+        this.route.navigate(['studentHomepage/'+this.id +'/leaveFormStatus/',this.id]);
+        //this.route.navigate(['studentDashboard',this.user.id]);
+        this.ngOnInit();
       }
     }, err => {
       alert("Registration failed.ERROR");
       this.ngOnInit();
     });
-
-    this.leaveFormService.addLeaveForm2(this.leaveForm2).subscribe(res => {
-      if(res == null) {
-        alert("Leave Form2 submit failed");
-        //this.ngOnInit();
-      }else {
-        console.log("Leave Form2 submitted successful");
-        //alert("Leave Form submitted successful");
-        this.route.navigate(['/studentDashboard',this.user.id]);
-      }
-    }, err => {
-      alert("Registration2 failed.ERROR");
-      //this.ngOnInit();
-    });
-
   }
+
 
 }

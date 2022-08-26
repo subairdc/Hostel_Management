@@ -1,0 +1,225 @@
+<mat-toolbar class="top-menu" style="margin-top: 10px;">
+  <span>Leave Form Verify</span>
+    <span class="example-spacer"></span>
+    <button  class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+  <form [formGroup]="leaveFormService.form" class="normal-form">
+    <mat-grid-list cols="4" rowHeight="480px">
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <!-- <input  type="hidden" formControlName="confirmPassword" placeholder="confirm password" autocomplete="off"> -->
+
+          <mat-form-field>
+            <input matInput formControlName="roomNo" maxlength="3" placeholder="Room No." autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field>
+            <!-- <mat-label>Input</mat-label> -->
+            <input matInput formControlName="name" maxlength="25" placeholder="Name" autocomplete="off">
+            <mat-error *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+              <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['minlength']">Name should be in min 4 char</div>
+              <div *ngIf="f['name'].errors && f['name'].errors['maxlength']">Name should be max 25 char.</div>
+            </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="regNo" maxlength="12" placeholder="regNo" autocomplete="off">
+              <mat-error *ngIf="f['regNo'].touched && f['regNo'].invalid" class="text-danger">
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['required']">regNo is required.</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['minLength']">Please enter valid Reg No</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['maxLength']">Please enter valid Reg No</div>
+              </mat-error>
+            </mat-form-field>
+
+          <mat-form-field>
+            <input matInput formControlName="phoneNo" maxlength="10" placeholder="phone No." autocomplete="off">
+            <mat-error *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
+              <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
+              <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select matInput formControlName="degree" placeholder="Select Degree">
+              <mat-option value="UG">UG</mat-option>
+              <mat-option value="PG">PG</mat-option>
+            </mat-select>
+          </mat-form-field>
+         <mat-form-field>
+            <mat-select matInput formControlName="dept" placeholder="Select Dept">
+              <mat-option value="CIVIL">CIVIL</mat-option>
+              <mat-option value="MECH">MECH</mat-option>
+              <mat-option value="EEE">EEE</mat-option>
+              <mat-option value="ECE">ECE</mat-option>
+              <mat-option value="CSE">CSE</mat-option>
+              <mat-option value="MBA">MBA</mat-option>
+              <mat-option value="MCA">MCA</mat-option>
+              <mat-option value="ME">ME</mat-option>
+             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select matInput formControlName="year" placeholder="Select Year">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+           </mat-select>
+      </mat-form-field>
+    </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+            <mat-form-field>
+              <mat-select matInput formControlName="sem" placeholder="Select Semester">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+                <mat-option value="6">6</mat-option>
+                <mat-option value="7">7</mat-option>
+                <mat-option value="8">8</mat-option>
+               </mat-select>
+          </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="hostel" placeholder="Select Hostel">
+                <mat-option value="Pothigai Boys Hostel">Pothigai Boys Hostel</mat-option>
+                <mat-option value="Thamirabharani Girls Hostel">Thamirabharani Girls Hostel</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="leaveCategory" placeholder="Leave Category">
+                <mat-option value="During Working Hour" >During Working Hour</mat-option>
+                <mat-option value="During Working Day">During Working Day</mat-option>
+                <mat-option value="During Weekend">During Weekend</mat-option>
+                <mat-option value="During OutPass Application">During OutPass Application</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="date" formControlName="date" placeholder="Date" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select matInput formControlName="day" placeholder="Select day">
+                <mat-option value="ForeNoon">ForeNoon</mat-option>
+                <mat-option value="AfterNoon">AfterNoon</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="time" formControlName="leavingTime" placeholder="Leaving time" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="time" formControlName="reportingTime" placeholder="Reporting Time" autocomplete="off">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+            <mat-form-field>
+              <textarea matInput maxlength="30" formControlName="leavePurpose" placeholder="Leave Purpose" autocomplete="off"></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="date" formControlName="fromDate" placeholder="From Date" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="date" formControlName="toDate" placeholder="to Date" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" formControlName="noOfDays" placeholder="No Of days" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select matInput formControlName="contactPerson" placeholder="contact Person">
+                <mat-option value="Father">Father</mat-option>
+                <mat-option value="Mother">Mother</mat-option>
+                <mat-option value="Guardian">Guardian</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput maxlength="25" formControlName="personName" placeholder="Person Name" autocomplete="off">
+              <mat-error *ngIf="f['personName'].touched && f['personName'].invalid" class="text-danger">
+                <div *ngIf="f['personName'].errors && f['personName'].errors['required']">Name is required.</div>
+                <div *ngIf="f['personName'].errors && f['personName'].errors['minlength']">Name should be min 4 char.</div>
+                <div *ngIf="f['personName'].errors && f['personName'].errors['maxlength']">Name should be max 25 char.</div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput maxlength="20" formControlName="relation" placeholder="Relation" autocomplete="off">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controllers-container">
+          <div class="add-top-padding" >
+
+            <mat-form-field>
+              <input matInput maxlength="10" formControlName="contactPhoneNo" placeholder="contact PhoneNo." autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="parent" placeholder="Parent">
+                <mat-option value="Approved">Approved</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="staff" placeholder="Staff">
+                <mat-option value="Approved">Approved</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-select matInput formControlName="warden" placeholder="Warden">
+                <mat-option value="Approved">Approved</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          <mat-form-field>
+            <textarea matInput formControlName="remark" placeholder="Remark" autocomplete="off"></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select matInput formControlName="leaveStatus" placeholder="Leave Status">
+              <mat-option value="Approved">Approved</mat-option>
+              <mat-option value="Pending">Pending</mat-option>
+              <mat-option value="Rejected">Rejected</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-toolbar>
+        <span class="example-spacer"></span>
+        <div class="button-row">
+          <button  type="submit" color="primary" mat-raised-button (click)="onSubmit()" [disabled]="leaveFormService.form.invalid">Submit</button>&nbsp;
+          <button color="warn" mat-raised-button (click)="onClear()">Clear</button>
+        </div>
+
+    </mat-toolbar>
+
+  </form>

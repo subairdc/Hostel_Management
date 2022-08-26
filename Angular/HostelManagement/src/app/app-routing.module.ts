@@ -28,8 +28,8 @@ import { StudentProfileComponent } from './Components/student/student-profile/st
 import { WardenDashboardComponent } from './Components/warden/warden-dashboard/warden-dashboard.component';
 import { WardenDetailsComponent } from './Components/warden/warden-details/warden-details.component';
 import { WardenHomepageComponent } from './Components/warden/warden-homepage/warden-homepage.component';
-import { LeaveForm2ManagementComponent } from './Components/leaveForm/leave-form2-management/leave-form2-management.component';
 import { StudentDetailsComponent } from './Components/student/student-details/student-details.component';
+import { LeaveFormManagementComponent } from './Components/leaveForm/leave-form-management/leave-form-management.component';
 
 const routes: Routes = [
   { path:'' , component: StudentLoginComponent },
@@ -51,7 +51,7 @@ const routes: Routes = [
          [{ path:'studentDashboard/:id' , component: StudentDashboardComponent},
          { path:'studentProfile/:id' , component: StudentProfileComponent},
          { path:'leaveForm/:id' , component: LeaveFormComponent},
-         { path: 'leaveFormStatus/:id', component: LeaveForm2ManagementComponent},
+         { path: 'leaveFormStatus/:id', component: LeaveFormManagementComponent},
          { path:'studentManagement' , component: StudentManagementComponent},
          { path:'studentDetails' , component: StudentDetailsComponent},
         ]
@@ -63,7 +63,7 @@ const routes: Routes = [
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffDetails' , component: StaffDetailsComponent},
         { path:'staffManagement' , component: StaffManagementComponent},
-        { path: 'leaveFormManage', component: LeaveForm2ManagementComponent}]
+        { path: 'leaveFormManage', component: LeaveFormManagementComponent}]
   },
 
   { path:'adminHomepage/:id' , component: AdminHomepageComponent,
@@ -77,7 +77,7 @@ const routes: Routes = [
         { path:'wardenDetails' , component: WardenDetailsComponent},
         { path: 'roomManagement', component: RoomManagementComponent},
         { path: 'roomDetails', component:RoomDetailsComponent},
-        { path: 'leaveFormManage', component: LeaveForm2ManagementComponent}
+        { path: 'leaveFormManage', component: LeaveFormManagementComponent}
 
       ]
   },

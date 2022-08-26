@@ -1,26 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Student } from 'src/app/model/student';
 import { DialogBoxService } from 'src/app/service/dialog-box.service';
 import { LeaveFormService } from 'src/app/service/leave-form.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { StudentService } from 'src/app/service/student.service';
-import { LeaveForm2VerifyComponent } from '../leave-form2-verify/leave-form2-verify.component';
+import { LeaveFormVerifyComponent } from '../leave-form-verify/leave-form-verify.component';
 
 @Component({
-  selector: 'app-leave-form2-management',
-  templateUrl: './leave-form2-management.component.html',
-  styleUrls: ['./leave-form2-management.component.css']
+  selector: 'app-leave-form-management',
+  templateUrl: './leave-form-management.component.html',
+  styleUrls: ['./leave-form-management.component.css']
 })
-export class LeaveForm2ManagementComponent implements OnInit {
+export class LeaveFormManagementComponent implements OnInit {
 
+  id : number =0;
+  regNo : string ='';
 
-
-  id : string ='';
+  user : Student = new Student();
 
   girdListData : any;
   displayedColumns : string[] = ['id','roomNo', 'regNo', 'name', 'parent', 'staff', 'warden', 'remark', 'leaveStatus','action'];
@@ -38,8 +40,9 @@ export class LeaveForm2ManagementComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
+   // this.fillGird();
     this.id = this.route.snapshot.params['id'];
+
 
     // this.studentService.getStudentById(this.id).subscribe(res=>{
     //   //console.log("result "+ res);
@@ -49,17 +52,36 @@ export class LeaveForm2ManagementComponent implements OnInit {
     // });
     //console.log(this.id);
 
-    if(this.id == "stu") {
+    if(this.id !=null) {
       this.displayedColumns = ['id','roomNo', 'regNo', 'name', 'parent', 'staff', 'warden', 'remark', 'leaveStatus'];
+      // this.fillGirdStudent();
+      this.getStudent();
     }else{
       this.displayedColumns = ['id','roomNo', 'regNo', 'name', 'parent', 'staff', 'warden', 'remark', 'leaveStatus', 'action'];
+      this.fillGird();
     }
-
     this.fillGird();
+
   }
 
+  private getStudent() {
+    this.studentService.getStudentById(this.id).subscribe(data => {
+      this.user = data;
+    })
+  }
+
+  // fillGirdStudent() {
+  //   this.regNo = this.user.regNo;
+  //   this.leaveFormService.getLeaveByRegNo(this.user.regNo).subscribe(
+  //     data =>{ this.girdListData = new MatTableDataSource(data);
+  //     this.girdListData.sort = this.sort;
+  //     this.girdListData.paginator = this.paginator; //optional
+
+  //   })
+  // }
+
   fillGird() {
-    this.leaveFormService.getAllLeaveForm2().subscribe(
+    this.leaveFormService.getAllLeave().subscribe(
       data =>{ this.girdListData = new MatTableDataSource(data);
       this.girdListData.sort = this.sort;
       this.girdListData.paginator = this.paginator; //optional
@@ -77,11 +99,26 @@ export class LeaveForm2ManagementComponent implements OnInit {
   }
 
   onCreate() {
+    if(this.id != null) {
+      this.router.navigate(['studentHomepage/'+this.id +'/leaveForm/',this.id]);
+    } else{
+      const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose =true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width ="60%";
+    this._dialog.open(LeaveFormVerifyComponent,dialogConfig);
+    }
+  }
+
+  onView(row:any) {
+    this.leaveFormService.populateForm(row);
+    this.leaveFormService.form.disable();
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="50%";
-    this._dialog.open(LeaveForm2VerifyComponent,dialogConfig);
+    dialogConfig.width ="60%";
+    this._dialog.open(LeaveFormVerifyComponent,dialogConfig);
   }
 
   onEdit(row:any) {
@@ -90,20 +127,35 @@ export class LeaveForm2ManagementComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose =true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width ="40%";
-    this._dialog.open(LeaveForm2VerifyComponent,dialogConfig);
+    dialogConfig.width ="60%";
+    this._dialog.open(LeaveFormVerifyComponent,dialogConfig);
   }
 
   onDelete(row : any) {
 
     this.dialogService.openConfirmDialog('Would you like to delete ' + row.name + ' data?').afterClosed().subscribe(res=> {
       if(res) {
-        this.leaveFormService.deleteLeaveForm2(row).subscribe(data=> {
+        this.leaveFormService.deleteLeave(row).subscribe(data=> {
           this._notification.warn("Deleted Successfully");
           this.leaveFormService.filter('');
         });
       }
     });
   }
+
+  onApproved(row : any) {
+
+    this.dialogService.openConfirmDialog('Would you like to Approved ' + row.name + ' data?').afterClosed().subscribe(res=> {
+      if(res) {
+          row.verify = "Verified";
+          this.leaveFormService.updateLeave(row).subscribe(data => {
+            this.leaveFormService.form.reset();
+            this.leaveFormService.initializeFormGroup();
+            this._notification.success("Student Verified Successfully");
+          });
+      }
+    });
+}
+
 
 }

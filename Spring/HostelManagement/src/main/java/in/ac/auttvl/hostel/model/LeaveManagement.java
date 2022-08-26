@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LeaveForm {
+public class LeaveManagement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,7 @@ public class LeaveForm {
 	private int id;
 	private String name;
 	private String regNo;
+	private String phoneNo;
 	private int roomNo;
 	private String hostel;
 
@@ -53,19 +54,20 @@ public class LeaveForm {
 	private String remark;
 	private String leaveStatus;
 	
-	public LeaveForm() {
+	public LeaveManagement() {
 		
 	}
 
-	public LeaveForm(int id, String name, String regNo, int roomNo, String hostel, String degree, String dept, int year,
-			int sem, String leaveCategory, String date, String day, String leavingTime, String reportingTime,
-			String leavePurpose, String fromDate, String toDate, int noOfDays, String contactPerson, String personName,
-			String relation, String contactPhoneNo, String parent, String staff, String warden, String remark,
-			String leaveStatus) {
+	public LeaveManagement(int id, String name, String regNo, String phoneNo, int roomNo, String hostel, String degree,
+			String dept, int year, int sem, String leaveCategory, String date, String day, String leavingTime,
+			String reportingTime, String leavePurpose, String fromDate, String toDate, int noOfDays,
+			String contactPerson, String personName, String relation, String contactPhoneNo, String parent,
+			String staff, String warden, String remark, String leaveStatus) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.regNo = regNo;
+		this.phoneNo = phoneNo;
 		this.roomNo = roomNo;
 		this.hostel = hostel;
 		this.degree = degree;
@@ -114,6 +116,14 @@ public class LeaveForm {
 
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
+	}
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public int getRoomNo() {
@@ -307,6 +317,5 @@ public class LeaveForm {
 	public void setLeaveStatus(String leaveStatus) {
 		this.leaveStatus = leaveStatus;
 	}
-	
-	
+
 }

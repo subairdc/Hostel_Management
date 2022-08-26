@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogBoxService } from 'src/app/service/dialog-box.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { StudentService } from 'src/app/service/student.service';
@@ -30,7 +30,7 @@ export class StudentManagementComponent implements OnInit {
   @ViewChild(MatSort) sort: any = MatSort;
   @ViewChild(MatPaginator) paginator : any = MatPaginator; //optional
 
-  constructor(private route : Router, private formBuilder : FormBuilder, private studentService : StudentService,
+  constructor(private router : Router, private route : ActivatedRoute, private formBuilder : FormBuilder, private studentService : StudentService,
     private _notification : NotificationService, private _dialog : MatDialog, private dialogService : DialogBoxService) {
 
       this.studentService.listen().subscribe((m:any)=> {
@@ -219,7 +219,7 @@ export class StudentManagementComponent implements OnInit {
 
   logout() {
     //localStorage.removeItem("token");
-    this.route.navigate(['/staffLogin']);
+    this.router.navigate(['/staffLogin']);
   }
 
 
