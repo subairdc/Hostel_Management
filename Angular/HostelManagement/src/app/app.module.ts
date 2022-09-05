@@ -53,6 +53,10 @@ import { AdminForgetPasswordComponent } from './Components/login/admin-forget-pa
 import { StaffForgetPasswordComponent } from './Components/login/staff-forget-password/staff-forget-password.component';
 import { WardenForgetPasswordComponent } from './Components/login/warden-forget-password/warden-forget-password.component';
 import { StudentForgetPasswordComponent } from './Components/login/student-forget-password/student-forget-password.component';
+import { StudentChangePasswordComponent } from './Components/login/student-change-password/student-change-password.component';
+import { StaffProfileComponent } from './Components/staff/staff-profile/staff-profile.component';
+import { WardenProfileComponent } from './Components/warden/warden-profile/warden-profile.component';
+import { AdminProfileComponent } from './Components/admin/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +97,11 @@ import { StudentForgetPasswordComponent } from './Components/login/student-forge
     AdminForgetPasswordComponent,
     StaffForgetPasswordComponent,
     WardenForgetPasswordComponent,
-    StudentForgetPasswordComponent
+    StudentForgetPasswordComponent,
+    StudentChangePasswordComponent,
+    StaffProfileComponent,
+    WardenProfileComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,

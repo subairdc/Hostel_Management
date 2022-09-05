@@ -33,6 +33,10 @@ import { StudentForgetPasswordComponent } from './Components/login/student-forge
 import { StaffForgetPasswordComponent } from './Components/login/staff-forget-password/staff-forget-password.component';
 import { WardenForgetPasswordComponent } from './Components/login/warden-forget-password/warden-forget-password.component';
 import { AdminForgetPasswordComponent } from './Components/login/admin-forget-password/admin-forget-password.component';
+import { StudentChangePasswordComponent } from './Components/login/student-change-password/student-change-password.component';
+import { StaffProfileComponent } from './Components/staff/staff-profile/staff-profile.component';
+import { WardenProfileComponent } from './Components/warden/warden-profile/warden-profile.component';
+import { AdminProfileComponent } from './Components/admin/admin-profile/admin-profile.component';
 
 const routes: Routes = [
   { path:'' , component: StudentLoginComponent },
@@ -59,21 +63,24 @@ const routes: Routes = [
          { path: 'leaveFormStatus/:id', component: LeaveFormManagementComponent},
          { path:'studentManagement' , component: StudentManagementComponent},
          { path:'studentDetails' , component: StudentDetailsComponent},
+         { path:'changePassword' , component: StudentChangePasswordComponent}
         ]
   },
 
   { path:'staffHomepage/:id' , component: StaffHomepageComponent,
         children:
         [{ path:'staffDashboard/:id' , component: StaffDashboardComponent },
+        { path:'staffProfile/:id' , component: StaffProfileComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffDetails' , component: StaffDetailsComponent},
-        { path:'staffManagement' , component: StaffManagementComponent},
-        { path: 'leaveFormManage', component: LeaveFormManagementComponent}]
+        { path: 'leaveFormManage', component: LeaveFormManagementComponent},
+        { path: 'roomManagement', component: RoomManagementComponent},]
   },
 
   { path:'adminHomepage/:id' , component: AdminHomepageComponent,
         children:
         [{ path:'adminDashboard/:id' , component: AdminDashboardComponent },
+        { path:'adminProfile/:id' , component: AdminProfileComponent},
         { path:'adminDetails' , component: AdminDetailsComponent },
         { path:'studentManagement' , component: StudentManagementComponent},
         { path:'staffManagement' , component: StaffManagementComponent},
@@ -90,9 +97,12 @@ const routes: Routes = [
   { path:'wardenHomepage/:id' , component: WardenHomepageComponent,
   children:
   [{ path:'wardenDashboard/:id' , component: WardenDashboardComponent },
+  { path:'wardenProfile/:id' , component: WardenProfileComponent},
   { path:'studentManagement' , component: StudentManagementComponent},
   { path:'wardenDetails/:id' , component: WardenDetailsComponent},
-  { path:'staffManagement' , component: StaffManagementComponent}]
+  { path:'staffManagement' , component: StaffManagementComponent},
+  { path: 'roomManagement', component: RoomManagementComponent},
+  { path: 'leaveFormManage', component: LeaveFormManagementComponent}]
 }
 
 ];

@@ -17,9 +17,10 @@
     <mat-nav-list style="width:200px">
       <a mat-list-item routerLink="staffDashboard/{{user.id}}"  routerLinkActive="badge-success"> <mat-icon>dashboard</mat-icon>Dashboard</a>
       <a mat-list-item routerLink="staffProfile/{{user.id}}" > <mat-icon>person</mat-icon> &nbsp; Profile</a>
-      <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Student Details</a>
-      <a mat-list-item routerLink="staffManagement"> <mat-icon>student</mat-icon>Staff Details</a>
-      <a mat-list-item routerLink="leaveFormManage"> <mat-icon>student</mat-icon>Leave Management</a>
+      <a mat-list-item routerLink="studentManagement"> <mat-icon>student</mat-icon>Student List</a>
+      <a mat-list-item routerLink="leaveFormManage"> <mat-icon>student</mat-icon>Leave Form</a>
+      <a mat-list-item routerLink="roomManagement"> <mat-icon>student</mat-icon>Room Management</a>
+
       <a mat-list-item (click)="logout()"> <mat-icon>input</mat-icon>&nbsp; Logout</a>
     </mat-nav-list>
   </mat-sidenav>

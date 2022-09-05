@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-md-6 mt-2">
-              <div class="inputs"> <label>Email</label>
+              <div class="inputs"> <label class="text-muted mandatory">Email</label>
                 <input class="form-control" maxlength="35" type="text" placeholder="Email" name="email" formControlName="email"> </div>
                 <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
                   <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
@@ -27,7 +27,7 @@
           </div>
 
           <div class="col-md-6 mt-2">
-            <div class="inputs"> <label>Phone No.</label>
+            <div class="inputs"> <label class="text-muted mandatory">Phone No.</label>
                <input class="form-control" type="text" maxlength="10" placeholder="Phone No." name="phoneNo" formControlName="phoneNo"> </div>
                <div *ngIf="f['phoneNo'].touched && f['phoneNo'].invalid" class="text-danger">
                 <div *ngIf="f['phoneNo'].errors && f['phoneNo'].errors['required']">Phone No. is required.</div>
@@ -36,7 +36,7 @@
           </div>
 
           <div class="col-md-6 mb-4 mt-2">
-            <div class="inputs"> <label>Marital Status</label>
+            <div class="inputs"> <label class="text-muted mandatory">Marital Status</label>
               <select class="form-select" aria-label="Default select example" formControlName="status">
                 <option [selected]="1">Select Option</option>
                 <option value="Single" >Single</option>
@@ -45,7 +45,7 @@
           </div>
 
           <div class="col-md-6 mt-2">
-            <div class="inputs"> <label>Password</label>
+            <div class="inputs"> <label class="text-muted mandatory">Password</label>
               <input class="form-control" type="password" maxlength="25" placeholder="Password" name="password" formControlName="password"> </div>
               <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
                 <div *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</div>
@@ -54,7 +54,7 @@
           </div>
 
           <div class="col-md-6 mt-2">
-            <div class="inputs"> <label>Confirm Password</label>
+            <div class="inputs"> <label class="text-muted mandatory">Confirm Password</label>
               <input class="form-control" type="password" maxlength="25" placeholder="confirm password" name="confirmPassword" formControlName="confirmPassword"> </div>
               <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid" class="text-danger">
                 <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Password is required.</div>
@@ -66,7 +66,7 @@
 
           <div class="col-md-6 mb-4 mt-2">
 
-            <div class="inputs"> <label>Gender</label>
+            <div class="inputs"> <label class="text-muted mandatory">Gender</label>
               <select class="form-select" [(ngModel)]="genderS" aria-label="Default select example" formControlName="gender" >
                 <option *ngFor="let n of gender" value="{{n}}">{{n}}</option>
 
@@ -74,11 +74,11 @@
           </div>
 
           <div class="col-md-4 mt-2">
-              <div class="inputs"> <label>Date of Birth</label>
+              <div class="inputs"> <label class="text-muted mandatory">Date of Birth</label>
                 <input class="form-control" type="date" maxlength="10" placeholder="Date of Birth" formControlName="dateOfBirth"> </div>
           </div>
           <div class=" col-md-2 mt-2">
-            <div class="inputs"> <label>Age</label>
+            <div class="inputs"> <label class="text-muted mandatory">Age</label>
                <input class="form-control" type="number" maxlength="2" placeholder="Age" formControlName="age"> </div>
                <div *ngIf="f['age'].touched && f['age'].invalid" class="text-danger">
                 <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
@@ -88,7 +88,7 @@
 
           <div class="col-md-6 mb-4">
 
-            <div class="inputs"> <label>Blood Group</label>
+            <div class="inputs"> <label class="text-muted mandatory">Blood Group</label>
               <select class="form-select" [(ngModel)]="bloodGrpS" aria-label="Default select example" formControlName="bloodGrp" >
                 <option *ngFor="let n of bloodGrp" value="{{n}}">{{n}}</option>
               </select> </div>
@@ -96,7 +96,7 @@
 
 
           <div class="col-md-3 mb-4">
-            <div class="inputs"> <label>Degree</label>
+            <div class="inputs"> <label class="text-muted mandatory">Degree</label>
               <select class="form-select" aria-label="Default select example"  formControlName="degree">
                 <option [selected]="1">Select Degree</option>
                 <option value="UG">UG</option>
@@ -105,7 +105,7 @@
           </div>
 
           <div class="col-md-3 mb-4">
-            <div class="inputs"> <label>Department</label>
+            <div class="inputs"> <label class="text-muted mandatory">Department</label>
               <select class="form-select" aria-label="Default select example" formControlName="dept">
                 <option value="CIVIL">CIVIL</option>
                 <option value="MECH">MECH</option>
@@ -119,7 +119,7 @@
           </div>
 
           <div class="col-md-6 ">
-            <div class="inputs"> <label>Reg No.</label>
+            <div class="inputs"> <label class="text-muted mandatory">Reg No.</label>
               <input class="form-control" type="text" maxlength="12" placeholder="Reg No."  formControlName="regNo"> </div>
               <div *ngIf="f['regNo'].touched && f['regNo'].invalid" class="text-danger">
                 <div *ngIf="f['regNo'].errors && f['regNo'].errors['required']">regNo is required.</div>
@@ -129,7 +129,7 @@
           </div>
 
           <div class="col-md-3 mb-4">
-            <div class="inputs"> <label>Year</label>
+            <div class="inputs"> <label class="text-muted mandatory">Year</label>
               <select class="form-select" aria-label="Default select example"  formControlName="year">
                 <option [selected]="1">Select Year</option>
                 <option value="1">1</option>
@@ -140,7 +140,7 @@
           </div>
 
           <div class="col-md-3 mb-4">
-            <div class="inputs"> <label>Semester</label>
+            <div class="inputs"> <label class="text-muted mandatory">Semester</label>
               <select class="form-select" aria-label="Default select example"  formControlName="sem">
                 <option [selected]="1">Select Sem</option>
                 <option value="1">1</option>
@@ -155,7 +155,7 @@
           </div>
 
           <div class="col-md-12 mb-4">
-            <div class="inputs"> <label>Hostel</label>
+            <div class="inputs"> <label class="text-muted mandatory">Hostel</label>
               <select class="form-select" [(ngModel)]="hostelS" aria-label="Default select example" formControlName="hostel">
                 <option *ngFor="let n of hostel" value="{{n}}">{{n}} </option>
               </select> </div>
@@ -166,7 +166,7 @@
       <div class="row mt-2">
 
         <div class="col-md-12 mt-2">
-          <div class="inputs"> <label>Street</label>
+          <div class="inputs"> <label class="text-muted mandatory">Street</label>
              <input class="form-control" type="text" placeholder="Door No. & Street Name"  formControlName="street"> </div>
              <div *ngIf="f['street'].touched && f['street'].invalid" class="text-danger">
               <div *ngIf="f['street'].errors && f['street'].errors['required']">street is required.</div>
@@ -175,19 +175,19 @@
             </div>
         </div>
         <div class="col-md-6 mt-2">
-          <div class="inputs"> <label>City</label>
+          <div class="inputs"> <label class="text-muted mandatory">City</label>
              <input class="form-control" type="text" placeholder="City"  formControlName="city"> </div>
         </div>
         <div class="col-md-6 mt-2">
-          <div class="inputs"> <label>District</label>
+          <div class="inputs"> <label class="text-muted mandatory">District</label>
             <input class="form-control" type="text" placeholder="District" formControlName="district"> </div>
         </div>
         <div class="col-md-6 mt-2">
-          <div class="inputs"> <label>State</label>
+          <div class="inputs"> <label class="text-muted mandatory">State</label>
             <input class="form-control" type="text" placeholder="State" formControlName="state"> </div>
         </div>
         <div class="col-md-6 mt-2">
-          <div class="inputs"> <label>Pincode</label>
+          <div class="inputs"> <label class="text-muted mandatory">Pincode</label>
             <input class="form-control" type="text" maxlength="6" placeholder="Pincode" formControlName="pincode"> </div>
             <div *ngIf="f['pincode'].touched && f['pincode'].invalid" class="text-danger">
               <div *ngIf="f['pincode'].errors && f['pincode'].errors['required']">pincode is required.</div>
@@ -199,7 +199,7 @@
 
     <div class="row mt-2">
       <div class="col-md-6 mt-2">
-        <div class="inputs"> <label>Father Name</label>
+        <div class="inputs"> <label class="text-muted mandatory">Father Name</label>
           <input class="form-control" type="text" maxlength="25" placeholder="Father Name" formControlName="fatherName" required> </div>
           <div *ngIf="f['fatherName'].touched && f['fatherName'].invalid" class="text-danger">
             <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['required']">fatherName is required.</div>
@@ -208,7 +208,7 @@
           </div>
       </div>
       <div class="col-md-6 mt-2">
-        <div class="inputs"> <label>Father Mobile No.</label>
+        <div class="inputs"> <label class="text-muted mandatory">Father Mobile No.</label>
           <input class="form-control" type="text" maxlength="10" placeholder="Father Mobile No." formControlName="fatherPhoneNo" required> </div>
           <div *ngIf="f['fatherPhoneNo'].touched && f['fatherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['required']">Phone No. is required.</div>
@@ -216,7 +216,7 @@
           </div>
       </div>
       <div class="col-md-6 mt-2">
-        <div class="inputs"> <label>Mother Name</label>
+        <div class="inputs"> <label class="text-muted mandatory">Mother Name</label>
           <input class="form-control" type="text" maxlength="25" placeholder="Mother Name" formControlName="motherName" required> </div>
           <div *ngIf="f['motherName'].touched && f['motherName'].invalid" class="text-danger">
             <div *ngIf="f['motherName'].errors && f['motherName'].errors['required']">motherName is required.</div>
@@ -225,7 +225,7 @@
           </div>
       </div>
       <div class="col-md-6 mt-2">
-        <div class="inputs"> <label>Mother Mobile No.</label>
+        <div class="inputs"> <label class="text-muted mandatory">Mother Mobile No.</label>
           <input class="form-control" type="text" maxlength="10" placeholder="Mother Mobile No." formControlName="motherPhoneNo" required> </div>
           <div *ngIf="f['motherPhoneNo'].touched && f['motherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['required']">Phone No. is required.</div>

@@ -87,14 +87,13 @@
   <mat-sidenav #sidenav opened mode="side" style="background-color: #eee;" class="vertical-menu">
     <mat-nav-list style="width:200px">
       <a mat-list-item routerLink="adminDashboard/{{user.id}}"> <mat-icon>dashboard</mat-icon>&nbsp; Dashboard</a>
-      <a mat-list-item routerLink="studentProfile/{{user.id}}"> <mat-icon>person</mat-icon> &nbsp; Profile</a>
-      <a mat-list-item routerLink="adminDetails"> <mat-icon>dashboard</mat-icon>&nbsp; Admin Details</a>
+      <a mat-list-item routerLink="adminProfile/{{user.id}}"> <mat-icon>person</mat-icon> &nbsp; Profile</a>
+      <!-- <a mat-list-item routerLink="adminDetails"> <mat-icon>dashboard</mat-icon>&nbsp; Admin Details</a> -->
       <a mat-list-item routerLink="studentManagement"> <mat-icon>person</mat-icon> &nbsp; Student List</a>
       <a mat-list-item routerLink="staffManagement"> <mat-icon>person</mat-icon>&nbsp;Staff List</a>
       <a mat-list-item routerLink="wardenManagement"> <mat-icon>person</mat-icon>&nbsp;Warden List</a>
       <a mat-list-item routerLink="adminManagement"> <mat-icon>person</mat-icon>&nbsp;Admin List</a>
       <a mat-list-item routerLink="roomManagement"> <mat-icon>person</mat-icon>&nbsp;Room Management</a>
-      <a mat-list-item routerLink="roomDetails"> <mat-icon>person</mat-icon>&nbsp;Room Details</a>
 
       <a mat-list-item routerLink="leaveFormManage"> <mat-icon>person</mat-icon>&nbsp;Leave Form</a>
       <a mat-list-item (click)="logout()"> <mat-icon>input</mat-icon>&nbsp; Logout</a>
