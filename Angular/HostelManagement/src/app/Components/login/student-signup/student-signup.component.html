@@ -107,6 +107,7 @@
           <div class="col-md-3 mb-4">
             <div class="inputs"> <label class="text-muted mandatory">Department</label>
               <select class="form-select" aria-label="Default select example" formControlName="dept">
+                <option [selected]="1">Select Department</option>
                 <option value="CIVIL">CIVIL</option>
                 <option value="MECH">MECH</option>
                 <option value="EEE">EEE</option>
@@ -123,8 +124,8 @@
               <input class="form-control" type="text" maxlength="12" placeholder="Reg No."  formControlName="regNo"> </div>
               <div *ngIf="f['regNo'].touched && f['regNo'].invalid" class="text-danger">
                 <div *ngIf="f['regNo'].errors && f['regNo'].errors['required']">regNo is required.</div>
-                <div *ngIf="f['regNo'].errors && f['regNo'].errors['minLength']">Please enter valid Reg No</div>
-                <div *ngIf="f['regNo'].errors && f['regNo'].errors['maxLength']">Please enter valid Reg No</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['minlength']">Please enter valid Reg No</div>
+                <div *ngIf="f['regNo'].errors && f['regNo'].errors['maxlength']">Please enter valid Reg No</div>
               </div>
           </div>
 
@@ -170,8 +171,8 @@
              <input class="form-control" type="text" placeholder="Door No. & Street Name"  formControlName="street"> </div>
              <div *ngIf="f['street'].touched && f['street'].invalid" class="text-danger">
               <div *ngIf="f['street'].errors && f['street'].errors['required']">street is required.</div>
-              <div *ngIf="f['street'].errors && f['street'].errors['minLength']">Street name should be in min 5 char</div>
-              <div *ngIf="f['street'].errors && f['street'].errors['maxLength']">Street name should be in max 40 char</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['minlength']">Street name should be in min 5 char</div>
+              <div *ngIf="f['street'].errors && f['street'].errors['maxlength']">Street name should be in max 40 char</div>
             </div>
         </div>
         <div class="col-md-6 mt-2">
@@ -191,7 +192,7 @@
             <input class="form-control" type="text" maxlength="6" placeholder="Pincode" formControlName="pincode"> </div>
             <div *ngIf="f['pincode'].touched && f['pincode'].invalid" class="text-danger">
               <div *ngIf="f['pincode'].errors && f['pincode'].errors['required']">pincode is required.</div>
-              <div *ngIf="f['pincode'].errors && f['pincode'].errors['minLength']">please enter valid pincode</div>
+              <div *ngIf="f['pincode'].errors && f['pincode'].errors['minlength']">please enter valid pincode</div>
             </div>
         </div>
 
@@ -203,8 +204,8 @@
           <input class="form-control" type="text" maxlength="25" placeholder="Father Name" formControlName="fatherName" required> </div>
           <div *ngIf="f['fatherName'].touched && f['fatherName'].invalid" class="text-danger">
             <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['required']">fatherName is required.</div>
-            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['minLength']">Name should be min 4 char.</div>
-            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['maxLength']">Name should be max 25 char.</div>
+            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['minlength']">Name should be min 4 char.</div>
+            <div *ngIf="f['fatherName'].errors && f['fatherName'].errors['maxlength']">Name should be max 25 char.</div>
           </div>
       </div>
       <div class="col-md-6 mt-2">
@@ -212,7 +213,7 @@
           <input class="form-control" type="text" maxlength="10" placeholder="Father Mobile No." formControlName="fatherPhoneNo" required> </div>
           <div *ngIf="f['fatherPhoneNo'].touched && f['fatherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['required']">Phone No. is required.</div>
-            <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+            <div *ngIf="f['fatherPhoneNo'].errors && f['fatherPhoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
           </div>
       </div>
       <div class="col-md-6 mt-2">
@@ -220,8 +221,8 @@
           <input class="form-control" type="text" maxlength="25" placeholder="Mother Name" formControlName="motherName" required> </div>
           <div *ngIf="f['motherName'].touched && f['motherName'].invalid" class="text-danger">
             <div *ngIf="f['motherName'].errors && f['motherName'].errors['required']">motherName is required.</div>
-            <div *ngIf="f['motherName'].errors && f['motherName'].errors['minLength']">Name should be min 4 char.</div>
-            <div *ngIf="f['motherName'].errors && f['motherName'].errors['maxLength']">Name should be max 25 char.</div>
+            <div *ngIf="f['motherName'].errors && f['motherName'].errors['minlength']">Name should be min 4 char.</div>
+            <div *ngIf="f['motherName'].errors && f['motherName'].errors['maxlength']">Name should be max 25 char.</div>
           </div>
       </div>
       <div class="col-md-6 mt-2">
@@ -229,7 +230,7 @@
           <input class="form-control" type="text" maxlength="10" placeholder="Mother Mobile No." formControlName="motherPhoneNo" required> </div>
           <div *ngIf="f['motherPhoneNo'].touched && f['motherPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['required']">Phone No. is required.</div>
-            <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+            <div *ngIf="f['motherPhoneNo'].errors && f['motherPhoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
           </div>
       </div>
     </div>
@@ -248,7 +249,7 @@
           <input class="form-control" type="text" maxlength="10" placeholder="Guardian Mobile No." formControlName="guardianPhoneNo"> </div>
           <!-- <div *ngIf="f['guardianPhoneNo'].touched && f['guardianPhoneNo'].invalid" class="text-danger">
             <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['required']">Phone NO. is required.</div>
-            <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['minLength']">Please, enter valid Phone No.</div>
+            <div *ngIf="f['guardianPhoneNo'].errors && f['guardianPhoneNo'].errors['minlength']">Please, enter valid Phone No.</div>
           </div> -->
       </div>
     </div>

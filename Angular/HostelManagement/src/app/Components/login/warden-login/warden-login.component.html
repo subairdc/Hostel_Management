@@ -5,10 +5,10 @@
           <img src="../../../assets/login_img.svg" height="100%" width="100%">
       </div>
       <div class="col-md-4 mt-3 mb-2">
-          <h3 class="text-success text-center"><b>WARDEN LOGIN</b></h3>
+          <h2 class="text-success text-center"><b>WARDEN LOGIN</b></h2>
 
-          <form [formGroup]="loginForm" (ngSubmit)="login()" action="" class="mt-5 p-5">
-              <h5 class="text-primary mb-3">Login </h5>
+          <form [formGroup]="loginForm" (ngSubmit)="login()" action="" class="mt-5 p-4">
+              <h3 class="text-primary mb-3">Login </h3>
               <div class="form-floating mb-3">
                   <input type="text" class="form-control" maxlength="30" id="floatingInput" placeholder="Email" name="email" [(ngModel)]="email" formControlName="email" required>
                   <label for="floatingInput">Email address</label>
@@ -30,7 +30,7 @@
                 </div>
 
                 <a routerLink="/wardenForgetPassword" class="text-primary" style="text-decoration: none;">Forget Password </a> <br><br>
-                <a routerLink="/wardenSignup" class="text-primary" style="text-decoration: none;">Need account ? </a>
+                <a routerLink="/wardenSignup" class="text-primary" style="text-decoration: none;">Need an account ? </a>
           </form>
 
       </div>
