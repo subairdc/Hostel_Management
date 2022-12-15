@@ -33,6 +33,13 @@ export class AuthService {
   adminForgetPasswordURL : string = '';
   adminForgetEmailURL : string = '';
 
+  //Change password
+  studentChangePasswordURL : string = '';
+  staffChangePasswordURL : string = '';
+  wardenChangePasswordURL : string = '';
+  adminChangePasswordURL : string = '';
+
+
   constructor(private http : HttpClient) {
     this.staffLoginUrl = "http://localhost:8080/auth/staffLogin";
     this.staffSignUpUrl = "http://localhost:8080/auth/staffRegister";
@@ -58,6 +65,12 @@ export class AuthService {
 
     this.adminForgetPasswordURL = "http://localhost:8080/auth/adminForgetPassword";
     this.adminForgetEmailURL = "http://localhost:8080/auth/adminForgetEmail";
+
+    //change Password
+    this.studentChangePasswordURL = "http://localhost:8080/auth/studentChangePassword";
+    this.staffChangePasswordURL = "http://localhost:8080/auth/staffChangePassword";
+    this.wardenChangePasswordURL = "http://localhost:8080/auth/wardenChangePassword";
+    this.adminChangePasswordURL = "http://localhost:8080/auth/adminChangePassword";
 
   }
 
@@ -127,5 +140,23 @@ export class AuthService {
 
   adminEmail(user : any) : Observable<any> {
     return this.http.get<any>(this.adminForgetEmailURL,user.email);
+  }
+
+
+  //change Password
+  studentChangePassword(user : any) : Observable<any> {
+    return this.http.post<any>(this.studentChangePasswordURL,user);
+  }
+
+  staffChangePassword(user : any) : Observable<any> {
+    return this.http.post<any>(this.staffChangePasswordURL,user);
+  }
+
+  wardenChangePassword(user : any) : Observable<any> {
+    return this.http.post<any>(this.wardenChangePasswordURL,user);
+  }
+
+  adminChangePassword(user : any) : Observable<any> {
+    return this.http.post<any>(this.adminChangePasswordURL,user);
   }
 }

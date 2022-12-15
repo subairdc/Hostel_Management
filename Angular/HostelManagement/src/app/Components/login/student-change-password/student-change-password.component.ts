@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/model/student';
 import { AuthService } from 'src/app/service/auth.service';
+import { NotificationService } from 'src/app/service/notification.service';
+import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-student-change-password',
@@ -14,29 +16,39 @@ export class StudentChangePasswordComponent implements OnInit {
 
   changePasswordForm !: FormGroup;
 
-  currentPassword : string = '';
+  id : number=0;
   password : string = '';
+  newPassword : string = '';
   confirmPassword : string = '';
 
   user : Student = new Student();
 
-  constructor(private authService : AuthService, private route : Router,
-    private http : HttpClient, private formBuilder : FormBuilder) {
+  constructor(private authService : AuthService, private router : Router,
+    private http : HttpClient, private formBuilder : FormBuilder, public studentService : StudentService,
+    public notification : NotificationService, private route: ActivatedRoute) {
 
       this.changePasswordForm = this.formBuilder.group({
-        currentPassword :['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
-        password: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+        password :['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+        newPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       confirmPassword: ['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
 
       },
       {
-        validators: this.confirmingPassword("password", "confirmPassword")
+        validators: this.confirmingPassword("newPassword", "confirmPassword")
       }
 
       );
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getStudent();
+  }
+
+  private getStudent() {
+    this.studentService.getStudentById(this.id).subscribe(data => {
+      this.user = data;
+    })
   }
 
   get f(){
@@ -59,10 +71,26 @@ export class StudentChangePasswordComponent implements OnInit {
   }
 
   onCancel() {
-    
+    this.changePasswordForm.reset();
   }
 
   changePassword() {
+    this.user.password = this.changePasswordForm.value['Password'];
+    this.user.confirmPassword = this.changePasswordForm.value['newPassword'];
+    this.authService.studentChangePassword(this.user).subscribe(res=>{
+      if(res == null) {
+        this.notification.warn("Password Update failed");
+        //alert("Student Details Update failed");
+        this.ngOnInit();
+      }else {
+        //alert("Student Details Updated successful");
+        //this.studentService.form.reset();
+        this.notification.success("Password Updated successful");
+        this.changePasswordForm.reset();
+      }
+    },err=>{
+      console.log(err);
+    })
 
   }
 

@@ -256,6 +256,21 @@ public class AuthService {
 		}
 		return null;
 	}
+
+	public Student stuChangePassword(Student student) {
+		
+		Student existingUser = studentRepository.findById(student.getId()).orElse(null);
+		
+		if(existingUser != null && existingUser.getPassword().equals(student.getPassword())) {
+			existingUser.setPassword(student.getConfirmPassword());
+            existingUser.setConfirmPassword(student.getConfirmPassword());
+            studentRepository.save(existingUser);
+            return student;
+		}
+		
+		
+		return null;
+	}
 	
 
 	

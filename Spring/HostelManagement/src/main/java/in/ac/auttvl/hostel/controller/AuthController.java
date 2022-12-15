@@ -3,6 +3,7 @@ package in.ac.auttvl.hostel.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -128,4 +129,10 @@ public class AuthController {
 	        return  authService.getAdminByAdminId(admin);
 	    }    
 	    
+	 //Change Password                                 Student\
+	    @PutMapping("/studentChangePassword")
+	    public Student stuChangePassword(@RequestBody Student student) {
+
+	        return authService.stuChangePassword(student);
+	    }
 }
